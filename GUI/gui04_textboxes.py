@@ -37,7 +37,8 @@ class MainWindow(QMainWindow):
         
     def submit(self):
         text = self.line_edit.text()
-        print(f"Hello {text}")
+        self.label1.setText(f"Hello, {text}")
+        print(f"Hello, {text}")
 
 def main():
     app = QApplication(sys.argv)                                            
