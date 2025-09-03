@@ -3,7 +3,7 @@ import time
 import random
 
 WIDTH, HEIGHT = 800, 600
-COLORS = ['red', 'blue', 'green', 'black', 'pink', 'purple', 'lime', 'yellow', 'cyan', 'orange']
+COLORS = ['red', 'blue', 'green', 'white', 'pink', 'purple', 'lime', 'yellow', 'cyan', 'orange']
 
 def get_number_of_competitors():
     racers = 0
@@ -21,22 +21,33 @@ def get_number_of_competitors():
 
 def create_racers(colors):
     turtles = []
+    spacingX = WIDTH // (len(colors) + 1)
     for i, color in enumerate(colors):
         racer = turtle.Turtle()
         racer.color(color)
         racer.shape('turtle')
         racer.left(90)
         racer.penup()
-        racer.setpos()
+        racer.setpos(-WIDTH//2 + (i + 1) * spacingX, -HEIGHT//2 + 20)
         racer.pendown()
         turtles.append(racer)
+    return turtles
 
+def race(colors):
+    turtles = create_racers(colors)
+    
+    while True:
+        for racer in turtles:
+            distance = random.randrange(1, 20)
+            racer.forward(distance)
 
-
-
+            x, y = racer.pos()
+            if y >= HEIGHT//2 - 20:
+                return colors[turtles.index(racer)]
 
 def init_screen():
     screen = turtle.Screen()
+    screen.bgcolor('black')
     screen.setup(WIDTH, HEIGHT)
     screen.title('Snail race!')
 
@@ -44,8 +55,11 @@ racers = get_number_of_competitors()
 init_screen()
 random.shuffle(COLORS)
 colors = COLORS[:racers]
-create_racers(colors)
 
+
+winner = race(colors)
+print("\n🎊 And the winner is: " + winner.capitalize() + '!!! 🎊\n')
+time.sleep(5)
 
 # racer = turtle.Turtle()
 # racer.speed(1)
