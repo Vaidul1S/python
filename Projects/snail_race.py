@@ -1,6 +1,7 @@
 import turtle
 import time
 import random
+import math
 
 WIDTH, HEIGHT = 800, 600
 COLORS = ['red', 'blue', 'green', 'white', 'pink', 'purple', 'lime', 'yellow', 'cyan', 'orange']
@@ -17,18 +18,39 @@ def get_number_of_competitors():
         if 2 <= racers <= 10:
             return racers
         else:
-            print("Racers number is out of range (2-10)!")
+            print("Racers number is out of range (2-10)!")   
 
+def make_snail():
+    points = []
+    scale = 0.7
+    a, r = 0, 2
+    for i in range(50):
+        x = r * math.cos(math.radians(a))
+        y = r * math.sin(math.radians(a))
+        points.append((x * scale, y * scale))
+        a += 20
+        r += 0.5 * scale
+    
+    xs, ys = zip(*points)
+    cx = (max(xs) + min(xs)) / 2
+    cy = (max(ys) + min(ys)) / 2
+    snail = tuple((x - cx, y - cy) for x, y in points)        
+        
+    turtle.register_shape("snail", snail)
+
+
+    
 def create_racers(colors):
+    make_snail()
     turtles = []
     spacingX = WIDTH // (len(colors) + 1)
     for i, color in enumerate(colors):
         racer = turtle.Turtle()
-        racer.color(color)
-        racer.shape('turtle')
+        racer.color(color)        
+        racer.shape('snail')
         racer.left(90)
-        racer.penup()
-        racer.setpos(-WIDTH//2 + (i + 1) * spacingX, -HEIGHT//2 + 20)
+        racer.penup()   
+        racer.setpos(-WIDTH//2 + (i + 1) * spacingX, -HEIGHT//2 + 30)
         racer.pendown()
         turtles.append(racer)
     return turtles
@@ -42,11 +64,16 @@ def race(colors):
             racer.forward(distance)
 
             x, y = racer.pos()
-            if y >= HEIGHT//2 - 20:
+            if y >= HEIGHT//2 - 30:
                 return colors[turtles.index(racer)]
 
 def init_screen():
     screen = turtle.Screen()
+    root = screen._root 
+    root.attributes('-topmost', True)
+    root.update()
+    root.attributes('-topmost', False)
+
     screen.bgcolor('black')
     screen.setup(WIDTH, HEIGHT)
     screen.title('Snail race!')
@@ -58,8 +85,8 @@ colors = COLORS[:racers]
 
 
 winner = race(colors)
-print("\n🎊 And the winner is: " + winner.capitalize() + '!!! 🎊\n')
-time.sleep(5)
+print("\n🏁 And the winner is: " + winner.capitalize() + '!!! 🏁\n')
+time.sleep(3)
 
 # racer = turtle.Turtle()
 # racer.speed(1)
