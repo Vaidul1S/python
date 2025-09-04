@@ -8,7 +8,7 @@ def spin_row():
 
 def print_row(row):
     print("*************")
-    print(" | ".join(row))
+    print(" | ".join(row))    
     print("*************")
 
 def get_payout(row, bet):
