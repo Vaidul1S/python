@@ -1,6 +1,7 @@
 import curses
 from curses import wrapper
 import time
+import random
 
 def start_screen(stdscr):
     stdscr.clear()
@@ -21,9 +22,13 @@ def display_text(stdscr, target, current, wpm=0):
             color = curses.color_pair(2)
         stdscr.addstr(0, i, char, color)
 
+def load_text():
+    with open("python/Projects/text.txt",'r') as f:
+        lines = f.readlines()
+        return random.choice(lines).strip()
 
 def wpm_test(stdscr):
-    target_text = "Hello world this is some test text for this app!"
+    target_text = load_text()
     current_text = []
     wpm = 0
     start_time = time.time()
@@ -36,7 +41,11 @@ def wpm_test(stdscr):
         stdscr.clear()
         display_text(stdscr, target_text, current_text, wpm)
         stdscr.refresh()
-        
+
+        if "".join(current_text) == target_text:
+            stdscr.nodelay(False)
+            break
+
         try:
             key = stdscr.getkey()
         except:
@@ -49,6 +58,7 @@ def wpm_test(stdscr):
                 current_text.pop()
         elif len(current_text) < len(target_text):
             current_text.append(key)
+
         
 def main(stdscr):
     curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
@@ -56,6 +66,13 @@ def main(stdscr):
     curses.init_pair(3, curses.COLOR_BLUE, curses.COLOR_BLACK)
     
     start_screen(stdscr)
-    wpm_test(stdscr)
+
+    while True:
+        wpm_test(stdscr)
+        stdscr.addstr(3,0, "Great, you complited a test! Press any key to continue...")
+        key = stdscr.getkey()
+
+        if ord(key) == 27:                               
+            break
 
 wrapper(main)
