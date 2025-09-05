@@ -40,6 +40,8 @@ def find_start(maze, start):
         for j, value in enumerate(row):
             if value == start:
                 return i, j
+            
+    return None
 
 def find_path(maze, stdscr):
     start = "O"
@@ -50,13 +52,13 @@ def find_path(maze, stdscr):
     q.put((start_pos, [start_pos]))
     visited = set()
 
-    while q.empty():
+    while not q.empty():
         current_pos, path = q.get()
         row, col = current_pos
 
         stdscr.clear()
         print_maze(maze, stdscr, path)
-        time.sleep(0.2)
+        time.sleep(0.1)
         stdscr.refresh()
 
         if maze[row][col] == end:
