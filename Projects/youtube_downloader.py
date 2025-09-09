@@ -16,7 +16,25 @@ def download_video(url, save_path):
     except Exception as e:
         print(e)
 
-url = "https://www.youtube.com/shorts/XinUJXQPo38"
-save_path = "C:/Users/vaida/Downloads"
+# url = "https://www.youtube.com/shorts/XinUJXQPo38"
+# save_path = "C:/Users/vaida/Downloads"
 
-download_video(url, save_path)
+# download_video(url, save_path)
+
+def open_file_dialog():
+    folder = filedialog.askdirectory()
+    if folder:
+        print(f"Selected folder: {folder}")
+    return folder
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()
+
+    video_url = input("Please enter a Youtube url: ")
+    save_dir = open_file_dialog()
+
+    if not save_dir:
+        print("Invalid save location!")
+    else:
+        download_video(video_url, save_dir)
