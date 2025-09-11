@@ -9,10 +9,17 @@ WIDTH, HEIGHT = 800, 600
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Aim Trainer")
 
+TARGET_INCREMENT = 400
+TARGET_EVENT = pygame.USEREVENT
+
+TARGET_PADDING = 30
+BG_COLOR = "black"
+
 class Target:
-    MAX_SIZE = 40
+    MAX_SIZE = 20
     GROWTH_RATE = 0.2
-    COLOR = "red"
+    COLOR1 = "red"
+    COLOR2 = "white"
 
     def __init__(self, x, y):
         self.x = x
@@ -30,16 +37,51 @@ class Target:
             self.size -= self.GROWTH_RATE
 
     def draw(self, win):
-        pygame.draw.circle(win, self.COLOR, (self.x, self.y), self.size)
+        pygame.draw.circle(win, self.COLOR1, (self.x, self.y), self.size)
+        pygame.draw.circle(win, self.COLOR2, (self.x, self.y), self.size * 0.8)
+        pygame.draw.circle(win, self.COLOR1, (self.x, self.y), self.size * 0.6)
+        pygame.draw.circle(win, self.COLOR2, (self.x, self.y), self.size * 0.4)
 
+def draw(win, targets):
+    win.fill(BG_COLOR)
+
+    for target in targets:
+        target.draw(win)
+
+    pygame.display.update()
 
 def main():
     run = True
+    targets = []
+    clock = pygame.time.Clock()
+    target_pressed = 0
+    clicks = 0
+    misses = 0
+    start_time = time.time()
+
+    pygame.time.set_timer(TARGET_EVENT, TARGET_INCREMENT)
+
     while run:
+        clock.tick(60)                                  #nustatom fps
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
                 break
+            if event.type == TARGET_EVENT:
+                x = random.randint(TARGET_PADDING, WIDTH - TARGET_PADDING)
+                y = random.randint(TARGET_PADDING, HEIGHT - TARGET_PADDING)
+                target = Target(x, y)
+                targets.append(target)
+
+        for target in targets:
+            target.update()
+
+            if target.size <= 0:
+                targets.remove(target)
+
+        draw(WIN, targets)
+
     pygame.quit()
 
 if __name__ == "__main__":
