@@ -62,7 +62,7 @@ def game():
         guess = guess_code()
         correct_pos, incorrect_pos = check_code(guess, code)
         if correct_pos == CODE_LENGTH:
-            print(f"You guessed the code in {attempts} tries!")
+            print(f"Congrats 🎉 You guessed the code {code} in {attempts} tries!")
             break
 
         print(f"Correct Positions: {correct_pos} | Incorect positions: {incorrect_pos}")
