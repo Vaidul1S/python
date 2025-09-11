@@ -6,6 +6,7 @@ pygame.init()
 
 WIDTH, HEIGHT = 800, 600
 BAR_HEIGHT = 50
+BAR_TEXT_COLOR = "black"
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Aim Trainer")
@@ -15,6 +16,7 @@ TARGET_EVENT = pygame.USEREVENT
 
 TARGET_PADDING = 30
 BG_COLOR = "black"
+TEXT_COLOR = "limegreen"
 LIVES = 5
 LABEL_FONT = pygame.font.SysFont("comicsans", 24)
 
@@ -65,13 +67,13 @@ def format_time(secs):
 
 def draw_top_bar(win, elapsed_time, targets_pressed, misses):
     pygame.draw.rect(win, "grey", (0, 0, WIDTH, BAR_HEIGHT))
-    time_label = LABEL_FONT.render(f"Time: {format_time(elapsed_time)}", 1, "black")
+    time_label = LABEL_FONT.render(f"Time: {format_time(elapsed_time)}", 1, BAR_TEXT_COLOR)
 
     speed = round(targets_pressed / elapsed_time, 1)
-    speed_label = LABEL_FONT.render(f"Speed: {speed} t/s", 1, "black")
+    speed_label = LABEL_FONT.render(f"Speed: {speed} t/s", 1, BAR_TEXT_COLOR)
 
-    hits_label = LABEL_FONT.render(f"Hits: {targets_pressed}", 1, "black")
-    lives_label = LABEL_FONT.render(f"Lives: {LIVES - misses}", 1, "red")
+    hits_label = LABEL_FONT.render(f"Hits: {targets_pressed}", 1, BAR_TEXT_COLOR)
+    lives_label = LABEL_FONT.render(f"Lives: {LIVES - misses}", 1, BAR_TEXT_COLOR)
 
     win.blit(time_label, (5, 5))
     win.blit(speed_label, (200, 5))
@@ -79,19 +81,30 @@ def draw_top_bar(win, elapsed_time, targets_pressed, misses):
     win.blit(lives_label, (600, 5))
 
 def end_game(win, elapsed_time, targets_pressed, clicks):
-    win.blit(BG_COLOR)
-    time_label = LABEL_FONT.render(f"Time: {format_time(elapsed_time)}", 1, "black")
+    win.fill(BG_COLOR)
+    time_label = LABEL_FONT.render(f"Time: {format_time(elapsed_time)}", 1, TEXT_COLOR)
 
     speed = round(targets_pressed / elapsed_time, 1)
-    speed_label = LABEL_FONT.render(f"Speed: {speed} t/s", 1, "black")
-    hits_label = LABEL_FONT.render(f"Hits: {targets_pressed}", 1, "black")
+    speed_label = LABEL_FONT.render(f"Speed: {speed} t/s", 1, TEXT_COLOR)
+    hits_label = LABEL_FONT.render(f"Hits: {targets_pressed}", 1, TEXT_COLOR)
     accuracy = round(targets_pressed / clicks * 100, 1)
-    accuracy_label = LABEL_FONT.render(f"Accuracy: {accuracy}", 1, "black")
+    accuracy_label = LABEL_FONT.render(f"Accuracy: {accuracy}", 1, TEXT_COLOR)
 
-    win.blit(time_label, (5, 5))
-    win.blit(speed_label, (200, 5))
-    win.blit(hits_label, (400, 5))
-    win.blit(accuracy_label, (600, 5))
+    win.blit(time_label, (get_midle(time_label), 100))
+    win.blit(speed_label, (get_midle(speed_label), 200))
+    win.blit(hits_label, (get_midle(hits_label), 300))
+    win.blit(accuracy_label, (get_midle(accuracy_label), 400))
+
+    pygame.display.update()
+    run = True
+
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
+                quit()
+
+def get_midle(surface):
+    return WIDTH / 2 - surface.get_width()/2
 
 def main():
     run = True
@@ -134,7 +147,7 @@ def main():
                 targets_pressed += 1
 
         if misses >= LIVES:
-            pass
+            end_game(WIN, elapsed_time, targets_pressed, clicks)
 
         draw(WIN, targets)
         draw_top_bar(WIN, elapsed_time, targets_pressed, misses)
