@@ -16,7 +16,7 @@ TARGET_PADDING = 30
 BG_COLOR = "black"
 
 class Target:
-    MAX_SIZE = 20
+    MAX_SIZE = 25
     GROWTH_RATE = 0.2
     COLOR1 = "red"
     COLOR2 = "white"
@@ -43,7 +43,7 @@ class Target:
         pygame.draw.circle(win, self.COLOR2, (self.x, self.y), self.size * 0.4)
 
     def collide(self, x, y):
-        dis = math((self.x - x)**2 + (self.y - y)**2)
+        dis = math.sqrt((x - self.x)**2 + (y - self.y)**2)
         return dis <= self.size
 
 def draw(win, targets):
@@ -68,6 +68,7 @@ def main():
     while run:
         clock.tick(60)                                  #nustatom fps
         click = False
+        mouse_pos = pygame.mouse.get_pos()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -88,6 +89,9 @@ def main():
             if target.size <= 0:
                 targets.remove(target)
                 misses += 1
+            if click and target.collide(*mouse_pos):
+                targets.remove(target)
+                target_pressed += 1
 
         draw(WIN, targets)
 
