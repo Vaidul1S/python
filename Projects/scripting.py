@@ -16,7 +16,6 @@ def find_all_game_paths(source):
                 path = os.path.join(source, directory)
                 game_paths.append(path)
 
-
         break
 
     return game_paths
@@ -60,10 +59,16 @@ def compile_game_code(path):
         return
     
     command = GAME_COMPILE_COMMAND + [code_file_name]
+    run_command(command, path)
 
 def run_command(command, path):
     cwd = os.getcwd()
-    
+    os.chdir(path)
+
+    result = run(command, stdout=PIPE, stdin=PIPE, universal_newlines=True)
+    print("Compiled result:", result)
+
+    os.chdir(cwd)
 
 def main(source, target):
     cwd = os.getcwd()
@@ -78,12 +83,10 @@ def main(source, target):
     for src, dest in zip(game_paths, new_game_dirs):
         dest_path = os.path.join(target_path, dest)
         copy_and_owerwrite(src, dest_path)
+        compile_game_code(dest_path)
 
     json_path = os.path.join(target_path, "metadata.json")
     make_json_metadata_file(json_path, new_game_dirs)
-
-    
-
 
 if __name__ == "__main__":
     args = sys.argv
@@ -92,3 +95,4 @@ if __name__ == "__main__":
 
     source, target = args[1:]
     main(source, target)
+    print("Scripting done!")
