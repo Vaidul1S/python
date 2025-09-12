@@ -7,16 +7,16 @@ pygame.init()
 WIDTH, HEIGHT = 800, 600
 BAR_HEIGHT = 50
 BAR_TEXT_COLOR = "black"
+BG_COLOR = "DarkSlateGrey"
+TEXT_COLOR = "limegreen"
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Aim Trainer")
 
 TARGET_INCREMENT = 400
 TARGET_EVENT = pygame.USEREVENT
-
 TARGET_PADDING = 30
-BG_COLOR = "black"
-TEXT_COLOR = "limegreen"
+
 LIVES = 5
 LABEL_FONT = pygame.font.SysFont("comicsans", 24)
 
@@ -66,7 +66,7 @@ def format_time(secs):
     return f"{minutes:02d}:{seconds:02d}:{milli}"
 
 def draw_top_bar(win, elapsed_time, targets_pressed, misses):
-    pygame.draw.rect(win, "grey", (0, 0, WIDTH, BAR_HEIGHT))
+    pygame.draw.rect(win, "orange", (0, 0, WIDTH, BAR_HEIGHT))
     time_label = LABEL_FONT.render(f"Time: {format_time(elapsed_time)}", 1, BAR_TEXT_COLOR)
 
     speed = round(targets_pressed / elapsed_time, 1)
@@ -78,7 +78,7 @@ def draw_top_bar(win, elapsed_time, targets_pressed, misses):
     win.blit(time_label, (5, 5))
     win.blit(speed_label, (200, 5))
     win.blit(hits_label, (400, 5))
-    win.blit(lives_label, (600, 5))
+    win.blit(lives_label, (700, 5))
 
 def end_game(win, elapsed_time, targets_pressed, clicks):
     win.fill(BG_COLOR)
