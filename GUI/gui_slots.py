@@ -9,9 +9,6 @@ def spin_row():
         
     return [random.choice(symbols) for _ in range(3)]
 
-def print_row(row):
-    print(" | ".join(row))
-
 def get_payout(row, bet):
     if row[0] == row[1] == row[2]:
         if row[0] == '🍒':
@@ -80,24 +77,27 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("My cool first GUI")
         self.setGeometry(550, 250, 800,500)                                 
-        self.setWindowIcon(QIcon("python/modules/meovv.png"))
-        self.label1 = QLabel("Slots", self)
-        self.label1.setFont(QFont('Courier New', 40))
-        self.label1.setGeometry(0, 0, 800, 100)
-        self.label1.setStyleSheet("color: green;" 
+        self.setWindowIcon(QIcon("python/modules/meovv.png"))        
+        self.title_label = QLabel("Slots", self)
+        self.title_label.setFont(QFont("arial", 40))
+        self.title_label.setGeometry(0, 0, 800, 100)
+        self.title_label.setStyleSheet("color: green;" 
                             "background-color: darkred;"
                             "font-weight: bold;"                           
                             "font-style: italic;")
         
-        self.label1.setAlignment(Qt.AlignCenter)                            
-        self.label2 = QLabel(self)
-        self.label2.setGeometry(0, 0, 250, 250)
-
-        self.label2.setScaledContents(True)
-        self.label2.setGeometry((self.width()- self.label2.width()) // 2,
-                           (self.height() - self.label2.height()) // 2, 
-                           self.label2.width(), 
-                           self.label2.height())
+        self.title_label.setAlignment(Qt.AlignCenter)
+                                   
+        self.row_label = QLabel("💰 | 💰 | 💰", self)
+        self.row_label.setGeometry(0, 0, 600, 300)
+        self.row_label.setFont(QFont("monospace", 40))        
+        self.row_label.setScaledContents(True)
+        self.row_label.setGeometry((self.width()- self.row_label.width()) // 2,
+                           (self.height() - self.row_label.height()) // 2, 
+                           self.row_label.width(), 
+                           self.row_label.height())
+        self.row_label.setAlignment(Qt.AlignCenter)
+        
         self.initUI()
         
     def initUI(self):
@@ -112,8 +112,10 @@ class MainWindow(QMainWindow):
        
        
     def on_click(self):
+        row = spin_row()
+        self.row_label.setText(str(" | ".join(row)))
         self.button.setText("Spin again!")
-        self.label1.setText("Goodbye")
+        self.title_label.setText("Goodbye")
 
 
 def main():
