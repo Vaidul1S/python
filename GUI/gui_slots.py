@@ -53,7 +53,7 @@ def play_slots():
     
         row = spin_row()
         print("Spining...\n")
-        print_row(row)
+        
 
         payout = get_payout(row, bet)
         
