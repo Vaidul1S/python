@@ -1,6 +1,6 @@
 import sys
 import random
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton
 from PyQt5.QtGui import QIcon, QFont, QPixmap
 from PyQt5.QtCore import Qt
 
@@ -31,10 +31,22 @@ class MainWindow(QMainWindow):
         self.row_label.setAlignment(Qt.AlignCenter)
 
         self.balance_label = QLabel("Balance:", self)
-        self.balance_label.setGeometry(0, 100, 300, 50)
+        self.balance_label.setGeometry(0, 100, 780, 50)
+        self.balance_label.setFont(QFont("arial", 14))
         self.balance_label.setAlignment(Qt.AlignRight)
 
-
+        self.bet_input = QLineEdit(self)
+        self.bet_input.setGeometry(680, 350, 100, 30)
+        self.bet_input.setObjectName("bet_input")
+        self.setStyleSheet("""
+            QLineEdit#bet_input{
+                           font-size: 14px;
+                           border-radius: 15px;
+                           border: 1px solid black;
+                           text-align: center;                                                     
+                           padding: 5px 15px; 
+                           }
+            """)
         
         self.initUI()
 
@@ -66,9 +78,7 @@ class MainWindow(QMainWindow):
     @staticmethod
     def play_slots(self):
         balance = 100    
-        print("\nWelcome to Slots")
-        print("🍒🍋🍓🍊🍉🔔⭐\n")
-
+        
         while balance > 0:
             self.balance_label.setText(f"Current balance: ${balance}")
                      
