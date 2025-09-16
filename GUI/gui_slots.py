@@ -37,10 +37,13 @@ class MainWindow(QMainWindow):
 
         self.bet_input = QLineEdit(self)
         self.bet_button = QPushButton("Bet", self)
+        self.bet_amount = QLabel("Bet amount: ", self)
         self.bet_input.setGeometry(680, 350, 100, 30)
         self.bet_button.setGeometry(680, 385, 100, 30)
+        self.bet_amount.setGeometry(690, 310, 100, 50)
         self.bet_input.setObjectName("bet_input")
         self.bet_button.setObjectName("bet_button")
+        self.bet_amount.setObjectName("bet_amount")
         self.spin_button = QPushButton("Spin!", self)        
         self.spin_button.setGeometry(300, 400, 200, 50)     
         self.spin_button.setObjectName("spin_button")
@@ -103,9 +106,18 @@ class MainWindow(QMainWindow):
             elif row[0] == '⭐':
                 return bet * 20
         return 0
-    
-    @staticmethod
-    def play_slots(self):
+   
+    def initUI(self):
+        self.bet_button.clicked.connect(self.make_a_bet)
+        self.spin_button.clicked.connect(self.on_click)
+        
+       
+    def make_a_bet(self):
+        bet = self.bet_input.text()
+        self.bet_amount.setText(f"Bet amount: {bet}")
+
+
+    def on_click(self):
         balance = 100    
         
         while balance > 0:
@@ -125,12 +137,12 @@ class MainWindow(QMainWindow):
             if bet <= 0:
                 self.result_label.setText("Bet must be greater than zero!")
                 continue
-
+                        
             balance -= bet
         
             row = self.spin_row()
             self.result_label.setText("Spining...")
-            
+            self.row_label.setText(str(" | ".join(row)))
 
             payout = self.get_payout(row, bet)
             
@@ -140,24 +152,11 @@ class MainWindow(QMainWindow):
                 self.result_label.setText("Sorry you lost, try again!")
 
             balance += payout
+            self.spin_button.setText("Spin again!")
 
-            play_again = input("Do you want to spin again? (Y/N): ")
-
-            if play_again.upper() != "Y":
-                self.result_label.setText("Thank you for playing!")            
-                break
-            
-        self.title_label.setText(f"Game over! Your final balance is ${balance}.")
-
-    def initUI(self):
-                   
-        self.spin_button.clicked.connect(self.on_click)
-       
-       
-    def on_click(self):
-        row = self.spin_row()
-        self.row_label.setText(str(" | ".join(row)))
-        self.spin_button.setText("Spin again!")
+        self.result_label.setText("Sorry you lost, all your money!")
+        
+        
         
 
 
