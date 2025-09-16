@@ -121,7 +121,6 @@ class MainWindow(QMainWindow):
         balance = 100    
         self.balance_label.setText(f"Current balance: ${balance}")
         while balance > 0:
-            
                      
             bet = self.bet_input.text()
             if not bet.isdigit():
