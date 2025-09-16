@@ -119,9 +119,9 @@ class MainWindow(QMainWindow):
 
     def on_click(self):
         balance = 100    
-        
+        self.balance_label.setText(f"Current balance: ${balance}")
         while balance > 0:
-            self.balance_label.setText(f"Current balance: ${balance}")
+            
                      
             bet = self.bet_input.text()
             if not bet.isdigit():
@@ -154,7 +154,8 @@ class MainWindow(QMainWindow):
             balance += payout
             self.spin_button.setText("Spin again!")
 
-        self.result_label.setText("Sorry you lost, all your money!")
+        self.result_label.setText("Sorry you lost all your money!")        
+        
         
         
         
