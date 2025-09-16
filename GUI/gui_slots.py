@@ -36,17 +36,46 @@ class MainWindow(QMainWindow):
         self.balance_label.setAlignment(Qt.AlignRight)
 
         self.bet_input = QLineEdit(self)
+        self.bet_button = QPushButton("Bet", self)
         self.bet_input.setGeometry(680, 350, 100, 30)
+        self.bet_button.setGeometry(680, 385, 100, 30)
         self.bet_input.setObjectName("bet_input")
+        self.bet_button.setObjectName("bet_button")
+        self.spin_button = QPushButton("Spin!", self)        
+        self.spin_button.setGeometry(300, 400, 200, 50)     
+        self.spin_button.setObjectName("spin_button")
         self.setStyleSheet("""
             QLineEdit#bet_input{
                            font-size: 14px;
                            border-radius: 15px;
                            border: 1px solid black;
-                           text-align: center;                                                     
                            padding: 5px 15px; 
                            }
+            QPushButton#bet_button{
+                           font-size: 16px;
+                           border-radius: 15px;
+                           background-color: darkgreen;
+                           padding: 5px 15px; 
+                           font-weight: bold;
+                           }
+            QPushButton#bet_button:hover{
+                           background-color: lime;
+                           }
+            QPushButton#spin_button{
+                           font-size: 30px;
+                           background-color: darkred;
+                           border-radius: 15px;
+                           }
+            QPushButton#spin_button:hover{
+                           background-color: red;
+                           }
             """)
+        
+        self.result_label = QLabel("Good luck!", self)
+        self.result_label.setGeometry(250, 300, 300, 50)
+        self.result_label.setFont(QFont("arial", 14))
+        self.result_label.setAlignment(Qt.AlignCenter)
+
         
         self.initUI()
 
@@ -82,60 +111,54 @@ class MainWindow(QMainWindow):
         while balance > 0:
             self.balance_label.setText(f"Current balance: ${balance}")
                      
-            bet = input("Place your bet amount: ")
+            bet = self.bet_input.text()
             if not bet.isdigit():
-                print("Please enter a valid number")
+                self.result_label.setText("Please enter a valid number")
                 continue
             
             bet = int(bet)
 
             if bet > balance:
-                print("Insufficient funds!")
+                self.result_label.setText("Insufficient funds!")
                 continue
 
             if bet <= 0:
-                print("Bet must be greater than zero!")
+                self.result_label.setText("Bet must be greater than zero!")
                 continue
 
             balance -= bet
         
             row = self.spin_row()
-            print("Spining...\n")
+            self.result_label.setText("Spining...")
             
 
             payout = self.get_payout(row, bet)
             
             if payout > 0:
-                print(f"You won ${payout}")
+                self.result_label.setText(f"You won ${payout}")
             else:
-                print("Sorry you lost, try again!")
+                self.result_label.setText("Sorry you lost, try again!")
 
             balance += payout
 
             play_again = input("Do you want to spin again? (Y/N): ")
 
             if play_again.upper() != "Y":
-                print("\nThank you for playing!")            
+                self.result_label.setText("Thank you for playing!")            
                 break
             
-        print(f"\nGame over! Your final balance is ${balance}.\n")
+        self.title_label.setText(f"Game over! Your final balance is ${balance}.")
 
     def initUI(self):
-        central_widgit = QWidget()
-        self.setCentralWidget(central_widgit)
-        self.button = QPushButton("Spin!", self)        
-        self.button.setGeometry(300, 400, 200, 60)
-        self.button.setStyleSheet("font-size: 30px;"
-                                  "background-color: darkred;"
-                                  "border-radius: 15px;")
-        self.button.clicked.connect(self.on_click)
+                   
+        self.spin_button.clicked.connect(self.on_click)
        
        
     def on_click(self):
         row = self.spin_row()
         self.row_label.setText(str(" | ".join(row)))
-        self.button.setText("Spin again!")
-        self.title_label.setText("Goodbye")
+        self.spin_button.setText("Spin again!")
+        
 
 
 def main():
