@@ -157,9 +157,10 @@ class MainWindow(QMainWindow):
 
         if self.balance <= 0:
             self.balance_label.setText(f"Current balance: ${self.balance}")
-            self.result_label.setText("Sorry you lost all your money!")        
+            self.result_label.setText("Sorry you lost all your money!")
+            self.spin_button.setText("Gamer over!")        
             self.spin_button.setEnabled(False)
-            print("Game over, bitch!")
+            self.bet_button.setEnabled(False)
             # time.sleep(2)
             # quit()
 
