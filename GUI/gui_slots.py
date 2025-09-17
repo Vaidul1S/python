@@ -31,7 +31,7 @@ class MainWindow(QMainWindow):
                            self.row_label.height())
         self.row_label.setAlignment(Qt.AlignCenter)
 
-        self.balance_label = QLabel("Balance:", self)
+        self.balance_label = QLabel(f"Current balance: ${self.balance}", self)
         self.balance_label.setGeometry(0, 100, 780, 50)
         self.balance_label.setFont(QFont("arial", 14))
         self.balance_label.setAlignment(Qt.AlignRight)
@@ -156,10 +156,7 @@ class MainWindow(QMainWindow):
         if self.balance <= 0:
             self.result_label.setText("Sorry you lost all your money!")        
             self.spin_button.setEnabled(False)
-        
-        
-        
-
+            quit()
 
 def main():
     app = QApplication(sys.argv)                                           
