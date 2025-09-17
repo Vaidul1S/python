@@ -7,6 +7,7 @@ from PyQt5.QtCore import Qt
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.balance = 100
         self.setWindowTitle("My cool first GUI")
         self.setGeometry(550, 250, 800,500)                                 
         self.setWindowIcon(QIcon("python/modules/meovv.png"))        
@@ -118,40 +119,39 @@ class MainWindow(QMainWindow):
 
 
     def on_click(self):
-        balance = 100    
+            
         self.balance_label.setText(f"Current balance: ${balance}")
-        while balance > 0:
                      
-            bet = self.bet_input.text()
-            if not bet.isdigit():
-                self.result_label.setText("Please enter a valid number")
-                continue
+        bet = self.bet_input.text()
+        if not bet.isdigit():
+            self.result_label.setText("Please enter a valid number")
+            return
             
-            bet = int(bet)
+        bet = int(bet)
 
-            if bet > balance:
-                self.result_label.setText("Insufficient funds!")
-                continue
+        if bet > balance:
+            self.result_label.setText("Insufficient funds!")
+            return
 
-            if bet <= 0:
-                self.result_label.setText("Bet must be greater than zero!")
-                continue
+        if bet <= 0:
+            self.result_label.setText("Bet must be greater than zero!")
+            return
                         
-            balance -= bet
+        self.balance -= bet
         
-            row = self.spin_row()
-            self.result_label.setText("Spining...")
-            self.row_label.setText(str(" | ".join(row)))
+        row = self.spin_row()
+        self.result_label.setText("Spining...")
+        self.row_label.setText(str(" | ".join(row)))
 
-            payout = self.get_payout(row, bet)
+        payout = self.get_payout(row, bet)
             
-            if payout > 0:
-                self.result_label.setText(f"You won ${payout}")
-            else:
-                self.result_label.setText("Sorry you lost, try again!")
+        if payout > 0:
+            self.result_label.setText(f"You won ${payout}")
+        else:
+            self.result_label.setText("Sorry you lost, try again!")
 
-            balance += payout
-            self.spin_button.setText("Spin again!")
+        balance += payout
+        self.spin_button.setText("Spin again!")
 
         self.result_label.setText("Sorry you lost all your money!")        
         
