@@ -1,5 +1,6 @@
 import sys
 import random
+import time
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton
 from PyQt5.QtGui import QIcon, QFont, QPixmap
 from PyQt5.QtCore import Qt
@@ -136,13 +137,12 @@ class MainWindow(QMainWindow):
         if self.bet == 0:
             self.result_label.setText("Please make a bet.")
             return
-                        
+                                
         self.balance -= self.bet
         
         row = self.spin_row()
         self.result_label.setText("Spining...")
-        self.row_label.setText(str(" | ".join(row)))
-
+        self.row_label.setText(str(" | ".join(row)))        
         payout = self.get_payout(row, self.bet)
             
         if payout > 0:
@@ -156,10 +156,12 @@ class MainWindow(QMainWindow):
         self.spin_button.setText("Spin again!")
 
         if self.balance <= 0:
+            self.balance_label.setText(f"Current balance: ${self.balance}")
             self.result_label.setText("Sorry you lost all your money!")        
             self.spin_button.setEnabled(False)
             print("Game over, bitch!")
-            quit()
+            # time.sleep(2)
+            # quit()
 
 def main():
     app = QApplication(sys.argv)                                           
