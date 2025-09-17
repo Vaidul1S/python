@@ -8,7 +8,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.balance = 100
-        self.setWindowTitle("My cool first GUI")
+        self.bet = 0
+        self.setWindowTitle("Slots")
         self.setGeometry(550, 250, 800,500)                                 
         self.setWindowIcon(QIcon("python/modules/meovv.png"))        
         self.title_label = QLabel("Slots", self)
@@ -38,7 +39,7 @@ class MainWindow(QMainWindow):
 
         self.bet_input = QLineEdit(self)
         self.bet_button = QPushButton("Bet", self)
-        self.bet_amount = QLabel("Bet amount: ", self)
+        self.bet_amount = QLabel(f"Bet amount: {self.bet}", self)
         self.bet_input.setGeometry(680, 350, 100, 30)
         self.bet_button.setGeometry(680, 385, 100, 30)
         self.bet_amount.setGeometry(690, 310, 100, 50)
@@ -114,34 +115,35 @@ class MainWindow(QMainWindow):
         
        
     def make_a_bet(self):
-        bet = self.bet_input.text()
-        self.bet_amount.setText(f"Bet amount: {bet}")
-
-
-    def on_click(self):
-        bet = self.bet_input.text()
-
-        if not bet.isdigit():
+        self.bet = self.bet_input.text()
+        if not self.bet.isdigit():
             self.result_label.setText("Please enter a valid number")
             return
             
-        bet = int(bet)
+        self.bet = int(self.bet)
 
-        if bet > self.balance:
+        if self.bet > self.balance:
             self.result_label.setText("Insufficient funds!")
             return
 
-        if bet <= 0:
+        if self.bet <= 0:
             self.result_label.setText("Bet must be greater than zero!")
             return
+        self.bet_amount.setText(f"Bet amount: {self.bet}")
+
+
+    def on_click(self):
+        if self.bet == 0:
+            self.result_label.setText("Please make a bet.")
+            return
                         
-        self.balance -= bet
+        self.balance -= self.bet
         
         row = self.spin_row()
         self.result_label.setText("Spining...")
         self.row_label.setText(str(" | ".join(row)))
 
-        payout = self.get_payout(row, bet)
+        payout = self.get_payout(row, self.bet)
             
         if payout > 0:
             self.result_label.setText(f"You won ${payout}")
@@ -156,6 +158,7 @@ class MainWindow(QMainWindow):
         if self.balance <= 0:
             self.result_label.setText("Sorry you lost all your money!")        
             self.spin_button.setEnabled(False)
+            print("Game over, bitch!")
             quit()
 
 def main():
