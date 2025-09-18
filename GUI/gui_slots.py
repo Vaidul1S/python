@@ -28,7 +28,7 @@ class MainWindow(QMainWindow):
         self.row_label.setAlignment(Qt.AlignCenter)
 
         self.balance_label = QLabel(f"Current balance: ${self.balance}", self)
-        self.balance_label.setGeometry(0, 100, 780, 50)
+        self.balance_label.setGeometry(0, 110, 780, 50)
         self.balance_label.setObjectName("balance_label")
         self.balance_label.setAlignment(Qt.AlignRight)
 
@@ -52,6 +52,7 @@ class MainWindow(QMainWindow):
                         QLabel#title_label{
                             font-family: Verdana;
                             font-size: 46px;
+                            font-variant: small-caps;
                             letter-spacing: 20px;
                             color: white; 
                             background-color: darkred;
