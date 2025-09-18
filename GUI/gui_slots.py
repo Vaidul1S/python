@@ -12,7 +12,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Slots")
         self.setGeometry(550, 250, 800,500)                                 
         self.setWindowIcon(QIcon("python/modules/slots.png"))        
-        self.title_label = QLabel("Slots", self)
+        self.title_label = QLabel("🎰🎰🎰 Slots 🎰🎰🎰", self)
         self.title_label.setGeometry(0, 0, 800, 100)
         self.title_label.setObjectName("title_label")
         self.title_label.setAlignment(Qt.AlignCenter)
@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         self.spin_button.setGeometry(300, 400, 200, 50)     
         self.spin_button.setObjectName("spin_button")
         self.result_label = QLabel("Good luck!", self)
-        self.result_label.setGeometry(250, 300, 300, 50)
+        self.result_label.setGeometry(200, 300, 400, 50)
         self.result_label.setObjectName("result_label")
         self.result_label.setAlignment(Qt.AlignCenter)
         self.setStyleSheet("""
@@ -100,7 +100,7 @@ class MainWindow(QMainWindow):
 
     @staticmethod
     def spin_row():
-        symbols = ['🍒','🍋','🍓','🍊','🍉','🔔','⭐']
+        symbols = ['🍒','🍒','🍒','🍒','🍒','🍒','🍒','🍋','🍋','🍋','🍋','🍋','🍋','🍓','🍓','🍓','🍓','🍓','🍊','🍊','🍊','🍊','🍉','🍉','🍉','🔔','🔔','⭐']
         
         return [random.choice(symbols) for _ in range(3)]
         
