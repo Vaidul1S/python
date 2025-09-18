@@ -1,8 +1,7 @@
 import sys
 import random
-import time
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton
-from PyQt5.QtGui import QIcon, QFont, QPixmap
+from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
 class MainWindow(QMainWindow):
@@ -12,7 +11,7 @@ class MainWindow(QMainWindow):
         self.bet = 0
         self.setWindowTitle("Slots")
         self.setGeometry(550, 250, 800,500)                                 
-        self.setWindowIcon(QIcon("python/modules/meovv.png"))        
+        self.setWindowIcon(QIcon("python/modules/slots.png"))        
         self.title_label = QLabel("Slots", self)
         self.title_label.setFont(QFont("arial", 40))
         self.title_label.setGeometry(0, 0, 800, 100)
@@ -161,8 +160,6 @@ class MainWindow(QMainWindow):
             self.spin_button.setText("Gamer over!")        
             self.spin_button.setEnabled(False)
             self.bet_button.setEnabled(False)
-            # time.sleep(2)
-            # quit()
 
 def main():
     app = QApplication(sys.argv)                                           

@@ -26,10 +26,7 @@ class MainWindow(QMainWindow):
         pixmap = QPixmap("python/modules/meovv.png")
         self.label2.setPixmap(pixmap)
         self.label2.setScaledContents(True)
-        self.label2.setGeometry((self.width()- self.label2.width()) // 2,
-                           (self.height() - self.label2.height()) // 2, 
-                           self.label2.width(), 
-                           self.label2.height())
+        
         self.initUI()
         
     def initUI(self):
