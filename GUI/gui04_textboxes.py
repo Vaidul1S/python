@@ -12,12 +12,12 @@ class MainWindow(QMainWindow):
         self.setGeometry(700, 300, 500,500)                        
         self.setWindowIcon(QIcon("python/modules/meovv.png"))
         self.label1 = QLabel("Hello", self)
-        self.label1.setFont(QFont("Ariel", 40))
+        self.label1.setFont(QFont("Verdana", 40))
         self.label1.setGeometry(0, 0, 500, 100)
         self.label1.setStyleSheet("color: green;" 
                             "background-color: grey;"
                             "font-weight: bold;"
-                            "font-style: italic;")
+                            )
         self.label1.setAlignment(Qt.AlignCenter)                       
         
         self.line_edit = QLineEdit(self)

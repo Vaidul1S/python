@@ -13,7 +13,6 @@ class MainWindow(QMainWindow):
         self.setGeometry(550, 250, 800,500)                                 
         self.setWindowIcon(QIcon("python/modules/slots.png"))        
         self.title_label = QLabel("Slots", self)
-        self.title_label.setFont(QFont("arial", 40))
         self.title_label.setGeometry(0, 0, 800, 100)
         self.title_label.setStyleSheet("color: green;" 
                             "background-color: darkred;"
@@ -50,30 +49,34 @@ class MainWindow(QMainWindow):
         self.spin_button.setGeometry(300, 400, 200, 50)     
         self.spin_button.setObjectName("spin_button")
         self.setStyleSheet("""
-            QLineEdit#bet_input{
-                           font-size: 14px;
-                           border-radius: 15px;
-                           border: 1px solid black;
-                           padding: 5px 15px; 
-                           }
-            QPushButton#bet_button{
-                           font-size: 16px;
-                           border-radius: 15px;
-                           background-color: darkgreen;
-                           padding: 5px 15px; 
-                           font-weight: bold;
-                           }
-            QPushButton#bet_button:hover{
-                           background-color: lime;
-                           }
-            QPushButton#spin_button{
-                           font-size: 30px;
-                           background-color: darkred;
-                           border-radius: 15px;
-                           }
-            QPushButton#spin_button:hover{
-                           background-color: red;
-                           }
+                        QLabel{
+                            font-family: calibri;
+                            font-size: 40px;
+                            }
+                        QLineEdit#bet_input{
+                            font-size: 14px;
+                            border-radius: 15px;
+                            border: 1px solid black;
+                            padding: 5px 15px; 
+                            }
+                        QPushButton#bet_button{
+                            font-size: 16px;
+                            border-radius: 15px;
+                            background-color: darkgreen;
+                            padding: 5px 15px; 
+                            font-weight: bold;
+                            }
+                        QPushButton#bet_button:hover{
+                            background-color: lime;
+                            }
+                        QPushButton#spin_button{
+                            font-size: 30px;
+                            background-color: darkred;
+                            border-radius: 15px;
+                            }
+                        QPushButton#spin_button:hover{
+                            background-color: red;
+                            }
             """)
         
         self.result_label = QLabel("Good luck!", self)
