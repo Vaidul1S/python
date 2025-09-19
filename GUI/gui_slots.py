@@ -12,7 +12,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Slots")
         self.setGeometry(550, 250, 800,500)                                 
         self.setWindowIcon(QIcon("python/modules/slots.png"))        
-        self.title_label = QLabel("🎰🎰🎰 Slots 🎰🎰🎰", self)
+        self.title_label = QLabel(" 🎰🎰🎰 Slots 🎰🎰🎰", self)
         self.title_label.setGeometry(0, 0, 800, 100)
         self.title_label.setObjectName("title_label")
         self.title_label.setAlignment(Qt.AlignCenter)
@@ -53,10 +53,10 @@ class MainWindow(QMainWindow):
                             font-family: Verdana;
                             font-size: 46px;
                             font-variant: small-caps;
-                            letter-spacing: 20px;
+                            letter-spacing: 16px;
                             color: white; 
                             background-color: darkred;
-                            font-weight: bold;                          
+                            font-weight: bold;
                             }
                         QLabel#balance_label, #result_label{
                             font-family: Verdana;
