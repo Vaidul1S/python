@@ -102,11 +102,12 @@ class MainWindow(QMainWindow):
     def spin_row():
         symbols = ['🍒','🍒','🍒','🍒','🍒','🍒','🍒','🍋','🍋','🍋','🍋','🍋','🍋','🍓','🍓','🍓','🍓','🍓','🍊','🍊','🍊','🍊','🍉','🍉','🍉','🔔','🔔','⭐']
         
-        return [random.choice(symbols) for _ in range(3)]
+        return [random.choice(symbols) for _ in range(4)]
         
     @staticmethod
     def get_payout(row, bet):
-        if row[0] == row[1] == row[2]:
+
+        if row[0] == row[1] == row[2] or row[0] == row[1] == row[3] or row[0] == row[2] == row[3] or row[3] == row[1] == row[2]:
             if row[0] == '🍒':
                 return bet * 2
             elif row[0] == '🍋':
