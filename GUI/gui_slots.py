@@ -103,7 +103,7 @@ class MainWindow(QMainWindow):
     def spin_row():
         symbols = ['🍒','🍒','🍒','🍒','🍒','🍒','🍒','🍋','🍋','🍋','🍋','🍋','🍋','🍓','🍓','🍓','🍓','🍓','🍊','🍊','🍊','🍊','🍉','🍉','🍉','🔔','🔔','⭐']
         
-        return [random.choice(symbols) for _ in range(4)]
+        return [random.choice(symbols) for _ in range(5)]
         
     @staticmethod
     def get_payout(row, bet):
