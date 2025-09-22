@@ -116,11 +116,17 @@ class MainWindow(QMainWindow):
             '🔔': 10,
             '⭐': 20
         }
-        
+
+        for combo in combinations(range(len(row)), 4):
+            a, b, c, d = combo
+            if row[a] == row[b] == row[c] == row[d]:
+                return bet * 2 * MULTIPLIERS.get(row[a], 0)
+            
         for combo in combinations(range(len(row)), 3):
             a, b, c = combo
             if row[a] == row[b] == row[c]:
                 return bet * MULTIPLIERS.get(row[a], 0)
+        
         return 0
    
     def initUI(self):
