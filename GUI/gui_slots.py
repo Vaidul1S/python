@@ -1,5 +1,6 @@
 import sys
 import random
+from itertools import combinations
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
@@ -106,22 +107,20 @@ class MainWindow(QMainWindow):
         
     @staticmethod
     def get_payout(row, bet):
+        MULTIPLIERS = {
+            '🍒': 2,
+            '🍋': 3,
+            '🍓': 3.5,
+            '🍊': 4,
+            '🍉': 4.5,
+            '🔔': 10,
+            '⭐': 20
+        }
         
-        if row[0] == row[1] == row[2] or row[0] == row[1] == row[3] or row[0] == row[2] == row[3] or row[3] == row[1] == row[2]:
-            if row[0] == '🍒':
-                return bet * 2
-            elif row[0] == '🍋':
-                return bet * 3
-            elif row[0] == '🍓':
-                return bet * 3.5
-            elif row[0] == '🍊':
-                return bet * 4
-            elif row[0] == '🍉':
-                return bet * 4.5
-            elif row[0] == '🔔':
-                return bet * 10
-            elif row[0] == '⭐':
-                return bet * 20
+        for combo in combinations(range(len(row)), 3):
+            a, b, c = combo
+            if row[a] == row[b] == row[c]:
+                return bet * MULTIPLIERS.get(row[a], 0)
         return 0
    
     def initUI(self):
