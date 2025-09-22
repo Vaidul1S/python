@@ -117,6 +117,11 @@ class MainWindow(QMainWindow):
             '⭐': 20
         }
 
+        for combo in combinations(range(len(row)), 5):
+            a, b, c, d, e = combo
+            if row[a] == row[b] == row[c] == row[d] == row[e]:
+                return bet * 5 * MULTIPLIERS.get(row[a], 0)
+
         for combo in combinations(range(len(row)), 4):
             a, b, c, d = combo
             if row[a] == row[b] == row[c] == row[d]:
