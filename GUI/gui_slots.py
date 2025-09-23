@@ -1,7 +1,7 @@
 import sys
 import random
 from itertools import combinations
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
@@ -11,14 +11,14 @@ class MainWindow(QMainWindow):
         self.balance = 100
         self.bet = 0
         self.setWindowTitle("Slots")
-        self.setGeometry(550, 250, 800,500)                                 
+        self.setGeometry(550, 250, 850, 520)                                 
         self.setWindowIcon(QIcon("python/modules/slots.png"))        
         self.title_label = QLabel(" 🎰🎰🎰 Slots 🎰🎰🎰", self)
-        self.title_label.setGeometry(0, 0, 800, 100)
+        self.title_label.setGeometry(0, 0, 850, 100)
         self.title_label.setObjectName("title_label")
         self.title_label.setAlignment(Qt.AlignCenter)
                                    
-        self.row_label = QLabel("💰 | 💰 | 💰", self)
+        self.row_label = QLabel("💰 | 💰 | 💰 | 💰 | 💰", self)
         self.row_label.setFont(QFont("monospace", 40)) 
         self.row_label.setGeometry(0, 0, 600, 300)
         self.row_label.setScaledContents(True)
@@ -29,16 +29,16 @@ class MainWindow(QMainWindow):
         self.row_label.setAlignment(Qt.AlignCenter)
 
         self.balance_label = QLabel(f"Current balance: ${self.balance}", self)
-        self.balance_label.setGeometry(0, 110, 780, 50)
+        self.balance_label.setGeometry(0, 110, 830, 50)
         self.balance_label.setObjectName("balance_label")
         self.balance_label.setAlignment(Qt.AlignRight)
 
         self.bet_input = QLineEdit(self)
         self.bet_button = QPushButton("Bet", self)
         self.bet_amount = QLabel(f"Bet amount: {self.bet}", self)
-        self.bet_input.setGeometry(680, 350, 100, 30)
-        self.bet_button.setGeometry(680, 385, 100, 30)
-        self.bet_amount.setGeometry(685, 310, 100, 50)
+        self.bet_input.setGeometry(730, 350, 100, 30)
+        self.bet_button.setGeometry(730, 385, 100, 30)
+        self.bet_amount.setGeometry(735, 310, 100, 50)
         self.bet_input.setObjectName("bet_input")
         self.bet_button.setObjectName("bet_button")
         self.bet_amount.setObjectName("bet_amount")
@@ -49,6 +49,11 @@ class MainWindow(QMainWindow):
         self.result_label.setGeometry(200, 300, 400, 50)
         self.result_label.setObjectName("result_label")
         self.result_label.setAlignment(Qt.AlignCenter)
+        LEGEND = "Win combos:\n\n🍒🍒🍒  x2\n🍋🍋🍋  x3\n🍓🍓🍓  x3.5\n🍊🍊🍊  x4\n🍉🍉🍉  x4.5\n🔔🔔🔔  x10\n⭐⭐⭐  x20\n\n🍒🍒🍒🍒  x4\n🍋🍋🍋🍋  x6\n🍓🍓🍓🍓  x7\n🍊🍊🍊🍊  x8\n🍉🍉🍉🍉  x9\n🔔🔔🔔🔔  x20\n⭐⭐⭐⭐  x40\n\n🍒🍒🍒🍒🍒  x20\n🍋🍋🍋🍋🍋  x30\n🍓🍓🍓🍓🍓  x35\n🍊🍊🍊🍊🍊  x40\n🍉🍉🍉🍉🍉  x45\n🔔🔔🔔🔔🔔  x50\n⭐⭐⭐⭐⭐  x100\n"
+                    
+        self.legend_label = QLabel(LEGEND, self)
+        self.legend_label.setGeometry(20, 110, 150, 400)
+        self.legend_label.setObjectName("legend_label")
         self.setStyleSheet("""
                         QLabel#title_label{
                             font-family: Verdana;
@@ -72,6 +77,11 @@ class MainWindow(QMainWindow):
                         QLabel#bet_amount{
                             font-family: Verdana;
                             font-size: 12px;
+                            }
+                        QLabel#legend_label{
+                            font-family: Verdana;
+                            font-size: 12px;
+                            font-weight: bold;
                             }
                         QPushButton#bet_button{
                             font-family: Verdana;
@@ -120,7 +130,7 @@ class MainWindow(QMainWindow):
         for combo in combinations(range(len(row)), 5):
             a, b, c, d, e = combo
             if row[a] == row[b] == row[c] == row[d] == row[e]:
-                return bet * 5 * MULTIPLIERS.get(row[a], 0)
+                return bet * 10 * MULTIPLIERS.get(row[a], 0)
 
         for combo in combinations(range(len(row)), 4):
             a, b, c, d = combo
