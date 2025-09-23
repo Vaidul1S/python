@@ -64,11 +64,10 @@ class MainWindow(QMainWindow):
                             }
                         QLabel#row_label{
                             font-size: 50px;
-                           
-                            border: 5px solid gold;
+                            border: 4px solid gold;
                             border-radius: 50px;
                             color: gold;
-                            padding: 0 0 12 9;
+                            padding: 0 0 13 9;
                             }
                         QLabel#balance_label, #result_label{
                             font-family: Verdana;
