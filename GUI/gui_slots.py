@@ -177,12 +177,12 @@ class MainWindow(QMainWindow):
         if self.bet == 0:
             self.result_label.setText("Please make a bet.")
             return
-                                
-        self.balance -= self.bet
-
-        if self.balance < 0:
+        
+        if self.balance - self.bet < 0:
             self.result_label.setText("Insufficient funds!")
-            return
+            return           
+                     
+        self.balance -= self.bet
         
         row = self.spin_row()
         self.result_label.setText("Spining...")
