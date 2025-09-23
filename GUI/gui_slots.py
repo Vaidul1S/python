@@ -1,5 +1,6 @@
 import sys
 import random
+import pygame
 from itertools import combinations
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton
 from PyQt5.QtGui import QIcon, QFont
@@ -48,7 +49,7 @@ class MainWindow(QMainWindow):
         self.result_label.setObjectName("result_label")
         self.result_label.setAlignment(Qt.AlignCenter)
         LEGEND = "Win combos:\n\n🍒🍒🍒  x2\n🍋🍋🍋  x3\n🍓🍓🍓  x3.5\n🍊🍊🍊  x4\n🍉🍉🍉  x4.5\n🔔🔔🔔  x10\n⭐⭐⭐  x20\n\n🍒🍒🍒🍒  x4\n🍋🍋🍋🍋  x6\n🍓🍓🍓🍓  x7\n🍊🍊🍊🍊  x8\n🍉🍉🍉🍉  x9\n🔔🔔🔔🔔  x20\n⭐⭐⭐⭐  x40\n\n🍒🍒🍒🍒🍒  x20\n🍋🍋🍋🍋🍋  x30\n🍓🍓🍓🍓🍓  x35\n🍊🍊🍊🍊🍊  x40\n🍉🍉🍉🍉🍉  x45\n🔔🔔🔔🔔🔔  x50\n⭐⭐⭐⭐⭐  x100\n"
-                    
+        self.sound_file = "python/modules/bonus.mp3"       
         self.legend_label = QLabel(LEGEND, self)
         self.legend_label.setGeometry(20, 110, 150, 400)
         self.legend_label.setObjectName("legend_label")
@@ -178,6 +179,10 @@ class MainWindow(QMainWindow):
             return
                                 
         self.balance -= self.bet
+
+        if self.balance < 0:
+            self.result_label.setText("Insufficient funds!")
+            return
         
         row = self.spin_row()
         self.result_label.setText("Spining...")
@@ -185,6 +190,9 @@ class MainWindow(QMainWindow):
         payout = self.get_payout(row, self.bet)
             
         if payout > 0:
+            pygame.mixer.init()
+            pygame.mixer.music.load(self.sound_file)
+            pygame.mixer.music.play()
             self.result_label.setText(f"You won ${payout}")
         else:
             self.result_label.setText("Sorry you lost, try again!")
@@ -194,7 +202,7 @@ class MainWindow(QMainWindow):
         self.balance_label.setText(f"Current balance: ${self.balance}")
         self.spin_button.setText("Spin again!")
 
-        if self.balance <= 0:
+        if self.balance == 0:
             self.balance_label.setText(f"Current balance: ${self.balance}")
             self.result_label.setText("Sorry you lost all your money!")
             self.spin_button.setText("Gamer over!")        
