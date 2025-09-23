@@ -19,14 +19,12 @@ class MainWindow(QMainWindow):
         self.title_label.setAlignment(Qt.AlignCenter)
                                    
         self.row_label = QLabel("💰 | 💰 | 💰 | 💰 | 💰", self)
-        self.row_label.setFont(QFont("monospace", 40)) 
-        self.row_label.setGeometry(0, 0, 600, 300)
-        self.row_label.setScaledContents(True)
+        self.row_label.setGeometry(0, 0, 600, 100)
+        self.row_label.setObjectName("row_label")
         self.row_label.setGeometry((self.width()- self.row_label.width()) // 2,
                            (self.height() - self.row_label.height()) // 2, 
                            self.row_label.width(), 
                            self.row_label.height())
-        self.row_label.setAlignment(Qt.AlignCenter)
 
         self.balance_label = QLabel(f"Current balance: ${self.balance}", self)
         self.balance_label.setGeometry(0, 110, 830, 50)
@@ -63,6 +61,14 @@ class MainWindow(QMainWindow):
                             color: white; 
                             background-color: darkred;
                             font-weight: bold;
+                            }
+                        QLabel#row_label{
+                            font-size: 50px;
+                           
+                            border: 5px solid gold;
+                            border-radius: 50px;
+                            color: gold;
+                            padding: 0 0 12 9;
                             }
                         QLabel#balance_label, #result_label{
                             font-family: Verdana;
