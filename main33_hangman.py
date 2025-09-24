@@ -38,6 +38,7 @@ def display_answer(answer):
     print(" ".join(answer))
 
 def main():
+    print("Welcome to the Hangman game!\n Guess an animal!")
     answer = random.choice(words)
     hint = ["_"] * len(answer)
     wrong_guesses = 0
