@@ -8,8 +8,8 @@ answer = random.randint(lowest_num, highest_num)
 guesses = 0
 is_running = True
 
-print("Python Number Guessing Game")
-print(f"Select a number between {lowest_num} and {highest_num}")
+print("\nPython Number Guessing Game\n")
+print(f"Guess a number between {lowest_num} and {highest_num}")
 
 while is_running:
     guess = input("Guess a number: ")
@@ -18,8 +18,8 @@ while is_running:
         guess = int(guess)
         guesses += 1
         if guess < lowest_num or guess > highest_num:
-            print("Guess is out of range")
-            print(f"Select a number between {lowest_num} and {highest_num}")
+            print("Guess is out of range!")
+            print(f"The number must be between {lowest_num} and {highest_num}")
         elif guess < answer:
             print("To low! Try again!")
         elif guess > answer:
