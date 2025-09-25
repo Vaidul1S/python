@@ -29,7 +29,7 @@ hangman_art = {0: ("   ",
 def display_man(wrong_guesses):
     for line in hangman_art[wrong_guesses]:
         print(line)
-    print("**********")
+    print("**************")
 
 def display_hint(hint):
     print(" ".join(hint))
@@ -38,7 +38,7 @@ def display_answer(answer):
     print(" ".join(answer))
 
 def main():
-    print("Welcome to the Hangman game!\n Guess an animal!")
+    print("\n\tWelcome to the Hangman game!\n\tGuess an animal!")
     answer = random.choice(words)
     hint = ["_"] * len(answer)
     wrong_guesses = 0
@@ -77,9 +77,9 @@ def main():
         elif wrong_guesses >= len(hangman_art) - 1:
             display_man(wrong_guesses)
             display_answer(answer)
-            print("**********")
+            print("************")
             print("You Lost!!!")
-            print("**********")
+            print("************")
             is_running = False
 
 
