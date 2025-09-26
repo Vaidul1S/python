@@ -29,9 +29,9 @@ def main():
     is_running = True
 
     while is_running:
-        print(f"******************************")
-        print("Banking Program")
-        print(f"******************************")
+        print(f"*******************************")
+        print("\tBanking Program")
+        print(f"*******************************")
         print("1. Show Balance")
         print("2. Deposite")
         print("3. Withdraw")
