@@ -1,9 +1,8 @@
 # Banking Program Exercise
 
 def show_balance(balance):
-    print(f"******************************")
+    print(f"*******************************")
     print(f"Your balance is ${balance:.2f}")
-    print(f"******************************")
 
 def deposite():
     amount = float(input("Enter an amount to be deposited: "))
@@ -27,10 +26,10 @@ def withdraw(balance):
 def main():
     balance = 0
     is_running = True
+    print(f"*******************************")
+    print("\tBanking Program")
 
     while is_running:
-        print(f"*******************************")
-        print("\tBanking Program")
         print(f"*******************************")
         print("1. Show Balance")
         print("2. Deposite")
@@ -48,12 +47,11 @@ def main():
         elif choice == "4":
             is_running = False
         else:
-            print(f"******************************")
-            print("That is not a valid choice!")
-            print(f"******************************")      
+            print(f"*******************************")
+            print(f" That is not a valid choice!")
 
     print(f"******************************")
-    print("Thank you, have a nice day!")
+    print(" Thank you, have a nice day!")
     print(f"******************************")
 
 
