@@ -6,7 +6,7 @@ class Employee:
         self.position = position
 
     def get_info(self):                                                 #instance method, kruva tokiu darem jau
-        return f"{self.name}  = {self.position}"
+        return f"{self.name} >>--> {self.position}"
     
     @staticmethod                                                       # static method
     def is_valid_position(position):
