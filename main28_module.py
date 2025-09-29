@@ -1,6 +1,6 @@
 # Module - failas, kuris import'inamas su kodu
 
-# print(help("modules")) - visi imanomi modules
+#print(help("modules"))                          # visi imanomi modules
 
 import math
 
