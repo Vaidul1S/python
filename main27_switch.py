@@ -36,7 +36,7 @@ def day_of_the_week2(day):
             return "It's Saturday!"
         case 7:
             return "It's Sunday!"
-        case _:                                                                     # case _ - default, gen Z kalba 100%
+        case _:                                                                     # case _: lygu default, gen Z kalba 100%
             return "Not a valid day!"
         
 print(day_of_the_week2(5))
