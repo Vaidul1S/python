@@ -8,10 +8,10 @@ print(math.pi)
 
 from modules import example
 
-result = example.pie
-print(result)
+# result = example.pie
+# print(result)
 
 print(example.square(5))
 print(example.cube(5))
-print(example.circumference(5))
-print(example.area(5))
+print(example.circumference(5, math.pi))
+print(example.area(5, math.pi))
