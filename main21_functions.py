@@ -1,4 +1,4 @@
-# functions
+# functions or methods (def - define)
 
 def song(name, age):
     print("Happy birthday to you!")
