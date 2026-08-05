@@ -3,7 +3,7 @@ import random
 import pygame
 from itertools import combinations
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton
-from PyQt5.QtGui import QIcon, QFont
+from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 
 class MainWindow(QMainWindow):
