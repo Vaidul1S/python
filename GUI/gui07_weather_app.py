@@ -1,5 +1,4 @@
 # Weather App
-
 import sys
 import requests
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit
@@ -9,7 +8,7 @@ from PyQt5.QtCore import Qt
 class WeatherApp(QWidget):
     def __init__(self):
         super().__init__()
-        
+        self.setFixedSize(400, 300)
         self.setGeometry(800, 300, 400, 100)
         self.city_label = QLabel("Enter city name: ", self)
         self.city_input = QLineEdit(self)
@@ -17,7 +16,6 @@ class WeatherApp(QWidget):
         self.temp_label = QLabel(self)
         self.emoji_label = QLabel(self)
         self.description_label = QLabel(self)
-
 
         self.initUI()
 
