@@ -68,11 +68,12 @@ class MainWindow(QMainWindow):
                             }
                         QLabel#row_label{
                             font-family: Noto Color Emoji;
-                            font-size: 40px;
-                            border: 4px solid gold;
+                            font-size: 36px;
+                            font-weight: bold;
+                            border: 4px solid darkred;
                             border-radius: 50px;
-                            color: gold;
-                            padding: 0 0 13 9;
+                            color: darkred;
+                            padding: 0 0 0 34;
                             }
                         QLabel#balance_label, #result_label{
                             font-family: Verdana;
@@ -90,9 +91,8 @@ class MainWindow(QMainWindow):
                             font-size: 12px;
                             }
                         QLabel#legend_label{
-                            font-family: Verdana, Noto Color Emoji, DejaVu Sans;
+                            font-family: Verdana, Noto Color Emoji;
                             font-size: 12px;
-                            font-weight: bold;
                             }
                         QPushButton#bet_button{
                             font-family: Verdana;
