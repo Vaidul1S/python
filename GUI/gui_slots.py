@@ -3,12 +3,14 @@ import random
 import pygame
 from itertools import combinations
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        emoji_font = QFont("Segoe UI Emoji")
+
         self.balance = 100
         self.bet = 0
         self.setWindowTitle("Slots")
@@ -57,7 +59,7 @@ class MainWindow(QMainWindow):
         self.legend_label.setObjectName("legend_label")
         self.setStyleSheet("""
                         QLabel#title_label{
-                            font-family: Verdana;
+                            font-family: Noto Color Emoji;
                             font-size: 46px;
                             font-variant: small-caps;
                             letter-spacing: 16px;
@@ -66,6 +68,7 @@ class MainWindow(QMainWindow):
                             font-weight: bold;
                             }
                         QLabel#row_label{
+                            font-family: Noto Color Emoji;
                             font-size: 50px;
                             border: 4px solid gold;
                             border-radius: 50px;
@@ -73,26 +76,27 @@ class MainWindow(QMainWindow):
                             padding: 0 0 13 9;
                             }
                         QLabel#balance_label, #result_label{
-                            font-family: Verdana;
+                            font-family: Noto Color Emoji;
                             font-size: 20px;
                             }
                         QLineEdit#bet_input{
+                            font-family: Noto Color Emoji;
                             font-size: 14px;
                             border-radius: 15px;
                             border: 1px solid black;
                             padding: 5px 15px; 
                             }
                         QLabel#bet_amount{
-                            font-family: Verdana;
+                            font-family: Noto Color Emoji;
                             font-size: 12px;
                             }
                         QLabel#legend_label{
-                            font-family: Verdana;
+                            font-family: Noto Color Emoji;
                             font-size: 12px;
                             font-weight: bold;
                             }
                         QPushButton#bet_button{
-                            font-family: Verdana;
+                            font-family: Noto Color Emoji;
                             font-size: 16px;
                             border-radius: 15px;
                             background-color: darkgreen;
@@ -104,7 +108,7 @@ class MainWindow(QMainWindow):
                             background-color: lime;
                             }
                         QPushButton#spin_button{
-                            font-family: Verdana;
+                            font-family: Noto Color Emoji;
                             font-size: 30px;
                             background-color: darkred;
                             color: white;
