@@ -4,8 +4,8 @@ import datetime
 import schedule
 import time
 
-source_dir = "C:/Users/vaida/Pictures/Screenshots"
-destination_dir = "C:/Users/vaida/Pictures/backups"
+source_dir = "/home/vaidulis/Pictures/Screenshots/"
+destination_dir = "/home/vaidulis/Pictures/backups"
 
 def copy_folder_to_direcion(source, dest):
     today = datetime.date.today()
