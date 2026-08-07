@@ -51,7 +51,8 @@ def wpm_test(stdscr):
         except:
             continue
 
-        if ord(key) == 27:                              # 27 - Ecs
+        if key == "\x1b":                              # Ecs
+            stdscr.nodelay(False)
             break
         if key in ("KEY_BACKSPACE", "\b", "\x7f"):
             if len(current_text) > 0:
@@ -69,10 +70,10 @@ def main(stdscr):
 
     while True:
         wpm_test(stdscr)
-        stdscr.addstr(3,0, "Great, you complited a test! Press any key to continue...")
+        stdscr.addstr(3,0, "Great, you completed a test! Press any key to continue...")
         key = stdscr.getkey()
 
-        if ord(key) == 27:                               
+        if key == "\x1b":                               
             break
 
 wrapper(main)
