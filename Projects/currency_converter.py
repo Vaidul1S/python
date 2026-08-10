@@ -1,6 +1,8 @@
 from requests import get
 from pprint import PrettyPrinter
 
+# API nebeveikia
+
 BASE_URL = "https://free.currconv.com/"
 API_KEY = "562ddaf40c95f5d58108"
 
