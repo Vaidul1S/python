@@ -1,6 +1,7 @@
 import random
 
-top_of_range = input("Type a number: ")
+print("Welcome to the Number Guessing Game (lower-higher)")
+top_of_range = input("Set a range between 0 and: ")
 
 if top_of_range.isdigit():
     top_of_range = int(top_of_range)
