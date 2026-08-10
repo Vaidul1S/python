@@ -19,7 +19,7 @@ TARGET_EVENT = pygame.USEREVENT
 TARGET_PADDING = 30
 
 LIVES = 5
-LABEL_FONT = pygame.font.SysFont("sans", 24)
+LABEL_FONT = pygame.font.SysFont("cosmicsans", 24)
 
 class Target:
     MAX_SIZE = 25
