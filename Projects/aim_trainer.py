@@ -1,3 +1,4 @@
+import sys
 import random
 import time
 import math
@@ -18,7 +19,7 @@ TARGET_EVENT = pygame.USEREVENT
 TARGET_PADDING = 30
 
 LIVES = 5
-LABEL_FONT = pygame.font.SysFont("comicsans", 24)
+LABEL_FONT = pygame.font.SysFont("sans", 24)
 
 class Target:
     MAX_SIZE = 25
@@ -59,11 +60,10 @@ def draw(win, targets):
 
 
 def format_time(secs):
-    milli = math.floor(int(secs * 1000 % 1000)/100)
-    seconds = int(round(secs % 60, 1))
     minutes = int(secs // 60)
-
-    return f"{minutes:02d}:{seconds:02d}:{milli}"
+    seconds = int(secs % 60)
+    tenths = int((secs * 10) % 10)
+    return f"{minutes:02d}:{seconds:02d}.{tenths}"
 
 def draw_top_bar(win, elapsed_time, targets_pressed, misses):
     pygame.draw.rect(win, "orange", (0, 0, WIDTH, BAR_HEIGHT))
@@ -84,10 +84,10 @@ def end_game(win, elapsed_time, targets_pressed, clicks):
     win.fill(BG_COLOR)
     time_label = LABEL_FONT.render(f"Time: {format_time(elapsed_time)}", 1, TEXT_COLOR)
 
-    speed = round(targets_pressed / elapsed_time, 1)
+    speed = round(targets_pressed / elapsed_time, 1) if elapsed_time > 0 else 0
     speed_label = LABEL_FONT.render(f"Speed: {speed} t/s", 1, TEXT_COLOR)
     hits_label = LABEL_FONT.render(f"Hits: {targets_pressed}", 1, TEXT_COLOR)
-    accuracy = round(targets_pressed / clicks * 100, 1)
+    accuracy = round(targets_pressed / clicks * 100, 1) if clicks else 0
     accuracy_label = LABEL_FONT.render(f"Accuracy: {accuracy}", 1, TEXT_COLOR)
 
     win.blit(time_label, (get_midle(time_label), 100))
@@ -101,7 +101,8 @@ def end_game(win, elapsed_time, targets_pressed, clicks):
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
-                quit()
+                pygame.quit()
+                sys.exit()
 
 def get_midle(surface):
     return WIDTH / 2 - surface.get_width()/2
@@ -142,7 +143,7 @@ def main():
             if target.size <= 0:
                 targets.remove(target)
                 misses += 1
-            if click and target.collide(*mouse_pos):
+            elif click and target.collide(*mouse_pos):
                 targets.remove(target)
                 targets_pressed += 1
 
