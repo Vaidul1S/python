@@ -28,8 +28,8 @@ while True:
         print("Correct! You got it!")
         break
     elif guess > random_number:
-        print("You were above the number!")
+        print("You were ABOVE the number!")
     else:
-        print("You were below the number!")        
+        print("You were BELOW the number!")        
 
 print("You got it in", guesses, "guesses.")
