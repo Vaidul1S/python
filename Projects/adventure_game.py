@@ -1,7 +1,7 @@
 name = input("What is your name?: ")
 print("Welcome", name, "to this adventure!")
 
-answer = input("You are on a dirt road, it has come to a fork and you have to choose left or right: ").lower()
+answer = input("You are on a dirt road, it has come to a fork and you have to choose left or right (left/right): ").lower()
 if answer == 'left':
     answer = input("You come to the river, you can alk around it or swim accross?(walk/swim): ").lower()
     if answer == 'walk':
@@ -11,7 +11,7 @@ if answer == 'left':
     else:
         print("Not a valid option. You lose.")
 elif answer == 'right':
-    answer = input("You come to a wobbly bridge, do you want to cross or go back: ").lower()
+    answer = input("You come to a wobbly bridge, do you want to cross or go back (cross/back): ").lower()
     if answer == 'cross':
         answer = input("You cross a wobbly bridge and meet a stranger, do you talk to them (yes/no): ").lower()
         if answer == "yes":
