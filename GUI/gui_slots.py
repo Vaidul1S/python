@@ -93,6 +93,7 @@ class MainWindow(QMainWindow):
                         QLabel#legend_label{
                             font-family: Verdana, Noto Color Emoji;
                             font-size: 12px;
+                            color: white;
                             }
                         QPushButton#bet_button{
                             font-family: Verdana;
