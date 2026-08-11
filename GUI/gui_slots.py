@@ -13,7 +13,7 @@ class MainWindow(QMainWindow):
         self.balance = 100
         self.bet = 0
         self.setWindowTitle("Slots")
-        self.setGeometry(550, 250, 850, 520)                                   
+        self.setGeometry(550, 250, 850, 560)                                   
         self.setWindowIcon(QIcon("python/modules/slots.png"))        
         self.title_label = QLabel(" 🎰🎰🎰 Slots 🎰🎰🎰", self)
         self.title_label.setGeometry(0, 0, 850, 100)
@@ -49,12 +49,12 @@ class MainWindow(QMainWindow):
         self.result_label.setGeometry(200, 300, 400, 50)
         self.result_label.setObjectName("result_label")
         self.result_label.setAlignment(Qt.AlignCenter)
-        LEGEND = "Win combos:\n\n🍒🍒🍒  x2\n🍋🍋🍋  x3\n🍓🍓🍓  x3.5\n🍊🍊🍊  x4\n🍉🍉🍉  x4.5\n🔔🔔🔔  x10\n⭐⭐⭐  x20\n\n🍒🍒🍒🍒  x4\n🍋🍋🍋🍋  x6\n🍓🍓🍓🍓  x7\n🍊🍊🍊🍊  x8\n🍉🍉🍉🍉  x9\n🔔🔔🔔🔔  x20\n⭐⭐⭐⭐  x40\n\n🍒🍒🍒🍒🍒  x20\n🍋🍋🍋🍋🍋  x30\n🍓🍓🍓🍓🍓  x35\n🍊🍊🍊🍊🍊  x40\n🍉🍉🍉🍉🍉  x45\n🔔🔔🔔🔔🔔  x50\n⭐⭐⭐⭐⭐  x100\n"
+        LEGEND = "Win combos:\n\n🍒🍒🍒 x2\n🍋🍋🍋 x3\n🍓🍓🍓 x3.5\n🍊🍊🍊 x4\n🍉🍉🍉 x4.5\n🔔🔔🔔 x10\n⭐⭐⭐ x20\n\n🍒🍒🍒🍒 x4\n🍋🍋🍋🍋 x6\n🍓🍓🍓🍓 x7\n🍊🍊🍊🍊 x8\n🍉🍉🍉🍉 x9\n🔔🔔🔔🔔 x20\n⭐⭐⭐⭐ x40\n\n🍒🍒🍒🍒🍒 x20\n🍋🍋🍋🍋🍋 x30\n🍓🍓🍓🍓🍓 x35\n🍊🍊🍊🍊🍊 x40\n🍉🍉🍉🍉🍉 x45\n🔔🔔🔔🔔🔔 x50\n⭐⭐⭐⭐⭐ x100\n"
         self.sound_file = "python/modules/bonus.mp3"       
         self.bet_sound = "python/modules/cash-register.mp3"       
         self.game_over = "python/modules/game-over.mp3"       
         self.legend_label = QLabel(LEGEND, self)
-        self.legend_label.setGeometry(20, 110, 150, 400)
+        self.legend_label.setGeometry(20, 110, 150, 440)
         self.legend_label.setObjectName("legend_label")
         self.setStyleSheet("""
                         QLabel#title_label{
@@ -91,7 +91,7 @@ class MainWindow(QMainWindow):
                             font-size: 12px;
                             }
                         QLabel#legend_label{
-                            font-family: Verdana, Noto Color Emoji;
+                            font-family: Twemoji;
                             font-size: 12px;
                             color: white;
                             }
