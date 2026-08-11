@@ -15,7 +15,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Slots")
         self.setGeometry(550, 250, 850, 560)                                   
         self.setWindowIcon(QIcon("python/modules/slots.png"))        
-        self.title_label = QLabel(" 🎰🎰🎰 Slots 🎰🎰🎰", self)
+        self.title_label = QLabel("🎰🎰🎰 Slots 🎰🎰🎰", self)
         self.title_label.setGeometry(0, 0, 850, 100)
         self.title_label.setObjectName("title_label")
         self.title_label.setAlignment(Qt.AlignCenter)
@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
         self.spin_button.setGeometry(300, 400, 200, 50)     
         self.spin_button.setObjectName("spin_button")
         self.result_label = QLabel("Good luck!", self)
-        self.result_label.setGeometry(200, 300, 400, 50)
+        self.result_label.setGeometry(200, 340, 400, 50)
         self.result_label.setObjectName("result_label")
         self.result_label.setAlignment(Qt.AlignCenter)
         LEGEND = "Win combos:\n\n🍒🍒🍒 x2\n🍋🍋🍋 x3\n🍓🍓🍓 x3.5\n🍊🍊🍊 x4\n🍉🍉🍉 x4.5\n🔔🔔🔔 x10\n⭐⭐⭐ x20\n\n🍒🍒🍒🍒 x4\n🍋🍋🍋🍋 x6\n🍓🍓🍓🍓 x7\n🍊🍊🍊🍊 x8\n🍉🍉🍉🍉 x9\n🔔🔔🔔🔔 x20\n⭐⭐⭐⭐ x40\n\n🍒🍒🍒🍒🍒 x20\n🍋🍋🍋🍋🍋 x30\n🍓🍓🍓🍓🍓 x35\n🍊🍊🍊🍊🍊 x40\n🍉🍉🍉🍉🍉 x45\n🔔🔔🔔🔔🔔 x50\n⭐⭐⭐⭐⭐ x100\n"
@@ -58,16 +58,16 @@ class MainWindow(QMainWindow):
         self.legend_label.setObjectName("legend_label")
         self.setStyleSheet("""
                         QLabel#title_label{
-                            font-family: Noto Color Emoji;
+                            font-family: Twemoji;
                             font-size: 46px;
                             font-variant: small-caps;
-                            letter-spacing: 16px;
+                            letter-spacing: 12px;
                             color: white; 
                             background-color: darkred;
                             font-weight: bold;
                             }
                         QLabel#row_label{
-                            font-family: Noto Color Emoji;
+                            font-family: Twemoji;
                             font-size: 36px;
                             font-weight: bold;
                             border: 4px solid darkred;
