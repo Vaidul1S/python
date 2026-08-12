@@ -33,7 +33,7 @@ class MainWindow(QMainWindow):
         central_widgit = QWidget()
         self.setCentralWidget(central_widgit)
         self.button = QPushButton("Click Me!", self)        
-        self.button.setGeometry(350, 200, 200, 100)
+        self.button.setGeometry(400, 300, 200, 100)
         self.button.setStyleSheet("font-size: 30px")
         self.button.clicked.connect(self.on_click)
 
@@ -49,11 +49,11 @@ class MainWindow(QMainWindow):
         label04.setAlignment(Qt.AlignCenter)
         label05.setAlignment(Qt.AlignCenter)
         
-        label01.setStyleSheet("background-color: red")
-        label02.setStyleSheet("background-color: blue")
-        label03.setStyleSheet("background-color: green")
-        label04.setStyleSheet("background-color: yellow")
-        label05.setStyleSheet("background-color: purple")
+        label01.setStyleSheet("background-color: red; color: black; font-size: 20px")
+        label02.setStyleSheet("background-color: blue; color: black; font-size: 20px")
+        label03.setStyleSheet("background-color: green; color: black; font-size: 20px")
+        label04.setStyleSheet("background-color: yellow; color: black; font-size: 20px")
+        label05.setStyleSheet("background-color: purple; color: black; font-size: 20px")
 
         # vbox = QVBoxLayout()                                               # QVBoxLayout or QHBoxLayout
         # vbox.addWidget(label1)
