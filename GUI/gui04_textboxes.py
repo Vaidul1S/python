@@ -12,7 +12,7 @@ class MainWindow(QMainWindow):
         self.setGeometry(700, 300, 500,500)                        
         self.setWindowIcon(QIcon("python/modules/meovv.png"))
         self.label1 = QLabel("Hello", self)
-        self.label1.setFont(QFont("Verdana", 40))
+        self.label1.setFont(QFont("monospace", 40))
         self.label1.setGeometry(0, 0, 500, 100)
         self.label1.setStyleSheet("color: green;" 
                             "background-color: grey;"
@@ -26,13 +26,13 @@ class MainWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        self.line_edit.setGeometry(10, 110, 200, 50)
-        self.button.setGeometry(210, 110, 100, 50)
+        self.line_edit.setGeometry(50, 150, 200, 50)
+        self.button.setGeometry(250, 150, 100, 50)
         self.line_edit.setStyleSheet("font-size: 18px;"
-                                     "font-family: 'Lucida Console', 'Courier New', monospace;")
+                                     "font-family: 'Courier New', monospace;")
         self.line_edit.setPlaceholderText("Enter your name")
         self.button.setStyleSheet("font-size: 20px;"
-                                     "font-family: 'Lucida Console', 'Courier New', monospace;")
+                                     "font-family: 'Courier New', monospace;")
         self.button.clicked.connect(self.submit)
         
     def submit(self):
