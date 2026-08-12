@@ -9,11 +9,11 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("My cool first GUI")
-        self.setGeometry(700, 300, 500,500)                                 # setGeometry(x,y, width,height)
+        self.setGeometry(700, 300, 1000,800)                                 # setGeometry(x,y, width,height)
         self.setWindowIcon(QIcon("python/modules/meovv.png"))
         self.label1 = QLabel("Hello", self)
         self.label1.setFont(QFont("Ariel", 40))
-        self.label1.setGeometry(0, 0, 500, 100)
+        self.label1.setGeometry(300, 0, 300, 100)
         self.label1.setStyleSheet("color: green;" 
                             "background-color: grey;"
                             "font-weight: bold;"
@@ -33,16 +33,22 @@ class MainWindow(QMainWindow):
         central_widgit = QWidget()
         self.setCentralWidget(central_widgit)
         self.button = QPushButton("Click Me!", self)        
-        self.button.setGeometry(150, 200, 200, 100)
+        self.button.setGeometry(350, 200, 200, 100)
         self.button.setStyleSheet("font-size: 30px")
         self.button.clicked.connect(self.on_click)
 
-        label01 = QLabel("#1")
-        label02 = QLabel("#2")
-        label03 = QLabel("#3")
-        label04 = QLabel("#4")
-        label05 = QLabel("#5")
+        label01 = QLabel(" #1")
+        label02 = QLabel(" #2")
+        label03 = QLabel(" #3")
+        label04 = QLabel(" #4")
+        label05 = QLabel(" #5")
 
+        label01.setAlignment(Qt.AlignCenter)
+        label02.setAlignment(Qt.AlignCenter)
+        label03.setAlignment(Qt.AlignCenter)
+        label04.setAlignment(Qt.AlignCenter)
+        label05.setAlignment(Qt.AlignCenter)
+        
         label01.setStyleSheet("background-color: red")
         label02.setStyleSheet("background-color: blue")
         label03.setStyleSheet("background-color: green")
