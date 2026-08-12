@@ -32,11 +32,11 @@ class MainWindow(QMainWindow):
         self.initUI()
         
     def initUI(self):        
-        self.radio1.setGeometry(10, 100, 300, 50)
-        self.radio2.setGeometry(10, 150, 300, 50)
-        self.radio3.setGeometry(10, 200, 300, 50)
-        self.radio4.setGeometry(10, 300, 300, 50)
-        self.radio5.setGeometry(10, 350, 300, 50)
+        self.radio1.setGeometry(50, 120, 300, 50)
+        self.radio2.setGeometry(50, 170, 300, 50)
+        self.radio3.setGeometry(50, 220, 300, 50)
+        self.radio4.setGeometry(50, 320, 300, 50)
+        self.radio5.setGeometry(50, 370, 300, 50)
 
         self.setStyleSheet("QRadioButton{"
                            "font-size: 25px;"
