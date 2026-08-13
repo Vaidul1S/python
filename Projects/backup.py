@@ -16,8 +16,9 @@ def copy_folder_to_direcion(source, dest):
         print(f"Folder copied to: {dest_dir}")
     except FileExistsError:
         print(f"Folder already exists in: {dest}")
-
-schedule.every().day.at("11:37").do(lambda: copy_folder_to_direcion(source_dir, destination_dir))
+set_time = "10:47"
+print(f"Copy will be executed at {set_time} o'clock")
+schedule.every().day.at(set_time).do(lambda: copy_folder_to_direcion(source_dir, destination_dir))
 
 while True:
     schedule.run_pending()
