@@ -8,8 +8,8 @@ from PyQt5.QtCore import Qt
 class WeatherApp(QWidget):
     def __init__(self):
         super().__init__()
-        self.setFixedSize(400, 300)
-        self.setGeometry(800, 300, 400, 100)
+        self.setFixedSize(600, 500)
+        self.setGeometry(800, 300, 600, 400)
         self.city_label = QLabel("Enter city name: ", self)
         self.city_input = QLineEdit(self)
         self.get_weather_button = QPushButton("Get Weather", self)
