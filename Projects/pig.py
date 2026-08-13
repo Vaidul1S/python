@@ -1,4 +1,7 @@
 import random
+# Pig is a simple dice game first described in print by John Scarne in 1945. 
+# Players take turns to roll a single dice as many times as they wish, adding all roll results to a running total, 
+# but losing their gained score for the turn if they roll a 1.
 
 def roll():
     min = 1
@@ -16,7 +19,8 @@ while True:
             print("Number of players must be beeen 2 - 4!")
     else:
         print("Invalid number of players!")
-        
+
+# winning condition     
 max_score = 50
 players_scores = [0 for _ in range(players)]
 
