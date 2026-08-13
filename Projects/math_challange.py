@@ -2,8 +2,11 @@ import random
 import time
 
 Operators = ["+","-","*"]
+# first number
 min_operand = 3
+# second number
 max_operand = 12
+# number of tasks
 total_problems = 10
 
 def generate_problem():

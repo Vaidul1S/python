@@ -4,7 +4,7 @@ import datetime
 import schedule
 import time
 
-source_dir = "/home/vaidulis/Pictures/Screenshots/"
+source_dir = "/home/vaidulis/Pictures"
 destination_dir = "/home/vaidulis/Pictures/backups"
 
 def copy_folder_to_direcion(source, dest):
