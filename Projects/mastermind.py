@@ -82,15 +82,22 @@ class MainWindow(QMainWindow):
         self.setGeometry(700, 300, 600,400)
         self.label01 = QLabel(f"You have {TRIES} tries to guess the code of {CODE_LENGTH} colors.", self)
         self.label01.setFont(QFont("monospace", 12))
-        self.label01.setGeometry(50, 10, 500, 50)
+        self.label01.setGeometry(50, 10, 500, 30)
         self.label01.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
-        self.guess = QLineEdit(self)
-        self.guess.setGeometry(50, 60, 200, 30)
+        
+        self.label02 = QLabel(f"The valid colors are {COLORS}", self)
+        self.label02.setFont(QFont("monospace", 12))
+        self.label02.setGeometry(50, 40, 500, 30)
+        self.label02.setStyleSheet("color: cyan;"                                  
+                            "font-weight: bold;")
+        
+        self.guess_input = QLineEdit(self)
+        self.guess_input.setGeometry(210, 90, 200, 30)
 
         self.result = QLabel("Good luck!", self)
-        self.result.setGeometry(50, 110, 200, 30)
-        self.result.setFont(QFont("monospace", 12))
+        self.result.setGeometry(240, 130, 200, 30)
+        self.result.setFont(QFont("monospace", 16))
         self.result.setStyleSheet("color: cyan;"                           
                            "font-weight: bold")
 
@@ -98,11 +105,17 @@ class MainWindow(QMainWindow):
         self.initUI()
                 
     def initUI(self):
-        central_widgit = QWidget()
-        self.setCentralWidget(central_widgit)
-        self.button = QPushButton("Click Me!", self)        
-        self.button.setGeometry(300, 300, 120, 50)
+        code = generate_code()
+        guess = self.guess_input.text()
+        self.button = QPushButton("Submit", self)        
+        self.button.setGeometry(250, 200, 120, 50)
         self.button.setStyleSheet("font-size: 24px")
+        self.button.clicked.connect(self.on_click(guess, code))
+
+    def on_click(guess, code):
+        check_code(guess, code)
+        result.setText(f"Correct Positions: {correct_pos} | Incorect positions: {incorrect_pos}")
+
 
 if __name__ == "__main__":
     # game()
