@@ -100,8 +100,8 @@ class MainWindow(QMainWindow):
         self.result.setFont(QFont("monospace", 16))
         self.result.setStyleSheet("color: cyan;"                           
                            "font-weight: bold")
-        code = generate_code()
-        guess = self.guess_input.text()
+        self.code = generate_code()
+        self.guess = self.guess_input.text()
 
 
         self.initUI()
