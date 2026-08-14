@@ -1,5 +1,5 @@
 import random
-
+# lets make GUI
 COLORS = ["R","B","G","Y","W","O"]
 TRIES = 10
 CODE_LENGTH = 4
