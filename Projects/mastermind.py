@@ -78,6 +78,7 @@ def game():
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+
         self.setWindowTitle("Mastermind")
         self.setGeometry(700, 300, 600,400)
         self.label01 = QLabel(f"You have {TRIES} tries to guess the code of {CODE_LENGTH} colors.", self)
@@ -95,10 +96,10 @@ class MainWindow(QMainWindow):
         self.guess_input = QLineEdit(self)
         self.guess_input.setGeometry(210, 90, 200, 30)
 
-        self.result = QLabel("Good luck!", self)
-        self.result.setGeometry(240, 130, 200, 30)
-        self.result.setFont(QFont("monospace", 16))
-        self.result.setStyleSheet("color: cyan;"                           
+        self.result_label = QLabel("Good luck!", self)
+        self.result_label.setGeometry(240, 130, 200, 30)
+        self.result_label.setFont(QFont("monospace", 16))
+        self.result_label.setStyleSheet("color: cyan;"                           
                            "font-weight: bold")
         self.code = generate_code()
         self.guess = self.guess_input.text()
@@ -113,9 +114,9 @@ class MainWindow(QMainWindow):
         self.button.setStyleSheet("font-size: 24px")
         self.button.clicked.connect(self.on_click)
 
-    def on_click(self):
+    def on_click():
         correct_pos, incorrect_pos = check_code(guess, code)
-        self.result.setText(f"Correct Positions: {correct_pos} | Incorect positions: {incorrect_pos}")
+        self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
 
 
 if __name__ == "__main__":
