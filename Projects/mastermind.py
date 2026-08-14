@@ -100,21 +100,22 @@ class MainWindow(QMainWindow):
         self.result.setFont(QFont("monospace", 16))
         self.result.setStyleSheet("color: cyan;"                           
                            "font-weight: bold")
+        code = generate_code()
+        guess = self.guess_input.text()
 
 
         self.initUI()
                 
     def initUI(self):
-        code = generate_code()
-        guess = self.guess_input.text()
+        
         self.button = QPushButton("Submit", self)        
         self.button.setGeometry(250, 200, 120, 50)
         self.button.setStyleSheet("font-size: 24px")
-        self.button.clicked.connect(self.on_click(guess, code))
+        self.button.clicked.connect(self.on_click)
 
-    def on_click(guess, code):
-        check_code(guess, code)
-        result.setText(f"Correct Positions: {correct_pos} | Incorect positions: {incorrect_pos}")
+    def on_click(self):
+        correct_pos, incorrect_pos = check_code(guess, code)
+        self.result.setText(f"Correct Positions: {correct_pos} | Incorect positions: {incorrect_pos}")
 
 
 if __name__ == "__main__":
