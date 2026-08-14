@@ -1,5 +1,10 @@
 import random
 # lets make GUI
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton
+from PyQt5.QtGui import QIcon, QFont
+from PyQt5.QtCore import Qt
+
 COLORS = ["R","B","G","Y","W","O"]
 TRIES = 10
 CODE_LENGTH = 4
@@ -52,7 +57,7 @@ def check_code(guess, real_code):
 
     return correct_pos, incorrect_pos
 
-def game():
+def game():    
     print("Welcome to the Mastermind!")
     print(f"You have {TRIES} tries to guess the code of {CODE_LENGTH} colors.")
     print(f"The valid colors are", *COLORS)
@@ -70,6 +75,38 @@ def game():
     else:
         print(f"You ran of tries, the correct code was", *code)
 
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Mastermind")
+        self.setGeometry(700, 300, 600,400)
+        self.label01 = QLabel(f"You have {TRIES} tries to guess the code of {CODE_LENGTH} colors.", self)
+        self.label01.setFont(QFont("monospace", 12))
+        self.label01.setGeometry(50, 10, 500, 50)
+        self.label01.setStyleSheet("color: cyan;"                                  
+                            "font-weight: bold;")
+        self.guess = QLineEdit(self)
+        self.guess.setGeometry(50, 60, 200, 30)
+
+        self.result = QLabel("Good luck!", self)
+        self.result.setGeometry(50, 110, 200, 30)
+        self.result.setFont(QFont("monospace", 12))
+        self.result.setStyleSheet("color: cyan;"                           
+                           "font-weight: bold")
+
+
+        self.initUI()
+                
+    def initUI(self):
+        central_widgit = QWidget()
+        self.setCentralWidget(central_widgit)
+        self.button = QPushButton("Click Me!", self)        
+        self.button.setGeometry(300, 300, 120, 50)
+        self.button.setStyleSheet("font-size: 24px")
 
 if __name__ == "__main__":
-    game()
+    # game()
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
