@@ -114,8 +114,8 @@ class MainWindow(QMainWindow):
         self.button.setStyleSheet("font-size: 24px")
         self.button.clicked.connect(self.on_click)
 
-    def on_click():
-        correct_pos, incorrect_pos = check_code(guess, code)
+    def on_click(self):
+        correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
 
 
