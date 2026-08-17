@@ -80,10 +80,11 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.code = generate_code()
+        self.tries = 10
 
         self.setWindowTitle("Mastermind")
-        self.setGeometry(700, 300, 600,400)
-        self.label01 = QLabel(f"You have {TRIES} tries to guess the code of {CODE_LENGTH} colors.", self)
+        self.setGeometry(700, 300, 600, 400)
+        self.label01 = QLabel(f"Guess the code of {CODE_LENGTH} colors.", self)
         self.label01.setFont(QFont("monospace", 12))
         self.label01.setGeometry(50, 10, 500, 30)
         self.label01.setStyleSheet("color: cyan;"                                  
@@ -104,7 +105,13 @@ class MainWindow(QMainWindow):
         self.result_label.setFont(QFont("monospace", 14))
         self.result_label.setStyleSheet("color: cyan;"                          
                            "font-weight: bold")
-
+        
+        self.tries_label = QLabel(f"Tries left: {self.tries}", self)
+        self.tries_label.setGeometry(420, 340, 150, 30)
+        self.tries_label.setFont(QFont("monospace", 12))
+        self.tries_label.setStyleSheet("color: cyan;"                          
+                            "font-weight: bold")
+        
         
         self.initUI()
                 
@@ -119,6 +126,14 @@ class MainWindow(QMainWindow):
         self.guess = self.guess_input.text().upper().split(" ")
         correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
+        if self.guess != self.code:
+            self.tries -= 1
+            self.tries_label.setText(f"Tries left: {self.tries}")
+            return
+        else:
+            self.result_label.setText(f"You won! Code was {self.code}")
+            self.button.setDisabled(True)
+            return
 
 
 if __name__ == "__main__":
