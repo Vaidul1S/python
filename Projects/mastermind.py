@@ -97,17 +97,15 @@ class MainWindow(QMainWindow):
         
         self.guess_input = QLineEdit(self)
         self.guess_input.setGeometry(210, 90, 200, 30)
-        self.guess = self.guess_input.text()
+        
 
         self.result_label = QLabel("Good luck!", self)
         self.result_label.setGeometry(50, 130, 550, 30)
         self.result_label.setFont(QFont("monospace", 14))
         self.result_label.setStyleSheet("color: cyan;"                          
                            "font-weight: bold")
-        
-        
 
-
+        
         self.initUI()
                 
     def initUI(self):
@@ -118,7 +116,8 @@ class MainWindow(QMainWindow):
         self.button.clicked.connect(self.on_click)
 
     def on_click(self):
-        correct_pos, incorrect_pos = check_code(self.guess.upper().split(" "), self.code)
+        self.guess = self.guess_input.text().upper().split(" ")
+        correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
 
 
