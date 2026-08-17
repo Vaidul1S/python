@@ -1,7 +1,7 @@
 import random
 # lets make GUI
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton, QHBoxLayout
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
@@ -89,6 +89,30 @@ class MainWindow(QMainWindow):
         self.label01.setGeometry(50, 10, 500, 30)
         self.label01.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
+
+        self.button1 = QPushButton("Red")
+        self.button1.setStyleSheet("background-color: red;" "color: black")
+        self.button2 = QPushButton("Blue")
+        self.button2.setStyleSheet("background-color: blue;" "color: black")
+        self.button3 = QPushButton("Green")
+        self.button3.setStyleSheet("background-color: green;" "color: black")
+        self.button4 = QPushButton("Yellow")
+        self.button4.setStyleSheet("background-color: yellow;" "color: black")
+        self.button5 = QPushButton("White")
+        self.button5.setStyleSheet("background-color: white;" "color: black")
+        self.button6 = QPushButton("Orange")
+        self.button6.setStyleSheet("background-color: orange;" "color: black")
+                
+        central_widgit = QWidget()
+        self.setCentralWidget(central_widgit)
+        hbox = QHBoxLayout()
+        hbox.addWidget(self.button1)
+        hbox.addWidget(self.button2)
+        hbox.addWidget(self.button3)
+        hbox.addWidget(self.button4)
+        hbox.addWidget(self.button5)
+        hbox.addWidget(self.button6)
+        central_widgit.setLayout(hbox)
         
         self.label02 = QLabel(f"The valid colors are {COLORS}", self)
         self.label02.setFont(QFont("monospace", 12))
@@ -111,6 +135,7 @@ class MainWindow(QMainWindow):
         self.tries_label.setFont(QFont("monospace", 12))
         self.tries_label.setStyleSheet("color: cyan;"                          
                             "font-weight: bold")
+       
         
         
         self.initUI()
