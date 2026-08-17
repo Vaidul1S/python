@@ -103,7 +103,7 @@ class MainWindow(QMainWindow):
         self.button6 = QPushButton("Orange")
         self.button6.setStyleSheet("background-color: orange;" "color: black")
                 
-        central_widgit = QWidget()
+        central_widgit = QWidget()        
         self.setCentralWidget(central_widgit)
         hbox = QHBoxLayout()
         hbox.addWidget(self.button1)
@@ -113,6 +113,7 @@ class MainWindow(QMainWindow):
         hbox.addWidget(self.button5)
         hbox.addWidget(self.button6)
         central_widgit.setLayout(hbox)
+        
         
         self.label02 = QLabel(f"The valid colors are {COLORS}", self)
         self.label02.setFont(QFont("monospace", 12))
@@ -144,7 +145,7 @@ class MainWindow(QMainWindow):
         
         self.button = QPushButton("Submit", self)        
         self.button.setGeometry(250, 200, 120, 50)
-        self.button.setStyleSheet("font-size: 24px")
+        self.button.setStyleSheet("font-size: 24px;" "font-family: monospace;" "color: cyan")
         self.button.clicked.connect(self.on_click)
 
     def on_click(self):
@@ -162,7 +163,7 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == "__main__":
-    # game()
+    # game()                    # terminal game
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
