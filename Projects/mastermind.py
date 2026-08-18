@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdi
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
-COLORS = ["R","B","G","Y","W","O"]
+COLORS = ["R","B","G","Y","W","P"]
 TRIES = 10
 CODE_LENGTH = 4
 
@@ -84,7 +84,7 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Mastermind")
         self.setGeometry(700, 300, 600, 400)
-        main_layout = QVBoxLayout()
+        main_layout = QVBoxLayout()        
 
         self.label01 = QLabel(f"Guess the code of {CODE_LENGTH} colors.", self)
         self.label01.setAlignment(Qt.AlignCenter)
@@ -94,17 +94,17 @@ class MainWindow(QMainWindow):
         main_layout.addWidget(self.label01)
 
         self.button1 = QPushButton("Red")
-        self.button1.setStyleSheet("background-color: red;" "color: black")
+        self.button1.setStyleSheet("background-color: red;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
         self.button2 = QPushButton("Blue")
-        self.button2.setStyleSheet("background-color: blue;" "color: black")
+        self.button2.setStyleSheet("background-color: blue;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
         self.button3 = QPushButton("Green")
-        self.button3.setStyleSheet("background-color: green;" "color: black")
+        self.button3.setStyleSheet("background-color: green;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
         self.button4 = QPushButton("Yellow")
-        self.button4.setStyleSheet("background-color: yellow;" "color: black")
+        self.button4.setStyleSheet("background-color: yellow;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
         self.button5 = QPushButton("White")
-        self.button5.setStyleSheet("background-color: white;" "color: black")
-        self.button6 = QPushButton("Orange")
-        self.button6.setStyleSheet("background-color: orange;" "color: black")                
+        self.button5.setStyleSheet("background-color: white;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+        self.button6 = QPushButton("Purple")
+        self.button6.setStyleSheet("background-color: purple;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")                
         
         hbox = QHBoxLayout()
         hbox.addWidget(self.button1)
