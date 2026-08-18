@@ -1,7 +1,7 @@
 import random
 # lets make GUI
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton, QHBoxLayout
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
@@ -84,11 +84,13 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Mastermind")
         self.setGeometry(700, 300, 600, 400)
+        main_layout = QVBoxLayout()
+
         self.label01 = QLabel(f"Guess the code of {CODE_LENGTH} colors.", self)
         self.label01.setFont(QFont("monospace", 12))
-        self.label01.setGeometry(50, 10, 500, 30)
         self.label01.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
+        main_layout.addWidget(self.label01)
 
         self.button1 = QPushButton("Red")
         self.button1.setStyleSheet("background-color: red;" "color: black")
@@ -101,10 +103,8 @@ class MainWindow(QMainWindow):
         self.button5 = QPushButton("White")
         self.button5.setStyleSheet("background-color: white;" "color: black")
         self.button6 = QPushButton("Orange")
-        self.button6.setStyleSheet("background-color: orange;" "color: black")
-                
-        central_widgit = QWidget()        
-        self.setCentralWidget(central_widgit)
+        self.button6.setStyleSheet("background-color: orange;" "color: black")                
+        
         hbox = QHBoxLayout()
         hbox.addWidget(self.button1)
         hbox.addWidget(self.button2)
@@ -112,46 +112,56 @@ class MainWindow(QMainWindow):
         hbox.addWidget(self.button4)
         hbox.addWidget(self.button5)
         hbox.addWidget(self.button6)
-        central_widgit.setLayout(hbox)
+        main_layout.addLayout(hbox)
         
         
         self.label02 = QLabel(f"The valid colors are {COLORS}", self)
         self.label02.setFont(QFont("monospace", 12))
-        self.label02.setGeometry(50, 40, 500, 30)
         self.label02.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
+        main_layout.addWidget(self.label02)        
         
         self.guess_input = QLineEdit(self)
-        self.guess_input.setGeometry(210, 90, 200, 30)
-        
+        main_layout.addWidget(self.guess_input)        
 
         self.result_label = QLabel("Good luck!", self)
-        self.result_label.setGeometry(50, 130, 550, 30)
         self.result_label.setFont(QFont("monospace", 14))
         self.result_label.setStyleSheet("color: cyan;"                          
                            "font-weight: bold")
+        main_layout.addWidget(self.result_label)
+
+        self.button = QPushButton("Submit", self)        
+        self.button.setGeometry(250, 200, 120, 50)
+        self.button.setStyleSheet("font-size: 24px;" "font-family: monospace;" "color: cyan")
+        main_layout.addWidget(self.button)
         
         self.tries_label = QLabel(f"Tries left: {self.tries}", self)
-        self.tries_label.setGeometry(420, 340, 150, 30)
         self.tries_label.setFont(QFont("monospace", 12))
         self.tries_label.setStyleSheet("color: cyan;"                          
-                            "font-weight: bold")
-       
+                            "font-weight: bold")        
+        main_layout.addWidget(self.tries_label)       
+
+
+        widget = QWidget()
+        widget.setLayout(main_layout)
+        self.setCentralWidget(widget)       
         
         
         self.initUI()
                 
     def initUI(self):
         
-        self.button = QPushButton("Submit", self)        
-        self.button.setGeometry(250, 200, 120, 50)
-        self.button.setStyleSheet("font-size: 24px;" "font-family: monospace;" "color: cyan")
-        self.button.clicked.connect(self.on_click)
+        
+        self.button.clicked.connect(self.on_submit)
 
-    def on_click(self):
+    def on_submit(self):
         self.guess = self.guess_input.text().upper().split(" ")
         correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
+        if self.tries == 0:
+            self.result_label.setText(f"You lost! Code was {self.code}")
+            self.button.setDisabled(True)
+            return
         if self.guess != self.code:
             self.tries -= 1
             self.tries_label.setText(f"Tries left: {self.tries}")
