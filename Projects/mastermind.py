@@ -164,6 +164,8 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     # game()                    # terminal game
+
+    # gui game
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
