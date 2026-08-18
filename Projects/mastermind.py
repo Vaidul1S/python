@@ -87,6 +87,7 @@ class MainWindow(QMainWindow):
         main_layout = QVBoxLayout()
 
         self.label01 = QLabel(f"Guess the code of {CODE_LENGTH} colors.", self)
+        self.label01.setAlignment(Qt.AlignCenter)
         self.label01.setFont(QFont("monospace", 12))
         self.label01.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
@@ -116,6 +117,7 @@ class MainWindow(QMainWindow):
         
         
         self.label02 = QLabel(f"The valid colors are {COLORS}", self)
+        self.label02.setAlignment(Qt.AlignCenter)
         self.label02.setFont(QFont("monospace", 12))
         self.label02.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
@@ -125,20 +127,26 @@ class MainWindow(QMainWindow):
         main_layout.addWidget(self.guess_input)        
 
         self.result_label = QLabel("Good luck!", self)
+        self.result_label.setAlignment(Qt.AlignCenter)
         self.result_label.setFont(QFont("monospace", 14))
         self.result_label.setStyleSheet("color: cyan;"                          
                            "font-weight: bold")
         main_layout.addWidget(self.result_label)
 
         self.button = QPushButton("Submit", self)        
-        self.button.setGeometry(250, 200, 120, 50)
-        self.button.setStyleSheet("font-size: 24px;" "font-family: monospace;" "color: cyan")
+        self.button.setStyleSheet("font-size: 24px;" 
+                                  "font-family: monospace;" 
+                                  "color: cyan;" 
+                                  "padding: 15px;" 
+                                  "margin: 15px 150px")
         main_layout.addWidget(self.button)
         
         self.tries_label = QLabel(f"Tries left: {self.tries}", self)
         self.tries_label.setFont(QFont("monospace", 12))
-        self.tries_label.setStyleSheet("color: cyan;"                          
-                            "font-weight: bold")        
+        self.tries_label.setAlignment(Qt.AlignRight)
+        self.tries_label.setStyleSheet("color: cyan;"
+                                       "margin: 15px;"
+                                       "font-weight: bold")        
         main_layout.addWidget(self.tries_label)       
 
 
