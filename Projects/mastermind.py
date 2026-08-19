@@ -82,6 +82,7 @@ class MainWindow(QMainWindow):
         self.code = generate_code()
         self.tries = 10
         self.pick = ""
+        self.guess = []
 
         self.setWindowTitle("Mastermind")
         self.setGeometry(700, 300, 600, 400)
@@ -131,8 +132,12 @@ class MainWindow(QMainWindow):
                             "font-weight: bold;")
         main_layout.addWidget(self.pick_label)   
         
-        self.guess_input = QLineEdit(self)
-        main_layout.addWidget(self.guess_input)        
+        self.guess_label = QLabel(f"Your last guess was: {self.guess}", self)
+        self.guess_label.setFont(QFont("monospace", 12))
+        self.guess_label.setStyleSheet("color: cyan;"
+                                       "font-weight: bold")
+        self.guess_label.setAlignment(Qt.AlignCenter)        
+        main_layout.addWidget(self.guess_label)        
 
         self.result_label = QLabel("Good luck!", self)
         self.result_label.setAlignment(Qt.AlignCenter)
@@ -176,9 +181,11 @@ class MainWindow(QMainWindow):
         self.button.clicked.connect(self.on_submit)
 
     def on_submit(self):
-        self.guess = self.pick.upper().split(" ")
+        self.guess_label.setText(f"Your guess before was: {self.guess}")
+        self.guess = self.pick.strip().upper().split(" ")
         correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
+        
         if self.tries == 0:
             self.result_label.setText(f"You lost! Code was {self.code}")
             self.button.setDisabled(True)
