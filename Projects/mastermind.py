@@ -81,6 +81,7 @@ class MainWindow(QMainWindow):
 
         self.code = generate_code()
         self.tries = 10
+        self.pick = ""
 
         self.setWindowTitle("Mastermind")
         self.setGeometry(700, 300, 600, 400)
@@ -191,11 +192,22 @@ class MainWindow(QMainWindow):
             self.button.setDisabled(True)
             return
 
-    def on_color_pick(self):
-        pick = ""
-        color = ""        
-        pick += color
-        self.pick_label.setText(f"Your pick: {pick}")
+    def on_color_pick(self):        
+        color = ""
+        if self.button1:
+            color = "R "
+        elif self.button2:
+            color = "B "
+        elif self.button3:
+            color = "G "
+        elif self.button4:
+            color = "Y "
+        elif self.button5:
+            color = "W "
+        elif self.button6:
+            color = "P "
+        self.pick += color
+        self.pick_label.setText(f"Your pick: {self.pick}")
         return
 
 if __name__ == "__main__":
