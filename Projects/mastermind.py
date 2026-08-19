@@ -166,12 +166,12 @@ class MainWindow(QMainWindow):
         self.initUI()
                 
     def initUI(self):
-        self.button1.clicked.connect(self.on_color_pick)
-        self.button2.clicked.connect(self.on_color_pick)
-        self.button3.clicked.connect(self.on_color_pick)
-        self.button4.clicked.connect(self.on_color_pick)
-        self.button5.clicked.connect(self.on_color_pick)
-        self.button6.clicked.connect(self.on_color_pick)
+        self.button1.clicked.connect(lambda: self.add_pick("R "))
+        self.button2.clicked.connect(lambda: self.add_pick("B "))
+        self.button3.clicked.connect(lambda: self.add_pick("G "))
+        self.button4.clicked.connect(lambda: self.add_pick("Y "))
+        self.button5.clicked.connect(lambda: self.add_pick("W "))
+        self.button6.clicked.connect(lambda: self.add_pick("P "))
         
         self.button.clicked.connect(self.on_submit)
 
@@ -192,23 +192,9 @@ class MainWindow(QMainWindow):
             self.button.setDisabled(True)
             return
 
-    def on_color_pick(self):        
-        color = ""
-        if self.button1:
-            color = "R "
-        elif self.button2:
-            color = "B "
-        elif self.button3:
-            color = "G "
-        elif self.button4:
-            color = "Y "
-        elif self.button5:
-            color = "W "
-        elif self.button6:
-            color = "P "
+    def add_pick(self, color):                
         self.pick += color
-        self.pick_label.setText(f"Your pick: {self.pick}")
-        return
+        self.pick_label.setText(f"Your pick: {self.pick}")        
 
 if __name__ == "__main__":
     # game()                    # terminal game
