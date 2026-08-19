@@ -121,7 +121,14 @@ class MainWindow(QMainWindow):
         self.label02.setFont(QFont("monospace", 12))
         self.label02.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
-        main_layout.addWidget(self.label02)        
+        main_layout.addWidget(self.label02)
+
+        self.pick_label = QLabel("Your pick:", self)
+        self.pick_label.setAlignment(Qt.AlignCenter)
+        self.pick_label.setFont(QFont("monospace", 12))
+        self.pick_label.setStyleSheet("color: cyan;"                                  
+                            "font-weight: bold;")
+        main_layout.addWidget(self.pick_label)   
         
         self.guess_input = QLineEdit(self)
         main_layout.addWidget(self.guess_input)        
@@ -158,7 +165,12 @@ class MainWindow(QMainWindow):
         self.initUI()
                 
     def initUI(self):
-        
+        self.button1.clicked.connect(self.on_color_pick("R"))
+        self.button2.clicked.connect(self.on_color_pick("B"))
+        self.button3.clicked.connect(self.on_color_pick("G"))
+        self.button4.clicked.connect(self.on_color_pick("Y"))
+        self.button5.clicked.connect(self.on_color_pick("W"))
+        self.button6.clicked.connect(self.on_color_pick("P"))
         
         self.button.clicked.connect(self.on_submit)
 
@@ -179,6 +191,9 @@ class MainWindow(QMainWindow):
             self.button.setDisabled(True)
             return
 
+    def on_color_pick(color):
+        pick += color
+        self.pick_label.setText(f"You pick: {pick}")
 
 if __name__ == "__main__":
     # game()                    # terminal game
