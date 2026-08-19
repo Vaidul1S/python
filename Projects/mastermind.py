@@ -176,7 +176,7 @@ class MainWindow(QMainWindow):
         self.button.clicked.connect(self.on_submit)
 
     def on_submit(self):
-        self.guess = self.guess_input.text().upper().split(" ")
+        self.guess = self.pick.upper().split(" ")
         correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
         if self.tries == 0:
@@ -186,8 +186,9 @@ class MainWindow(QMainWindow):
         if self.guess != self.code:
             self.tries -= 1
             self.tries_label.setText(f"Tries left: {self.tries}")
+            self.pick = ""
             return
-        else:
+        if self.guess == self.code:
             self.result_label.setText(f"You won! Code was {self.code}")
             self.button.setDisabled(True)
             return
