@@ -165,12 +165,12 @@ class MainWindow(QMainWindow):
         self.initUI()
                 
     def initUI(self):
-        self.button1.clicked.connect(self.on_color_pick("R"))
-        self.button2.clicked.connect(self.on_color_pick("B"))
-        self.button3.clicked.connect(self.on_color_pick("G"))
-        self.button4.clicked.connect(self.on_color_pick("Y"))
-        self.button5.clicked.connect(self.on_color_pick("W"))
-        self.button6.clicked.connect(self.on_color_pick("P"))
+        self.button1.clicked.connect(self.on_color_pick)
+        self.button2.clicked.connect(self.on_color_pick)
+        self.button3.clicked.connect(self.on_color_pick)
+        self.button4.clicked.connect(self.on_color_pick)
+        self.button5.clicked.connect(self.on_color_pick)
+        self.button6.clicked.connect(self.on_color_pick)
         
         self.button.clicked.connect(self.on_submit)
 
@@ -191,9 +191,12 @@ class MainWindow(QMainWindow):
             self.button.setDisabled(True)
             return
 
-    def on_color_pick(color):
+    def on_color_pick(self):
+        pick = ""
+        color = ""        
         pick += color
-        self.pick_label.setText(f"You pick: {pick}")
+        self.pick_label.setText(f"Your pick: {pick}")
+        return
 
 if __name__ == "__main__":
     # game()                    # terminal game
