@@ -125,6 +125,10 @@ class MainWindow(QMainWindow):
                             "font-weight: bold;")
         main_layout.addWidget(self.label02)
 
+        self.clear_selection = QPushButton("Clear")
+        self.clear_selection.setStyleSheet("color: cyan;" "font-family: monospace;" "padding: 5px;" "margin: 5px 230px")
+        main_layout.addWidget(self.clear_selection)
+
         self.pick_label = QLabel("Your pick:", self)
         self.pick_label.setAlignment(Qt.AlignCenter)
         self.pick_label.setFont(QFont("monospace", 12))
@@ -177,6 +181,8 @@ class MainWindow(QMainWindow):
         self.button4.clicked.connect(lambda: self.add_pick("Y "))
         self.button5.clicked.connect(lambda: self.add_pick("W "))
         self.button6.clicked.connect(lambda: self.add_pick("P "))
+
+        self.clear_selection.clicked.connect(self.clear_pick)
         
         self.button.clicked.connect(self.on_submit)
 
@@ -188,7 +194,7 @@ class MainWindow(QMainWindow):
         
         if self.tries == 0:
             self.result_label.setText(f"You lost! Code was {self.code}")
-            self.button.setDisabled(True)
+            self.setDisabled(True)
             return
         if self.guess != self.code:
             self.tries -= 1
@@ -197,12 +203,17 @@ class MainWindow(QMainWindow):
             return
         if self.guess == self.code:
             self.result_label.setText(f"You won! Code was {self.code}")
-            self.button.setDisabled(True)
+            self.setDisabled(True)
             return
 
     def add_pick(self, color):                
         self.pick += color
         self.pick_label.setText(f"Your pick: {self.pick}")        
+
+    def clear_pick(self):
+        self.pick = ""
+        self.pick_label.setText(f"Your pick:")
+
 
 if __name__ == "__main__":
     # game()                    # terminal game
