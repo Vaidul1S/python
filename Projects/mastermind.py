@@ -189,12 +189,8 @@ class MainWindow(QMainWindow):
     def on_submit(self):
         if len(self.pick.strip().upper().split(" ")) != 4:
             self.pick_label.setText(f"You must guess {CODE_LENGTH} colors!")
+            self.pick = ""
             return
-        
-        for color in self.pick.strip().upper().split(" "):
-            if color not in COLORS:
-                self.pick_label.setText(f"You must guess {CODE_LENGTH} colors!")
-                return
             
         self.guess_label.setText(f"Your guess before was: {self.guess}")        
         self.guess = self.pick.strip().upper().split(" ")       
