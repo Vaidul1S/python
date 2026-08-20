@@ -187,16 +187,18 @@ class MainWindow(QMainWindow):
         self.button.clicked.connect(self.on_submit)
 
     def on_submit(self):
-        self.guess_label.setText(f"Your guess before was: {self.guess}")        
-        self.guess = self.pick.strip().upper().split(" ")       
-        if len(self.guess) != 4:
+        if len(self.pick.strip().upper().split(" ")) != 4:
             self.pick_label.setText(f"You must guess {CODE_LENGTH} colors!")
             return
         
-        for color in self.guess:
+        for color in self.pick.strip().upper().split(" "):
             if color not in COLORS:
                 self.pick_label.setText(f"You must guess {CODE_LENGTH} colors!")
                 return
+            
+        self.guess_label.setText(f"Your guess before was: {self.guess}")        
+        self.guess = self.pick.strip().upper().split(" ")       
+        
         correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
         
