@@ -136,6 +136,21 @@ class MainWindow(QMainWindow):
         self.pick_label.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
         main_layout.addWidget(self.pick_label)   
+
+        self.pick1 = QPushButton("")
+        self.pick1.setStyleSheet(f"background-color: {color1};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+        self.pick2 = QPushButton("")
+        self.pick2.setStyleSheet(f"background-color: {color2};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+        self.pick3 = QPushButton("")
+        self.pick3.setStyleSheet(f"background-color: {color3};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+        self.pick4 = QPushButton("")
+        self.pick4.setStyleSheet(f"background-color: {color4};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+        pick_boxes = QHBoxLayout()
+        pick_boxes.addWidget(self.pick1)
+        pick_boxes.addWidget(self.pick2)
+        pick_boxes.addWidget(self.pick3)
+        pick_boxes.addWidget(self.pick4)
+        main_layout.addLayout(pick_boxes)
         
         self.guess_label = QLabel(f"Your last guess was: {self.guess}", self)
         self.guess_label.setFont(QFont("monospace", 12))
