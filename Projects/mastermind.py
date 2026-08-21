@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdi
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
-COLORS = ["R","B","G","Y","W","P"]
+COLORS = ["Red","Blue","Green","Yellow","White","Purple"]
 TRIES = 10
 CODE_LENGTH = 4
 
@@ -84,6 +84,7 @@ class MainWindow(QMainWindow):
         self.tries = 10
         self.pick = ""
         self.guess = []
+        self.colors = ["darkgray", "darkgray", "darkgray", "darkgray"]        
 
         self.setWindowTitle("Mastermind")
         self.setGeometry(700, 300, 600, 400)
@@ -137,14 +138,15 @@ class MainWindow(QMainWindow):
                             "font-weight: bold;")
         main_layout.addWidget(self.pick_label)   
 
+
         self.pick1 = QPushButton("")
-        self.pick1.setStyleSheet(f"background-color: {color1};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+        self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")
         self.pick2 = QPushButton("")
-        self.pick2.setStyleSheet(f"background-color: {color2};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+        self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")
         self.pick3 = QPushButton("")
-        self.pick3.setStyleSheet(f"background-color: {color3};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+        self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")
         self.pick4 = QPushButton("")
-        self.pick4.setStyleSheet(f"background-color: {color4};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")
         pick_boxes = QHBoxLayout()
         pick_boxes.addWidget(self.pick1)
         pick_boxes.addWidget(self.pick2)
@@ -191,25 +193,25 @@ class MainWindow(QMainWindow):
         self.initUI()
                 
     def initUI(self):
-        self.button1.clicked.connect(lambda: self.add_pick("R "))
-        self.button2.clicked.connect(lambda: self.add_pick("B "))
-        self.button3.clicked.connect(lambda: self.add_pick("G "))
-        self.button4.clicked.connect(lambda: self.add_pick("Y "))
-        self.button5.clicked.connect(lambda: self.add_pick("W "))
-        self.button6.clicked.connect(lambda: self.add_pick("P "))
+        self.button1.clicked.connect(lambda: self.add_pick("Red "))
+        self.button2.clicked.connect(lambda: self.add_pick("Blue "))
+        self.button3.clicked.connect(lambda: self.add_pick("Green "))
+        self.button4.clicked.connect(lambda: self.add_pick("Yellow "))
+        self.button5.clicked.connect(lambda: self.add_pick("White "))
+        self.button6.clicked.connect(lambda: self.add_pick("Purple "))
 
         self.clear_selection.clicked.connect(self.clear_pick)
         
         self.button.clicked.connect(self.on_submit)
 
     def on_submit(self):
-        if len(self.pick.strip().upper().split(" ")) != 4:
+        if len(self.pick.strip().split(" ")) != 4:
             self.label02.setText(f"You must guess {CODE_LENGTH} colors!")            
             return
         
         self.label02.setText(f"")         
         self.guess_label.setText(f"Your guess before was: {self.guess}")        
-        self.guess = self.pick.strip().upper().split(" ")       
+        self.guess = self.pick.strip().split(" ")       
         
         correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
@@ -227,7 +229,11 @@ class MainWindow(QMainWindow):
 
     def add_pick(self, color):                
         self.pick += color
-        self.pick_label.setText(f"Your pick: {self.pick}")        
+        self.pick_label.setText(f"Your pick: {self.pick}")
+        pick_ = self.pick.strip().split(" ")
+        for x in range(len(pick_)):
+            if pick_[x] == "Red":
+                self.colors[x] = "red"
 
     def clear_pick(self):
         self.pick = ""
