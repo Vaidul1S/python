@@ -232,8 +232,12 @@ class MainWindow(QMainWindow):
         self.pick_label.setText(f"Your pick: {self.pick}")
         pick_ = self.pick.strip().split(" ")
         for x in range(len(pick_)):
-            if pick_[x] == "Red":
-                self.colors[x] = "red"
+            self.colors[x] = pick_[x]  
+        self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")         
+        self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")         
+        self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")         
+        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")         
+        
 
     def clear_pick(self):
         self.pick = ""
