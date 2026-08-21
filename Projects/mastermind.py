@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdi
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
-COLORS = ["Red","Blue","Green","Yellow","White","Purple"]
+COLORS = ["Red", "Blue", "Green", "Yellow", "White", "Purple"]
 TRIES = 10
 CODE_LENGTH = 4
 
@@ -82,7 +82,6 @@ class MainWindow(QMainWindow):
 
         self.code = generate_code()
         self.tries = 10
-        self.pick = ""
         self.guess = []
         self.colors = ["darkgray", "darkgray", "darkgray", "darkgray"]        
 
@@ -193,25 +192,24 @@ class MainWindow(QMainWindow):
         self.initUI()
                 
     def initUI(self):
-        self.button1.clicked.connect(lambda: self.add_pick("Red "))
-        self.button2.clicked.connect(lambda: self.add_pick("Blue "))
-        self.button3.clicked.connect(lambda: self.add_pick("Green "))
-        self.button4.clicked.connect(lambda: self.add_pick("Yellow "))
-        self.button5.clicked.connect(lambda: self.add_pick("White "))
-        self.button6.clicked.connect(lambda: self.add_pick("Purple "))
+        self.button1.clicked.connect(lambda: self.add_pick("Red"))
+        self.button2.clicked.connect(lambda: self.add_pick("Blue"))
+        self.button3.clicked.connect(lambda: self.add_pick("Green"))
+        self.button4.clicked.connect(lambda: self.add_pick("Yellow"))
+        self.button5.clicked.connect(lambda: self.add_pick("White"))
+        self.button6.clicked.connect(lambda: self.add_pick("Purple"))
 
         self.clear_selection.clicked.connect(self.clear_pick)
         
         self.button.clicked.connect(self.on_submit)
 
     def on_submit(self):
-        if len(self.pick.strip().split(" ")) != 4:
+        if len(self.guess) != 4:
             self.label02.setText(f"You must guess {CODE_LENGTH} colors!")            
             return
         
         self.label02.setText(f"")         
-        self.guess_label.setText(f"Your guess before was: {self.guess}")        
-        self.guess = self.pick.strip().split(" ")       
+        self.guess_label.setText(f"Your guess before was: {self.guess}")    
         
         correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
@@ -222,20 +220,19 @@ class MainWindow(QMainWindow):
         if self.guess != self.code:
             self.tries -= 1
             self.tries_label.setText(f"Tries left: {self.tries}")
-            self.pick = ""
+            self.guess = []
         if self.guess == self.code:
             self.result_label.setText(f"YOU WON! Code was {self.code}")
             self.setDisabled(True)
 
     def add_pick(self, color):                
-        self.pick += color
-        self.pick_label.setText(f"Your pick: {self.pick}")
-        pick_ = self.pick.strip().split(" ")
-        for x in range(len(pick_)):
+        self.guess.append(color)
+        self.pick_label.setText(f"Your pick: {self.guess}")
+        for x in range(len(self.guess)):
             if x > len(self.colors) - 1:
                 break
             else:
-                self.colors[x] = pick_[x]  
+                self.colors[x] = self.guess[x]  
         self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")         
         self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")         
         self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px")         
@@ -243,7 +240,7 @@ class MainWindow(QMainWindow):
         
 
     def clear_pick(self):
-        self.pick = ""
+        self.guess = []
         self.pick_label.setText(f"Your pick:")
 
 
