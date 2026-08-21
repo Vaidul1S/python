@@ -1,5 +1,6 @@
+#  There is two versions of Mastermind here: terminal and GUI.
+#  You can switch them at a very bottom
 import random
-# lets make GUI
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout
 from PyQt5.QtGui import QIcon, QFont
@@ -118,9 +119,9 @@ class MainWindow(QMainWindow):
         main_layout.addLayout(hbox)
         
         
-        self.label02 = QLabel(f"The valid colors are {COLORS}", self)
+        self.label02 = QLabel(f"", self)
         self.label02.setAlignment(Qt.AlignCenter)
-        self.label02.setFont(QFont("monospace", 12))
+        self.label02.setFont(QFont("monospace", 14))
         self.label02.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
         main_layout.addWidget(self.label02)
@@ -188,10 +189,10 @@ class MainWindow(QMainWindow):
 
     def on_submit(self):
         if len(self.pick.strip().upper().split(" ")) != 4:
-            self.pick_label.setText(f"You must guess {CODE_LENGTH} colors!")
-            self.pick = ""
+            self.label02.setText(f"You must guess {CODE_LENGTH} colors!")            
             return
-            
+        
+        self.label02.setText(f"")         
         self.guess_label.setText(f"Your guess before was: {self.guess}")        
         self.guess = self.pick.strip().upper().split(" ")       
         
@@ -199,14 +200,14 @@ class MainWindow(QMainWindow):
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
         
         if self.tries == 0:
-            self.result_label.setText(f"You lost! Code was {self.code}")
+            self.result_label.setText(f"YOU LOST! Code was {self.code}")
             self.setDisabled(True)
         if self.guess != self.code:
             self.tries -= 1
             self.tries_label.setText(f"Tries left: {self.tries}")
             self.pick = ""
         if self.guess == self.code:
-            self.result_label.setText(f"You won! Code was {self.code}")
+            self.result_label.setText(f"YOU WON! Code was {self.code}")
             self.setDisabled(True)
 
     def add_pick(self, color):                
