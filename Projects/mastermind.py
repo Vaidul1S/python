@@ -258,7 +258,14 @@ class MainWindow(QMainWindow):
         self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")   
 
     def refresh(self):
-        self.main_layout.update
+        self.code = generate_code()
+        self.tries = 10
+        self.guess = []
+        self.colors = ["darkgray", "darkgray", "darkgray", "darkgray"]
+        self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
+        self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
+        self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
+        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")   
 
 if __name__ == "__main__":
     # game()                    # terminal game
