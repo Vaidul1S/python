@@ -184,11 +184,11 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.tries_label)       
 
         self.play_again = QPushButton("Play Again", self)
-        self.play_again.setStyleSheet("font-size: 18px;"
+        self.play_again.setStyleSheet("font-size: 16px;"
                                       "font-family: monospace;"
                                       "color: cyan;"
-                                      "padding: 10px;"
-                                      "margin: 10px 300px")
+                                      "padding: 5px;"
+                                      "margin: 10px 650px 10px 10px")
         self.main_layout.addWidget(self.play_again)
         
 
@@ -219,7 +219,7 @@ class MainWindow(QMainWindow):
             return
         
         self.label02.setText(f"")         
-        self.guess_label.setText(f"Your guess before was: {self.guess}")    
+        self.guess_label.setText(f"Your guess before was: {self.guess}")  
         
         correct_pos, incorrect_pos = check_code(self.guess, self.code)
         self.result_label.setText(f"Correct Positions: {correct_pos} Incorect positions: {incorrect_pos}")
@@ -260,12 +260,17 @@ class MainWindow(QMainWindow):
     def refresh(self):
         self.code = generate_code()
         self.tries = 10
+        self.tries_label.setText(f"Tries left: {self.tries}")
         self.guess = []
+        self.pick_label.setText(f"Your pick:")
         self.colors = ["darkgray", "darkgray", "darkgray", "darkgray"]
         self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
         self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
         self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")   
+        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")  
+        self.guess_label.setText("Your guess before was: """)
+        self.result_label.setText("Good luck!")
+
 
 if __name__ == "__main__":
     # game()                    # terminal game
