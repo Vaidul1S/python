@@ -183,6 +183,14 @@ class MainWindow(QMainWindow):
                                        "font-weight: bold")        
         main_layout.addWidget(self.tries_label)       
 
+        self.play_again = QPushButton("Play Again", self)
+        self.play_again.setStyleSheet("font-size: 18px;"
+                                      "font-family: monospace;"
+                                      "color: cyan;"
+                                      "padding: 10px;"
+                                      "margin: 10px 300px")
+        main_layout.addWidget(self.play_again)
+        
 
         widget = QWidget()
         widget.setLayout(main_layout)
@@ -202,6 +210,8 @@ class MainWindow(QMainWindow):
         self.clear_selection.clicked.connect(self.clear_pick)
         
         self.button.clicked.connect(self.on_submit)
+
+        self.play_again.clicked.connect()
 
     def on_submit(self):
         if len(self.guess) != 4:
