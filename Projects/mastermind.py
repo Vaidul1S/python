@@ -126,9 +126,9 @@ class MainWindow(QMainWindow):
                             "font-weight: bold;")
         self.main_layout.addWidget(self.label02)
 
-        self.clear_selection = QPushButton("Clear")
-        self.clear_selection.setStyleSheet("color: cyan;" "font-family: monospace;" "padding: 5px;" "margin: 5px 230px")
-        self.main_layout.addWidget(self.clear_selection)
+        self.clear_button = QPushButton("Clear")
+        self.clear_button.setStyleSheet("color: cyan;" "font-family: monospace;" "padding: 5px;" "margin: 5px 230px")
+        self.main_layout.addWidget(self.clear_button)
 
         self.pick_label = QLabel("Your pick:", self)
         self.pick_label.setAlignment(Qt.AlignCenter)
@@ -167,13 +167,13 @@ class MainWindow(QMainWindow):
                            "font-weight: bold")
         self.main_layout.addWidget(self.result_label)
 
-        self.button = QPushButton("Submit", self)        
-        self.button.setStyleSheet("font-size: 24px;" 
+        self.submit_button = QPushButton("Submit", self)        
+        self.submit_button.setStyleSheet("font-size: 24px;" 
                                   "font-family: monospace;" 
                                   "color: cyan;" 
                                   "padding: 15px;" 
                                   "margin: 15px 150px")
-        self.main_layout.addWidget(self.button)
+        self.main_layout.addWidget(self.submit_button)
         
         self.tries_label = QLabel(f"Tries left: {self.tries}", self)
         self.tries_label.setFont(QFont("monospace", 12))
@@ -207,9 +207,9 @@ class MainWindow(QMainWindow):
         self.button5.clicked.connect(lambda: self.add_pick("Orange"))
         self.button6.clicked.connect(lambda: self.add_pick("Purple"))
 
-        self.clear_selection.clicked.connect(self.clear_pick)
+        self.clear_button.clicked.connect(self.clear_pick)
         
-        self.button.clicked.connect(self.on_submit)
+        self.submit_button.clicked.connect(self.on_submit)
 
         self.play_again.clicked.connect(self.refresh)
 
@@ -226,14 +226,14 @@ class MainWindow(QMainWindow):
         
         if self.tries == 0:
             self.result_label.setText(f"YOU LOST! Code was {self.code}")
-            self.setDisabled(True)
+            self.end_game()
         if self.guess != self.code:
             self.tries -= 1
             self.tries_label.setText(f"Tries left: {self.tries}")
             self.guess = []
         if self.guess == self.code:
             self.result_label.setText(f"YOU WON! Code was {self.code}")
-            self.setDisabled(True)
+            self.end_game()
 
     def add_pick(self, color):                
         self.guess.append(color)
@@ -257,6 +257,16 @@ class MainWindow(QMainWindow):
         self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
         self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")   
 
+    def end_game(self):
+        self.button1.setDisabled(True)
+        self.button2.setDisabled(True)
+        self.button3.setDisabled(True)
+        self.button4.setDisabled(True)
+        self.button5.setDisabled(True)
+        self.button6.setDisabled(True)
+        self.clear_button.setDisabled(True)
+        self.submit_button.setDisabled(True)
+
     def refresh(self):
         self.code = generate_code()
         self.tries = 10
@@ -270,6 +280,14 @@ class MainWindow(QMainWindow):
         self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")  
         self.guess_label.setText("Your guess before was: """)
         self.result_label.setText("Good luck!")
+        self.button1.setDisabled(False)
+        self.button2.setDisabled(False)
+        self.button3.setDisabled(False)
+        self.button4.setDisabled(False)
+        self.button5.setDisabled(False)
+        self.button6.setDisabled(False)
+        self.clear_button.setDisabled(False)
+        self.submit_button.setDisabled(False)
 
 
 if __name__ == "__main__":
