@@ -87,14 +87,14 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Mastermind")
         self.setGeometry(700, 300, 800, 400)
-        main_layout = QVBoxLayout()        
+        self.main_layout = QVBoxLayout()        
 
         self.label01 = QLabel(f"Guess the code of {CODE_LENGTH} colors.", self)
         self.label01.setAlignment(Qt.AlignCenter)
         self.label01.setFont(QFont("monospace", 12))
         self.label01.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
-        main_layout.addWidget(self.label01)
+        self.main_layout.addWidget(self.label01)
 
         self.button1 = QPushButton("Red")
         self.button1.setStyleSheet("background-color: red;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
@@ -116,7 +116,7 @@ class MainWindow(QMainWindow):
         hbox.addWidget(self.button4)
         hbox.addWidget(self.button5)
         hbox.addWidget(self.button6)
-        main_layout.addLayout(hbox)
+        self.main_layout.addLayout(hbox)
         
         
         self.label02 = QLabel(f"", self)
@@ -124,18 +124,18 @@ class MainWindow(QMainWindow):
         self.label02.setFont(QFont("monospace", 14))
         self.label02.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
-        main_layout.addWidget(self.label02)
+        self.main_layout.addWidget(self.label02)
 
         self.clear_selection = QPushButton("Clear")
         self.clear_selection.setStyleSheet("color: cyan;" "font-family: monospace;" "padding: 5px;" "margin: 5px 230px")
-        main_layout.addWidget(self.clear_selection)
+        self.main_layout.addWidget(self.clear_selection)
 
         self.pick_label = QLabel("Your pick:", self)
         self.pick_label.setAlignment(Qt.AlignCenter)
         self.pick_label.setFont(QFont("monospace", 12))
         self.pick_label.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
-        main_layout.addWidget(self.pick_label)   
+        self.main_layout.addWidget(self.pick_label)   
 
 
         self.pick1 = QPushButton("")
@@ -151,21 +151,21 @@ class MainWindow(QMainWindow):
         pick_boxes.addWidget(self.pick2)
         pick_boxes.addWidget(self.pick3)
         pick_boxes.addWidget(self.pick4)
-        main_layout.addLayout(pick_boxes)
+        self.main_layout.addLayout(pick_boxes)
         
         self.guess_label = QLabel(f"Your last guess was: {self.guess}", self)
         self.guess_label.setFont(QFont("monospace", 12))
         self.guess_label.setStyleSheet("color: cyan;"
                                        "font-weight: bold")
         self.guess_label.setAlignment(Qt.AlignCenter)        
-        main_layout.addWidget(self.guess_label)        
+        self.main_layout.addWidget(self.guess_label)        
 
         self.result_label = QLabel("Good luck!", self)
         self.result_label.setAlignment(Qt.AlignCenter)
         self.result_label.setFont(QFont("monospace", 14))
         self.result_label.setStyleSheet("color: cyan;"                          
                            "font-weight: bold")
-        main_layout.addWidget(self.result_label)
+        self.main_layout.addWidget(self.result_label)
 
         self.button = QPushButton("Submit", self)        
         self.button.setStyleSheet("font-size: 24px;" 
@@ -173,7 +173,7 @@ class MainWindow(QMainWindow):
                                   "color: cyan;" 
                                   "padding: 15px;" 
                                   "margin: 15px 150px")
-        main_layout.addWidget(self.button)
+        self.main_layout.addWidget(self.button)
         
         self.tries_label = QLabel(f"Tries left: {self.tries}", self)
         self.tries_label.setFont(QFont("monospace", 12))
@@ -181,7 +181,7 @@ class MainWindow(QMainWindow):
         self.tries_label.setStyleSheet("color: cyan;"
                                        "margin: 15px;"
                                        "font-weight: bold")        
-        main_layout.addWidget(self.tries_label)       
+        self.main_layout.addWidget(self.tries_label)       
 
         self.play_again = QPushButton("Play Again", self)
         self.play_again.setStyleSheet("font-size: 18px;"
@@ -189,11 +189,11 @@ class MainWindow(QMainWindow):
                                       "color: cyan;"
                                       "padding: 10px;"
                                       "margin: 10px 300px")
-        main_layout.addWidget(self.play_again)
+        self.main_layout.addWidget(self.play_again)
         
 
         widget = QWidget()
-        widget.setLayout(main_layout)
+        widget.setLayout(self.main_layout)
         self.setCentralWidget(widget)       
         
         
@@ -211,7 +211,7 @@ class MainWindow(QMainWindow):
         
         self.button.clicked.connect(self.on_submit)
 
-        self.play_again.clicked.connect()
+        self.play_again.clicked.connect(self.refresh)
 
     def on_submit(self):
         if len(self.guess) != 4:
@@ -256,6 +256,9 @@ class MainWindow(QMainWindow):
         self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
         self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
         self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")   
+
+    def refresh(self):
+        self.main_layout.update
 
 if __name__ == "__main__":
     # game()                    # terminal game
