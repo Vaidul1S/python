@@ -129,12 +129,12 @@ class MainWindow(QMainWindow):
         self.clear_button = QPushButton("Clear")
         self.clear_button.setStyleSheet("color: cyan;" "font-family: monospace;" "padding: 5px;" "margin: 5px 230px")
         self.main_layout.addWidget(self.clear_button)
-
+                
         self.pick_label = QLabel("Your pick:", self)
         self.pick_label.setAlignment(Qt.AlignCenter)
         self.pick_label.setFont(QFont("monospace", 12))
         self.pick_label.setStyleSheet("color: cyan;"                                  
-                            "font-weight: bold;")
+                            "font-weight: bold;")        
         self.main_layout.addWidget(self.pick_label)   
 
 
@@ -152,13 +152,30 @@ class MainWindow(QMainWindow):
         pick_boxes.addWidget(self.pick3)
         pick_boxes.addWidget(self.pick4)
         self.main_layout.addLayout(pick_boxes)
-        
+
+        last_pick_box = QVBoxLayout()
+        self.last_pick1 = QPushButton("")
+        self.last_pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.last_pick2 = QPushButton("")
+        self.last_pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.last_pick3 = QPushButton("")
+        self.last_pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.last_pick4 = QPushButton("")
+        self.last_pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        color_box = QHBoxLayout()
+        color_box.addWidget(self.last_pick1)
+        color_box.addWidget(self.last_pick2)
+        color_box.addWidget(self.last_pick3)
+        color_box.addWidget(self.last_pick4)
+
         self.guess_label = QLabel(f"Your last guess was: {self.guess}", self)
         self.guess_label.setFont(QFont("monospace", 12))
         self.guess_label.setStyleSheet("color: cyan;"
                                        "font-weight: bold")
-        self.guess_label.setAlignment(Qt.AlignCenter)        
-        self.main_layout.addWidget(self.guess_label)        
+        self.guess_label.setAlignment(Qt.AlignCenter)
+        last_pick_box.addWidget(self.guess_label)
+        last_pick_box.addLayout(color_box)        
+        self.main_layout.addLayout(last_pick_box)        
 
         self.result_label = QLabel("Good luck!", self)
         self.result_label.setAlignment(Qt.AlignCenter)
@@ -235,7 +252,13 @@ class MainWindow(QMainWindow):
             self.result_label.setText(f"YOU WON! Code was {self.code}")
             self.end_game()
 
-        self.pick_label.setText("Your pick:")
+        # self.pick_label.setText("Your pick:")
+        
+        self.last_pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.last_pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.last_pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.last_pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.clear_pick()
 
     def add_pick(self, color):                
         self.guess.append(color)
