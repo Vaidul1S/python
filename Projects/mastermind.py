@@ -137,15 +137,11 @@ class MainWindow(QMainWindow):
                             "font-weight: bold;")        
         self.main_layout.addWidget(self.pick_label)   
 
-
         self.pick1 = QPushButton("")
-        self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
         self.pick2 = QPushButton("")
-        self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
         self.pick3 = QPushButton("")
-        self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
         self.pick4 = QPushButton("")
-        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.update_pick_colors()
         pick_boxes = QHBoxLayout()
         pick_boxes.addWidget(self.pick1)
         pick_boxes.addWidget(self.pick2)
@@ -155,13 +151,10 @@ class MainWindow(QMainWindow):
 
         last_pick_box = QVBoxLayout()
         self.last_pick1 = QPushButton("")
-        self.last_pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
         self.last_pick2 = QPushButton("")
-        self.last_pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
         self.last_pick3 = QPushButton("")
-        self.last_pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
         self.last_pick4 = QPushButton("")
-        self.last_pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.update_last_guess_colors()
         color_box = QHBoxLayout()
         color_box.addWidget(self.last_pick1)
         color_box.addWidget(self.last_pick2)
@@ -230,6 +223,18 @@ class MainWindow(QMainWindow):
 
         self.play_again.clicked.connect(self.refresh)
 
+    def update_pick_colors(self):
+        self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
+        self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
+        self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
+        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px") 
+
+    def update_last_guess_colors(self):
+        self.last_pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.last_pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.last_pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.last_pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+
     def on_submit(self):
         if len(self.guess) != 4:
             self.label02.setText(f"You must guess {CODE_LENGTH} colors!")            
@@ -252,12 +257,7 @@ class MainWindow(QMainWindow):
             self.result_label.setText(f"YOU WON! Code was {self.code}")
             self.end_game()
 
-        # self.pick_label.setText("Your pick:")
-        
-        self.last_pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
-        self.last_pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
-        self.last_pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
-        self.last_pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        self.update_last_guess_colors()
         self.clear_pick()
 
     def add_pick(self, color):                
@@ -268,19 +268,13 @@ class MainWindow(QMainWindow):
                 break
             else:
                 self.colors[x] = self.guess[x]  
-        self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
+        self.update_pick_colors()         
 
     def clear_pick(self):
         self.guess = []
         self.pick_label.setText(f"Your pick:")
         self.colors = ["darkgray", "darkgray", "darkgray", "darkgray"]
-        self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")   
+        self.update_pick_colors()   
 
     def end_game(self):
         self.button1.setDisabled(True)
@@ -299,10 +293,8 @@ class MainWindow(QMainWindow):
         self.guess = []
         self.pick_label.setText(f"Your pick:")
         self.colors = ["darkgray", "darkgray", "darkgray", "darkgray"]
-        self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")  
+        self.update_pick_colors()
+        self.update_last_guess_colors()
         self.guess_label.setText("Your guess before was: """)
         self.result_label.setText("Good luck!")
         self.button1.setDisabled(False)
