@@ -230,10 +230,12 @@ class MainWindow(QMainWindow):
         if self.guess != self.code:
             self.tries -= 1
             self.tries_label.setText(f"Tries left: {self.tries}")
-            self.guess = []
+            self.guess = []            
         if self.guess == self.code:
             self.result_label.setText(f"YOU WON! Code was {self.code}")
             self.end_game()
+
+        self.pick_label.setText("Your pick:")
 
     def add_pick(self, color):                
         self.guess.append(color)
