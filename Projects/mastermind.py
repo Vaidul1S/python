@@ -8,7 +8,7 @@ from PyQt5.QtCore import Qt
 
 COLORS = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple"]
 TRIES = 10
-CODE_LENGTH = 4
+CODE_LENGTH = 5
 
 def generate_code():
     code = []
@@ -83,7 +83,9 @@ class MainWindow(QMainWindow):
         self.code = generate_code()
         self.tries = 10
         self.guess = []
-        self.colors = ["darkgray", "darkgray", "darkgray", "darkgray"]   
+        self.colors = []
+        for x in range(CODE_LENGTH):
+            self.colors.append("darkgray")   
 
         self.setWindowTitle("Mastermind")
         self.setGeometry(700, 300, 800, 400)
@@ -95,29 +97,14 @@ class MainWindow(QMainWindow):
         self.label01.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
         self.main_layout.addWidget(self.label01)
-
-        self.button1 = QPushButton("Red")
-        self.button1.setStyleSheet("background-color: red;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
-        self.button2 = QPushButton("Blue")
-        self.button2.setStyleSheet("background-color: blue;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
-        self.button3 = QPushButton("Green")
-        self.button3.setStyleSheet("background-color: green;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
-        self.button4 = QPushButton("Yellow")
-        self.button4.setStyleSheet("background-color: yellow;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
-        self.button5 = QPushButton("Orange")
-        self.button5.setStyleSheet("background-color: Orange;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
-        self.button6 = QPushButton("Purple")
-        self.button6.setStyleSheet("background-color: purple;" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")                
         
-        hbox = QHBoxLayout()
-        hbox.addWidget(self.button1)
-        hbox.addWidget(self.button2)
-        hbox.addWidget(self.button3)
-        hbox.addWidget(self.button4)
-        hbox.addWidget(self.button5)
-        hbox.addWidget(self.button6)
-        self.main_layout.addLayout(hbox)
-        
+        self.colors_box = QHBoxLayout()
+        for x in range(len(COLORS)):
+            self.color_button = QPushButton("")
+            self.color_button.setStyleSheet(f"background-color: {COLORS[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 5px")
+            self.color_button.setText(f"{COLORS[x]}")
+            self.colors_box.addWidget(self.color_button)
+        self.main_layout.addLayout(self.colors_box)
         
         self.label02 = QLabel(f"", self)
         self.label02.setAlignment(Qt.AlignCenter)
@@ -145,10 +132,10 @@ class MainWindow(QMainWindow):
         self.main_layout.addLayout(self.pick_boxes)
 
         self.last_pick_box = QVBoxLayout()
-        self.color_box = QHBoxLayout()
+        self.last_color_box = QHBoxLayout()
         for x in range(CODE_LENGTH):
             self.last_pick = QPushButton("")
-            self.color_box.addWidget(self.last_pick)           
+            self.last_color_box.addWidget(self.last_pick)           
         self.update_last_guess_colors()
 
         self.guess_label = QLabel(f"Your last guess was: {self.guess}", self)
@@ -157,7 +144,7 @@ class MainWindow(QMainWindow):
                                        "font-weight: bold")
         self.guess_label.setAlignment(Qt.AlignCenter)
         self.last_pick_box.addWidget(self.guess_label)
-        self.last_pick_box.addLayout(self.color_box)        
+        self.last_pick_box.addLayout(self.last_color_box)        
         self.main_layout.addLayout(self.last_pick_box)        
 
         self.result_label = QLabel("Good luck!", self)
@@ -201,17 +188,13 @@ class MainWindow(QMainWindow):
         self.initUI()
                 
     def initUI(self):
-        self.button1.clicked.connect(lambda: self.add_pick("Red"))
-        self.button2.clicked.connect(lambda: self.add_pick("Blue"))
-        self.button3.clicked.connect(lambda: self.add_pick("Green"))
-        self.button4.clicked.connect(lambda: self.add_pick("Yellow"))
-        self.button5.clicked.connect(lambda: self.add_pick("Orange"))
-        self.button6.clicked.connect(lambda: self.add_pick("Purple"))
+        for x in range(self.colors_box.count()):
+            item = self.colors_box.itemAt(x).widget()
+            if isinstance(item, QPushButton):
+                item.clicked.connect(lambda checked, x=x: self.add_pick(f"{COLORS[x]}"))      
 
         self.clear_button.clicked.connect(self.clear_pick)
-        
         self.submit_button.clicked.connect(self.on_submit)
-
         self.play_again.clicked.connect(self.refresh)
 
     def update_pick_colors(self):
@@ -221,13 +204,13 @@ class MainWindow(QMainWindow):
                 item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
 
     def update_last_guess_colors(self):
-        for x in range(self.color_box.count()):
-            item = self.color_box.itemAt(x).widget()
+        for x in range(self.last_color_box.count()):
+            item = self.last_color_box.itemAt(x).widget()
             if isinstance(item, QPushButton):
                 item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
 
     def on_submit(self):
-        if len(self.guess) != 4:
+        if len(self.guess) != CODE_LENGTH:
             self.label02.setText(f"You must guess {CODE_LENGTH} colors!")            
             return
         
@@ -264,16 +247,16 @@ class MainWindow(QMainWindow):
     def clear_pick(self):
         self.guess = []
         self.pick_label.setText(f"Your pick:")
-        self.colors = ["darkgray", "darkgray", "darkgray", "darkgray"]
+        self.colors = []
+        for x in range(CODE_LENGTH):
+            self.colors.append("darkgray")   
         self.update_pick_colors()   
 
     def end_game(self):
-        self.button1.setDisabled(True)
-        self.button2.setDisabled(True)
-        self.button3.setDisabled(True)
-        self.button4.setDisabled(True)
-        self.button5.setDisabled(True)
-        self.button6.setDisabled(True)
+        for x in range(self.colors_box.count()):
+            item = self.colors_box.itemAt(x).widget()
+            if isinstance(item, QPushButton):
+                item.setDisabled(True)
         self.clear_button.setDisabled(True)
         self.submit_button.setDisabled(True)
 
@@ -283,17 +266,17 @@ class MainWindow(QMainWindow):
         self.tries_label.setText(f"Tries left: {self.tries}")
         self.guess = []
         self.pick_label.setText(f"Your pick:")
-        self.colors = ["darkgray", "darkgray", "darkgray", "darkgray"]
+        self.colors = []
+        for x in range(CODE_LENGTH):
+            self.colors.append("darkgray")   
         self.update_pick_colors()
         self.update_last_guess_colors()
         self.guess_label.setText("Your guess before was: """)
         self.result_label.setText("Good luck!")
-        self.button1.setDisabled(False)
-        self.button2.setDisabled(False)
-        self.button3.setDisabled(False)
-        self.button4.setDisabled(False)
-        self.button5.setDisabled(False)
-        self.button6.setDisabled(False)
+        for x in range(self.colors_box.count()):
+            item = self.colors_box.itemAt(x).widget()
+            if isinstance(item, QPushButton):
+                item.setDisabled(False)
         self.clear_button.setDisabled(False)
         self.submit_button.setDisabled(False)
 
