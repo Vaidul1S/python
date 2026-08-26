@@ -8,7 +8,7 @@ from PyQt5.QtCore import Qt
 
 COLORS = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple"]
 TRIES = 10
-CODE_LENGTH = 5
+CODE_LENGTH = 4
 
 def generate_code():
     code = []
@@ -201,13 +201,13 @@ class MainWindow(QMainWindow):
         for x in range(self.pick_boxes.count()):
             item = self.pick_boxes.itemAt(x).widget()
             if isinstance(item, QPushButton):
-                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 10px")
 
     def update_last_guess_colors(self):
         for x in range(self.last_color_box.count()):
             item = self.last_color_box.itemAt(x).widget()
             if isinstance(item, QPushButton):
-                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 10px")
 
     def on_submit(self):
         if len(self.guess) != CODE_LENGTH:
