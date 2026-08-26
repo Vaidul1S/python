@@ -235,9 +235,11 @@ class MainWindow(QMainWindow):
         self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
         self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
         self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
-        for x in range(len(self.h_layout)):
-            self.test_button.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
-            self.test_button.setText(f"{x}")            
+        for x in range(self.h_layout.count()):
+            item = self.h_layout.itemAt(x).widget()
+            if isinstance(item, QPushButton):
+                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+                item.setText(f"{x}")            
 
     def update_last_guess_colors(self):
         self.last_pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
