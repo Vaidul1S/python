@@ -137,9 +137,11 @@ class MainWindow(QMainWindow):
                             "font-weight: bold;")        
         self.main_layout.addWidget(self.pick_label)   
 
-        # for pick in range(CODE_LENGTH):
-        #     self.pick = QPushButton("")
-        #     self.main_layout.addWidget(self.pick)
+        self.h_layout = QHBoxLayout()
+        for pick in range(CODE_LENGTH):
+            self.test_button = QPushButton("")
+            self.h_layout.addWidget(self.test_button)
+        self.main_layout.addLayout(self.h_layout)
 
         self.pick1 = QPushButton("")
         self.pick2 = QPushButton("")
@@ -200,6 +202,7 @@ class MainWindow(QMainWindow):
         self.play_again = QPushButton("Play Again", self)
         self.play_again.setStyleSheet("font-size: 16px;"
                                       "font-family: monospace;"
+                                      "font-weight: bold;"
                                       "color: cyan;"
                                       "padding: 5px;"
                                       "margin: 10px 650px 10px 10px")
@@ -231,7 +234,10 @@ class MainWindow(QMainWindow):
         self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
         self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
         self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px") 
+        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+        for x in range(len(self.h_layout)):
+            self.test_button.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
+            self.test_button.setText(f"{x}")            
 
     def update_last_guess_colors(self):
         self.last_pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
