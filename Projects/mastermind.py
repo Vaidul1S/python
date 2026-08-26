@@ -137,6 +137,10 @@ class MainWindow(QMainWindow):
                             "font-weight: bold;")        
         self.main_layout.addWidget(self.pick_label)   
 
+        # for pick in range(CODE_LENGTH):
+        #     self.pick = QPushButton("")
+        #     self.main_layout.addWidget(self.pick)
+
         self.pick1 = QPushButton("")
         self.pick2 = QPushButton("")
         self.pick3 = QPushButton("")
