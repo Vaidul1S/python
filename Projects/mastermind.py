@@ -137,23 +137,12 @@ class MainWindow(QMainWindow):
                             "font-weight: bold;")        
         self.main_layout.addWidget(self.pick_label)   
 
-        self.h_layout = QHBoxLayout()
-        for pick in range(CODE_LENGTH):
-            self.test_button = QPushButton("")
-            self.h_layout.addWidget(self.test_button)
-        self.main_layout.addLayout(self.h_layout)
-
-        self.pick1 = QPushButton("")
-        self.pick2 = QPushButton("")
-        self.pick3 = QPushButton("")
-        self.pick4 = QPushButton("")
-        self.update_pick_colors()
-        pick_boxes = QHBoxLayout()
-        pick_boxes.addWidget(self.pick1)
-        pick_boxes.addWidget(self.pick2)
-        pick_boxes.addWidget(self.pick3)
-        pick_boxes.addWidget(self.pick4)
-        self.main_layout.addLayout(pick_boxes)
+        self.pick_boxes = QHBoxLayout()
+        for x in range(CODE_LENGTH):
+            self.pick = QPushButton("")
+            self.pick_boxes.addWidget(self.pick)
+        self.update_pick_colors() 
+        self.main_layout.addLayout(self.pick_boxes)
 
         last_pick_box = QVBoxLayout()
         self.last_pick1 = QPushButton("")
@@ -231,15 +220,10 @@ class MainWindow(QMainWindow):
         self.play_again.clicked.connect(self.refresh)
 
     def update_pick_colors(self):
-        self.pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick2.setStyleSheet(f"background-color: {self.colors[1]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick3.setStyleSheet(f"background-color: {self.colors[2]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")         
-        self.pick4.setStyleSheet(f"background-color: {self.colors[3]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
-        for x in range(self.h_layout.count()):
-            item = self.h_layout.itemAt(x).widget()
+        for x in range(self.pick_boxes.count()):
+            item = self.pick_boxes.itemAt(x).widget()
             if isinstance(item, QPushButton):
                 item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
-                item.setText(f"{x}")            
 
     def update_last_guess_colors(self):
         self.last_pick1.setStyleSheet(f"background-color: {self.colors[0]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 25px")
