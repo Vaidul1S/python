@@ -125,6 +125,7 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.pick_label)   
 
         self.pick_boxes = QHBoxLayout()
+        self.pick_boxes.setSpacing(50)
         for x in range(CODE_LENGTH):
             self.pick = QPushButton("")
             self.pick_boxes.addWidget(self.pick)
@@ -133,6 +134,7 @@ class MainWindow(QMainWindow):
 
         self.last_pick_box = QVBoxLayout()
         self.last_color_box = QHBoxLayout()
+        self.last_color_box.setSpacing(50)
         for x in range(CODE_LENGTH):
             self.last_pick = QPushButton("")
             self.last_color_box.addWidget(self.last_pick)           
@@ -201,13 +203,13 @@ class MainWindow(QMainWindow):
         for x in range(self.pick_boxes.count()):
             item = self.pick_boxes.itemAt(x).widget()
             if isinstance(item, QPushButton):
-                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 10px")
+                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 20px")
 
     def update_last_guess_colors(self):
         for x in range(self.last_color_box.count()):
             item = self.last_color_box.itemAt(x).widget()
             if isinstance(item, QPushButton):
-                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 10px")
+                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 20px")
 
     def on_submit(self):
         if len(self.guess) != CODE_LENGTH:
