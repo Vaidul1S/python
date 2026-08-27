@@ -8,7 +8,7 @@ from PyQt5.QtCore import Qt
 
 COLORS = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple"]
 TRIES = 10
-CODE_LENGTH = 4
+CODE_LENGTH = 5
 
 def generate_code():
     code = []
@@ -125,7 +125,7 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.pick_label)   
 
         self.pick_boxes = QHBoxLayout()
-        self.pick_boxes.setSpacing(50)
+        self.pick_boxes.setSpacing(20)
         for x in range(CODE_LENGTH):
             self.pick = QPushButton("")
             self.pick_boxes.addWidget(self.pick)
@@ -134,7 +134,7 @@ class MainWindow(QMainWindow):
 
         self.last_pick_box = QVBoxLayout()
         self.last_color_box = QHBoxLayout()
-        self.last_color_box.setSpacing(50)
+        self.last_color_box.setSpacing(20)
         for x in range(CODE_LENGTH):
             self.last_pick = QPushButton("")
             self.last_color_box.addWidget(self.last_pick)           
