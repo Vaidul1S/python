@@ -203,7 +203,7 @@ class MainWindow(QMainWindow):
         for x in range(self.pick_boxes.count()):
             item = self.pick_boxes.itemAt(x).widget()
             if isinstance(item, QPushButton):
-                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 20px")
+                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 5px;" "margin: 15px 20px;")
 
     def update_last_guess_colors(self):
         for x in range(self.last_color_box.count()):
