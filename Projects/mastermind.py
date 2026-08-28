@@ -180,7 +180,6 @@ class MainWindow(QMainWindow):
                                       "padding: 5px;"
                                       "margin: 10px 650px 10px 10px")
         self.main_layout.addWidget(self.play_again)
-        
 
         widget = QWidget()
         widget.setLayout(self.main_layout)
