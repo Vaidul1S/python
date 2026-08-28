@@ -113,7 +113,7 @@ class MainWindow(QMainWindow):
                             "font-weight: bold;")
         self.main_layout.addWidget(self.label02)
 
-        self.clear_button = QPushButton("Clear")
+        self.clear_button = QPushButton("Clear Selection")
         self.clear_button.setStyleSheet("color: cyan;" "font-family: monospace;" "padding: 5px;" "margin: 5px 230px")
         self.main_layout.addWidget(self.clear_button)
                 
