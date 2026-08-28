@@ -101,7 +101,7 @@ class MainWindow(QMainWindow):
         self.colors_box = QHBoxLayout()
         for x in range(len(COLORS)):
             self.color_button = QPushButton("")
-            self.color_button.setStyleSheet(f"background-color: {COLORS[x]};" "color: black;" "border-radius: 2px;" "padding: 10px;" "margin: 5px")
+            self.color_button.setStyleSheet(f"background-color: {COLORS[x]};" "color: black;" "border-radius: 2px;" "padding: 7px;" "margin: 5px")
             self.color_button.setText(f"{COLORS[x]}")
             self.colors_box.addWidget(self.color_button)
         self.main_layout.addLayout(self.colors_box)
@@ -125,7 +125,7 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.pick_label)   
 
         self.pick_boxes = QHBoxLayout()
-        self.pick_boxes.setSpacing(20)
+        self.pick_boxes.setSpacing(5)
         for x in range(CODE_LENGTH):
             self.pick = QPushButton("")
             self.pick_boxes.addWidget(self.pick)
@@ -134,7 +134,7 @@ class MainWindow(QMainWindow):
 
         self.last_pick_box = QVBoxLayout()
         self.last_color_box = QHBoxLayout()
-        self.last_color_box.setSpacing(20)
+        self.last_color_box.setSpacing(5)
         for x in range(CODE_LENGTH):
             self.last_pick = QPushButton("")
             self.last_color_box.addWidget(self.last_pick)           
@@ -202,13 +202,13 @@ class MainWindow(QMainWindow):
         for x in range(self.pick_boxes.count()):
             item = self.pick_boxes.itemAt(x).widget()
             if isinstance(item, QPushButton):
-                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 10px;" "margin: 15px 10px;")
+                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 7px;" "margin: 15px 10px;")
 
     def update_last_guess_colors(self):
         for x in range(self.last_color_box.count()):
             item = self.last_color_box.itemAt(x).widget()
             if isinstance(item, QPushButton):
-                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 10px;" "margin: 15px 10px")
+                item.setStyleSheet(f"background-color: {self.colors[x]};" "color: black;" "border-radius: 2px;" "padding: 7px;" "margin: 15px 10px")
 
     def on_submit(self):
         if len(self.guess) != CODE_LENGTH:
