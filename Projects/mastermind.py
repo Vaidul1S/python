@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdi
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
+GUI = True
 COLORS = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple"]
 TRIES = 10
 CODE_LENGTH = 5
@@ -182,7 +183,6 @@ class MainWindow(QMainWindow):
         widget.setLayout(self.main_layout)
         self.setCentralWidget(widget)       
         
-        
         self.initUI()
                 
     def initUI(self):
@@ -280,10 +280,12 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == "__main__":
-    # game()                    # terminal game
 
-    # gui game
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec_())
+    if GUI:
+        app = QApplication(sys.argv)
+        window = MainWindow()
+        window.show()
+        sys.exit(app.exec_())
+    else: 
+        game()
+    
