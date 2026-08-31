@@ -6,12 +6,12 @@ import pygame
 pygame.init()
 
 WIDTH, HEIGHT = 800, 600
-BAR_HEIGHT = 50
+BAR_HEIGHT = 30
 BAR_TEXT_COLOR = "black"
 BG_COLOR = "DarkSlateGrey"
 TEXT_COLOR = "limegreen"
 
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+WIN = pygame.display.set_mode((WIDTH, HEIGHT), display=0)
 pygame.display.set_caption("Aim Trainer")
 
 TARGET_INCREMENT = 400
@@ -57,7 +57,6 @@ def draw(win, targets):
 
     for target in targets:
         target.draw(win)
-
 
 def format_time(secs):
     minutes = int(secs // 60)
