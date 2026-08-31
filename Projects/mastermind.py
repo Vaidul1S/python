@@ -70,7 +70,6 @@ def game():
         if correct_pos == CODE_LENGTH:
             print(f"Congrats 🎉 You guessed the code {code} in {attempts} tries!")
             break
-
         print(f"Correct Positions: {correct_pos} | Incorect positions: {incorrect_pos}")
 
     else:
