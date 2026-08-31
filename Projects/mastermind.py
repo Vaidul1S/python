@@ -1,12 +1,13 @@
 #  There is two versions of Mastermind here: terminal and GUI.
-#  You can switch them at a very bottom
 import random
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
+#  You can switch versions: True for GUI and False for terminal
 GUI = True
+
 COLORS = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple"]
 TRIES = 10
 CODE_LENGTH = 5
