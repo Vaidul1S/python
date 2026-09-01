@@ -31,7 +31,6 @@ def add():
     with open('python/Projects/assets/password.txt', 'a') as f:
         f.write(name + "|" + fer.encrypt(pwd.encode()).decode() + "\n")
 
-
 while True:
     mode = input('Would you like to add a new password or view existing ones (view, add), press q to quit? ').lower()
     if mode == "view":
