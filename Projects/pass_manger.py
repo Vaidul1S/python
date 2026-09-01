@@ -10,14 +10,12 @@ master_pwd = input("What is the master password? ")
 key = load_key() + master_pwd.encode()
 fer = Fernet(key)
 
-
 # def write_key():
 #     key = Fernet.generate_key()
 #     with open("python/Projects/assets/key.key", "wb") as key_file:
 #         key_file.write(key)
 
 # write_key()
-
 
 def view():
     with open('python/Projects/assets/password.txt', 'r') as f:
