@@ -5,7 +5,7 @@ import math
 import pygame
 pygame.init()
 
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1000, 800
 BAR_HEIGHT = 30
 BAR_TEXT_COLOR = "black"
 BG_COLOR = "DarkSlateGrey"
@@ -118,7 +118,7 @@ def main():
     pygame.time.set_timer(TARGET_EVENT, TARGET_INCREMENT)
 
     while run:
-        clock.tick(60)                                  #nustatom fps
+        clock.tick(60)                                  # nustatom fps, taikiniu greitis
         click = False
         mouse_pos = pygame.mouse.get_pos()
         elapsed_time = time.time() - start_time
