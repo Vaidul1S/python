@@ -3,6 +3,8 @@ from curses import wrapper
 import queue
 import time
 
+# BUTINA "pratempti" termina, kad tilptu labirintas
+
 maze = [
     ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
     ["#", " ", " ", " ", " ", "#", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", "#"],
