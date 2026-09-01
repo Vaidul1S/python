@@ -113,17 +113,13 @@ class MainWindow(QMainWindow):
         self.label02.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")
         self.main_layout.addWidget(self.label02)
-
-        self.clear_button = QPushButton("Clear Selection")
-        self.clear_button.setStyleSheet("color: cyan;" "font-family: monospace;" "padding: 5px;" "margin: 5px 230px")
-        self.main_layout.addWidget(self.clear_button)
                 
         self.pick_label = QLabel("Your pick:", self)
         self.pick_label.setAlignment(Qt.AlignCenter)
         self.pick_label.setFont(QFont("monospace", 12))
         self.pick_label.setStyleSheet("color: cyan;"                                  
                             "font-weight: bold;")        
-        self.main_layout.addWidget(self.pick_label)   
+        self.main_layout.addWidget(self.pick_label)  
 
         self.pick_boxes = QHBoxLayout()
         for x in range(CODE_LENGTH):
@@ -131,6 +127,10 @@ class MainWindow(QMainWindow):
             self.pick_boxes.addWidget(self.pick)
         self.update_pick_colors() 
         self.main_layout.addLayout(self.pick_boxes)
+
+        self.clear_button = QPushButton("Clear Selection")
+        self.clear_button.setStyleSheet("color: cyan;" "font-family: monospace;" "padding: 5px;" "margin: 5px 230px")
+        self.main_layout.addWidget(self.clear_button)
 
         self.last_pick_box = QVBoxLayout()
         self.last_color_box = QHBoxLayout()
