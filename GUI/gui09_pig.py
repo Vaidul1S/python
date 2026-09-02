@@ -62,3 +62,9 @@ max_score = max(players_scores)
 winner_i = players_scores.index(max_score)
 print("Player number", winner_i + 1, "is the winner with a score of:", max_score)
 
+def main():
+    run = True
+
+    
+if __name__ == "__main__":
+    main()
