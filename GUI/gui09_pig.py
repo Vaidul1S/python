@@ -11,6 +11,10 @@ pygame.init()
 
 WIDTH, HEIGHT = 1000, 800
 
+WIN = pygame.display.set_mode((WIDTH, HEIGHT), display=0)
+pygame.display.set_caption("Pig Game")
+
+
 def roll():
     min = 1
     max = 6
@@ -65,6 +69,6 @@ print("Player number", winner_i + 1, "is the winner with a score of:", max_score
 def main():
     run = True
 
-    
+
 if __name__ == "__main__":
     main()
