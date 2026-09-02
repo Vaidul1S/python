@@ -1,6 +1,5 @@
 import random
 import sys
-import time
 import math
 import pygame
 pygame.init()
@@ -10,10 +9,13 @@ pygame.init()
 # but losing their gained score for the turn if they roll a 1.
 
 WIDTH, HEIGHT = 1000, 800
-
+LABEL_FONT = pygame.font.SysFont("cosmicsans", 24)
+BAR_HEIGHT = 30
+BAR_TEXT_COLOR = "black"
 WIN = pygame.display.set_mode((WIDTH, HEIGHT), display=0)
 pygame.display.set_caption("Pig Game")
 
+points01 = 0
 
 def roll():
     min = 1
@@ -69,6 +71,12 @@ print("Player number", winner_i + 1, "is the winner with a score of:", max_score
 def main():
     run = True
 
+def draw_top_bar(win, elapsed_time, targets_pressed, misses):
+    pygame.draw.rect(win, "green", (0, 0, WIDTH, BAR_HEIGHT))
+        
+    player01_label = LABEL_FONT.render(f"Points: {points01}", 1, BAR_TEXT_COLOR)
+    
+    win.blit(player01_label, (100, 5))
 
 if __name__ == "__main__":
     main()
