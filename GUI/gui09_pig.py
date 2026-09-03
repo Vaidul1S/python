@@ -62,6 +62,16 @@ from PyQt5.QtCore import Qt
 font_color = "blue"
 button_color = "green"
 
+dice_art = {
+    0: ("┌─────────┐\n|                     |\n|                     |\n|                     |\n└─────────┘"),
+    1: ("┌─────────┐\n|                     |\n|         ♣         |\n|                     |\n└─────────┘"),
+    2: ("┌─────────┐\n|     ♣             |\n|                     |\n|             ♣     |\n└─────────┘"),
+    3: ("┌─────────┐\n|     ♣             |\n|         ♣         |\n|             ♣     |\n└─────────┘"),
+    4: ("┌─────────┐\n|    ♣      ♣    |\n|                     |\n|    ♣      ♣    |\n└─────────┘"),
+    5: ("┌─────────┐\n|    ♣      ♣    |\n|         ♣         |\n|    ♣      ♣    |\n└─────────┘"),
+    6: ("┌─────────┐\n|    ♣      ♣    |\n|    ♣      ♣    |\n|    ♣      ♣    |\n└─────────┘"),
+}
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -101,11 +111,25 @@ class MainWindow(QMainWindow):
                                         "font-weight: bold;")
         self.main_layout.addWidget(self.dice_label)
 
+        self.dice_button = QPushButton(f"{dice_art[0]}")
+        self.dice_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;")
+        self.main_layout.addWidget(self.dice_button)
 
+        
 
         widget = QWidget()
         widget.setLayout(self.main_layout)
         self.setCentralWidget(widget)    
+
+        self.initUI()
+                        
+    def initUI(self):
+        self.dice_button.clicked.connect(self.roll)
+
+    def roll(self):
+        restult = random.randint(1, 6)
+        self.dice_button.setText(f"{dice_art[restult]}")
+
 
 def main():
     app = QApplication(sys.argv)                                         
