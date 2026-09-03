@@ -60,6 +60,7 @@ from PyQt5.QtCore import Qt
 # winner_i = players_scores.index(max_score)
 # print("Player number", winner_i + 1, "is the winner with a score of:", max_score)
 font_color = "blue"
+button_color = "green"
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -89,10 +90,16 @@ class MainWindow(QMainWindow):
         self.select_button_box = QHBoxLayout()
         for x in range(self.numb_of_players):
             self.numb_button = QPushButton(f"{x + 1}")
+            self.numb_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;" "margin: 20px;")
             self.select_button_box.addWidget(self.numb_button)
         self.main_layout.addLayout(self.select_button_box)
-        
 
+        self.dice_label = QLabel("Roll your dice", self)
+        self.dice_label.setAlignment(Qt.AlignCenter)
+        self.dice_label.setFont(QFont("times", 12))
+        self.dice_label.setStyleSheet(f"color: {font_color};"
+                                        "font-weight: bold;")
+        self.main_layout.addWidget(self.dice_label)
 
 
 
