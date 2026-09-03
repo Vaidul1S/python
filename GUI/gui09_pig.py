@@ -112,7 +112,8 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.dice_label)
 
         self.dice_button = QPushButton(f"{dice_art[0]}")
-        self.dice_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;")
+        self.dice_button.setFixedWidth(100)        
+        self.dice_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;")
         self.main_layout.addWidget(self.dice_button)
 
         
