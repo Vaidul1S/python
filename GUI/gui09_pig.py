@@ -1,25 +1,13 @@
 import random
 import sys
-import math
-import pygame
-pygame.init()
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QPushButton
+from PyQt5.QtGui import QIcon, QFont, QPixmap, QFontDatabase
+from PyQt5.QtCore import Qt
 
 # Pig is a simple dice game first described in print by John Scarne in 1945. 
 # Players take turns to roll a single dice as many times as they wish, adding all roll results to a running total, 
 # but losing their gained score for the turn if they roll a 1.
 
-WIDTH, HEIGHT = 1000, 800
-LABEL_FONT = pygame.font.SysFont("monospace", 24)
-BAR_HEIGHT = 30
-BAR_TEXT_COLOR = "white"
-BackGround = "darkblue"
-WIN = pygame.display.set_mode((WIDTH, HEIGHT), display=0)
-pygame.display.set_caption("Pig Game")
-
-numb_of_players = 3
-players_points = []
-for x in range(numb_of_players):
-    players_points.append(0)
 
 # def roll():
 #     min = 1
@@ -71,26 +59,52 @@ for x in range(numb_of_players):
 # max_score = max(players_scores)
 # winner_i = players_scores.index(max_score)
 # print("Player number", winner_i + 1, "is the winner with a score of:", max_score)
+font_color = "blue"
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.numb_of_players = 5
+        self.players_points = []
+
+        self.setWindowTitle("Pig Game")
+        self.setGeometry(700, 300, 1000, 800)
+        self.main_layout = QVBoxLayout()
+
+        self.title_label = QLabel("Welcome to Pig Game", self)
+        self.title_label.setAlignment(Qt.AlignCenter)
+        self.title_label.setFont(QFont("times", 14))
+        self.title_label.setStyleSheet(f"color: {font_color};"                                  
+                                    "font-weight: bold;")
+        self.main_layout.addWidget(self.title_label)
+
+        self.select_label = QLabel("Select number of players", self)
+        self.select_label.setAlignment(Qt.AlignCenter)
+        self.select_label.setFont(QFont("times", 12))
+        self.select_label.setStyleSheet(f"color: {font_color};"
+                                        "font-weight: bold;")
+        self.main_layout.addWidget(self.select_label)
+
+        self.select_button_box = QHBoxLayout()
+        for x in range(self.numb_of_players):
+            self.numb_button = QPushButton(f"{x + 1}")
+            self.select_button_box.addWidget(self.numb_button)
+        self.main_layout.addLayout(self.select_button_box)
+        
+
+
+
+
+        widget = QWidget()
+        widget.setLayout(self.main_layout)
+        self.setCentralWidget(widget)    
 
 def main():
-    
-    draw(WIN)
-    draw_top_bar(WIN)
-    pygame.display.update()
-    
-    
-pygame.quit()
-
-def draw(win):
-    win.fill(BackGround)
-
-def draw_top_bar(win):
-    pygame.draw.rect(win, "green", (0, 0, WIDTH, BAR_HEIGHT))
-
-    for x in range(numb_of_players):
-        player_label = LABEL_FONT.render(f"Points: {players_points[x]}", 1, BAR_TEXT_COLOR)
-    
-    win.blit(player_label, (100, 5))
+    app = QApplication(sys.argv)                                         
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
 
 if __name__ == "__main__":
     main()
