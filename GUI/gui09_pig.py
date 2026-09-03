@@ -15,7 +15,10 @@ BAR_TEXT_COLOR = "black"
 WIN = pygame.display.set_mode((WIDTH, HEIGHT), display=0)
 pygame.display.set_caption("Pig Game")
 
-points01 = 0
+numb_of_players = 0
+players_points = []
+for x in range(numb_of_players):
+    players_points[x] = 0
 
 def roll():
     min = 1
@@ -73,10 +76,11 @@ def main():
 
 def draw_top_bar(win, elapsed_time, targets_pressed, misses):
     pygame.draw.rect(win, "green", (0, 0, WIDTH, BAR_HEIGHT))
-        
-    player01_label = LABEL_FONT.render(f"Points: {points01}", 1, BAR_TEXT_COLOR)
+
+    for x in range(numb_of_players):
+        player_label = LABEL_FONT.render(f"Points: {players_points[x]}", 1, BAR_TEXT_COLOR)
     
-    win.blit(player01_label, (100, 5))
+    win.blit(player_label, (100, 5))
 
 if __name__ == "__main__":
     main()
