@@ -9,72 +9,82 @@ pygame.init()
 # but losing their gained score for the turn if they roll a 1.
 
 WIDTH, HEIGHT = 1000, 800
-LABEL_FONT = pygame.font.SysFont("cosmicsans", 24)
+LABEL_FONT = pygame.font.SysFont("monospace", 24)
 BAR_HEIGHT = 30
-BAR_TEXT_COLOR = "black"
+BAR_TEXT_COLOR = "white"
+BackGround = "darkblue"
 WIN = pygame.display.set_mode((WIDTH, HEIGHT), display=0)
 pygame.display.set_caption("Pig Game")
 
-numb_of_players = 0
+numb_of_players = 3
 players_points = []
 for x in range(numb_of_players):
-    players_points[x] = 0
+    players_points.append(0)
 
-def roll():
-    min = 1
-    max = 6
-    roll = random.randint(min, max)
-    return roll
+# def roll():
+#     min = 1
+#     max = 6
+#     roll = random.randint(min, max)
+#     return roll
 
-while True: 
-    players = input("Enter the number of players(2-4): ")
-    if players.isdigit():
-        players = int(players)
-        if 2 <= players <=4:
-            break
-        else:
-            print("Number of players must be beeen 2 - 4!")
-    else:
-        print("Invalid number of players!")
+# while True: 
+#     players = input("Enter the number of players(2-4): ")
+#     if players.isdigit():
+#         players = int(players)
+#         if 2 <= players <=4:
+#             break
+#         else:
+#             print("Number of players must be beeen 2 - 4!")
+#     else:
+#         print("Invalid number of players!")
 
-# winning condition     
-max_score = 50
-players_scores = [0 for _ in range(players)]
+# # winning condition     
+# max_score = 50
+# players_scores = [0 for _ in range(players)]
 
-while max(players_scores) < max_score:
+# while max(players_scores) < max_score:
 
-    for player_i in range(players):
-        print("\nPlayer", player_i + 1, "turn to roll!")
-        print("Your total score is:", players_scores[player_i], "\n")
-        current_score = 0
+#     for player_i in range(players):
+#         print("\nPlayer", player_i + 1, "turn to roll!")
+#         print("Your total score is:", players_scores[player_i], "\n")
+#         current_score = 0
 
-        while True:
-            should_roll = input("Would you like to roll?(Y/N): ").lower()
-            if should_roll != "y":
-                break
+#         while True:
+#             should_roll = input("Would you like to roll?(Y/N): ").lower()
+#             if should_roll != "y":
+#                 break
 
-            value = roll()
-            if value == 1:
-                print("You rolled 1! Turn done!")
-                current_score = 0
-                break
-            else:
-                current_score += value
-                print("You rolled a:", value)
+#             value = roll()
+#             if value == 1:
+#                 print("You rolled 1! Turn done!")
+#                 current_score = 0
+#                 break
+#             else:
+#                 current_score += value
+#                 print("You rolled a:", value)
             
-            print("Your score is", current_score)
+#             print("Your score is", current_score)
 
-        players_scores[player_i] += current_score
-        print("Your total score is:", players_scores[player_i])
+#         players_scores[player_i] += current_score
+#         print("Your total score is:", players_scores[player_i])
 
-max_score = max(players_scores)
-winner_i = players_scores.index(max_score)
-print("Player number", winner_i + 1, "is the winner with a score of:", max_score)
+# max_score = max(players_scores)
+# winner_i = players_scores.index(max_score)
+# print("Player number", winner_i + 1, "is the winner with a score of:", max_score)
 
 def main():
-    run = True
+    
+    draw(WIN)
+    draw_top_bar(WIN)
+    pygame.display.update()
+    
+    
+pygame.quit()
 
-def draw_top_bar(win, elapsed_time, targets_pressed, misses):
+def draw(win):
+    win.fill(BackGround)
+
+def draw_top_bar(win):
     pygame.draw.rect(win, "green", (0, 0, WIDTH, BAR_HEIGHT))
 
     for x in range(numb_of_players):

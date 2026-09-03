@@ -6,7 +6,7 @@ import pygame
 pygame.init()
 
 WIDTH, HEIGHT = 1000, 800
-BAR_HEIGHT = 30
+BAR_HEIGHT = 40
 BAR_TEXT_COLOR = "black"
 BG_COLOR = "DarkSlateGrey"
 TEXT_COLOR = "limegreen"
@@ -19,7 +19,7 @@ TARGET_EVENT = pygame.USEREVENT
 TARGET_PADDING = 30
 
 LIVES = 5
-LABEL_FONT = pygame.font.SysFont("cosmicsans", 24)
+LABEL_FONT = pygame.font.SysFont("monospace", 24)
 
 class Target:
     MAX_SIZE = 25
@@ -74,10 +74,10 @@ def draw_top_bar(win, elapsed_time, targets_pressed, misses):
     hits_label = LABEL_FONT.render(f"Hits: {targets_pressed}", 1, BAR_TEXT_COLOR)
     lives_label = LABEL_FONT.render(f"Lives: {LIVES - misses}", 1, BAR_TEXT_COLOR)
 
-    win.blit(time_label, (5, 5))
-    win.blit(speed_label, (200, 5))
-    win.blit(hits_label, (400, 5))
-    win.blit(lives_label, (700, 5))
+    win.blit(time_label, (15, 5))
+    win.blit(speed_label, (230, 5))
+    win.blit(hits_label, (460, 5))
+    win.blit(lives_label, (850, 5))
 
 def end_game(win, elapsed_time, targets_pressed, clicks):
     win.fill(BG_COLOR)
