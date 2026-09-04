@@ -113,10 +113,20 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.dice_label)
 
         self.dice_button = QPushButton(f"{dice_art[0]}")
-        self.dice_button.setFixedWidth(150)      
-        self.dice_button.setFont(QFont("times", 16))
+        self.dice_button.setFixedWidth(180)      
+        self.dice_button.setFont(QFont("times", 18))
         self.dice_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;")
         self.main_layout.addWidget(self.dice_button)
+
+        self.points_box = QHBoxLayout()
+        for x in range(self.numb_of_players):
+            self.players_points = QLabel(f"Player {x + 1} points:", self)
+            self.players_points.setFont(QFont("times", 12))
+            self.players_points.setFixedWidth(120)
+            self.players_points.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
+            self.points_box.addWidget(self.players_points)
+        self.main_layout.addLayout(self.points_box)
+
 
         
 
