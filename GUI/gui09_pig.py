@@ -63,13 +63,13 @@ font_color = "blue"
 button_color = "green"
 
 dice_art = {
-    0: ("┌─────────┐\n|                     |\n|                     |\n|                     |\n└─────────┘"),
-    1: ("┌─────────┐\n|                     |\n|         ♣         |\n|                     |\n└─────────┘"),
-    2: ("┌─────────┐\n|     ♣             |\n|                     |\n|             ♣     |\n└─────────┘"),
-    3: ("┌─────────┐\n|     ♣             |\n|         ♣         |\n|             ♣     |\n└─────────┘"),
-    4: ("┌─────────┐\n|    ♣      ♣    |\n|                     |\n|    ♣      ♣    |\n└─────────┘"),
-    5: ("┌─────────┐\n|    ♣      ♣    |\n|         ♣         |\n|    ♣      ♣    |\n└─────────┘"),
-    6: ("┌─────────┐\n|    ♣      ♣    |\n|    ♣      ♣    |\n|    ♣      ♣    |\n└─────────┘"),
+    0: ("┌─────┐\n|                       |\n|                       |\n|                       |\n└─────┘"),
+    1: ("┌─────┐\n|                     |\n|         ♣         |\n|                     |\n└─────┘"),
+    2: ("┌─────┐\n|     ♣             |\n|                     |\n|             ♣     |\n└─────┘"),
+    3: ("┌─────┐\n|     ♣             |\n|         ♣         |\n|             ♣     |\n└─────┘"),
+    4: ("┌─────┐\n|    ♣      ♣    |\n|                     |\n|    ♣      ♣    |\n└─────┘"),
+    5: ("┌─────┐\n|    ♣      ♣    |\n|         ♣         |\n|    ♣      ♣    |\n└─────┘"),
+    6: ("┌─────┐\n|    ♣      ♣    |\n|    ♣      ♣    |\n|    ♣      ♣    |\n└─────┘"),
 }
 
 class MainWindow(QMainWindow):
@@ -100,7 +100,8 @@ class MainWindow(QMainWindow):
         self.select_button_box = QHBoxLayout()
         for x in range(self.numb_of_players):
             self.numb_button = QPushButton(f"{x + 1}")
-            self.numb_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;" "margin: 20px;")
+            self.numb_button.setFixedWidth(80)  
+            self.numb_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;")
             self.select_button_box.addWidget(self.numb_button)
         self.main_layout.addLayout(self.select_button_box)
 
@@ -112,7 +113,8 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.dice_label)
 
         self.dice_button = QPushButton(f"{dice_art[0]}")
-        self.dice_button.setFixedWidth(100)        
+        self.dice_button.setFixedWidth(150)      
+        self.dice_button.setFont(QFont("times", 16))
         self.dice_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;")
         self.main_layout.addWidget(self.dice_button)
 
