@@ -63,13 +63,13 @@ font_color = "blue"
 button_color = "green"
 
 dice_art = {
-    0: ("┌─────┐\n|                       |\n|                       |\n|                       |\n└─────┘"),
-    1: ("┌─────┐\n|                       |\n|          1          |\n|                       |\n└─────┘"),
-    2: ("┌─────┐\n|     2                |\n|                       |\n|                2     |\n└─────┘"),
-    3: ("┌─────┐\n|     3                |\n|          3          |\n|                3     |\n└─────┘"),
-    4: ("┌─────┐\n|     4         4     |\n|                       |\n|     4         4     |\n└─────┘"),
-    5: ("┌─────┐\n|     5         5     |\n|          5          |\n|     5         5     |\n└─────┘"),
-    6: ("┌─────┐\n|     6         6     |\n|     6         6     |\n|     6         6     |\n└─────┘"),
+    0: ("\n\n\n\n"),
+    1: ("\n\n1\n\n"),
+    2: (" \n2                                           |          \n                       \n                2     \n"),
+    3: ("                       \n     3                \n3\n                3     \n"),
+    4: (" \n     4         4     \n                       \n     4         4     \n"),
+    5: (" \n     5         5     \n          5          \n     5         5     \n"),
+    6: (" \n     6         6     \n     6         6     \n     6         6     \n"),
 }
 
 class MainWindow(QMainWindow):
@@ -115,7 +115,7 @@ class MainWindow(QMainWindow):
 
         self.dice_button = QPushButton(f"{dice_art[0]}")
         self.dice_button.setFixedWidth(180)      
-        self.dice_button.setFont(QFont("times", 17))
+        self.dice_button.setFont(QFont("cosmic", 16))
         self.dice_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;" "font-weight: bold;")
         self.main_layout.addWidget(self.dice_button)
 
