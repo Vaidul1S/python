@@ -65,11 +65,11 @@ button_color = "green"
 dice_art = {
     0: ("\n\n\n\n"),
     1: ("\n\n1\n\n"),
-    2: (" \n2                                           |          \n                       \n                2     \n"),
-    3: ("                       \n     3                \n3\n                3     \n"),
-    4: (" \n     4         4     \n                       \n     4         4     \n"),
-    5: (" \n     5         5     \n          5          \n     5         5     \n"),
-    6: (" \n     6         6     \n     6         6     \n     6         6     \n"),
+    2: (" \n2\n\n2\n"),
+    3: ("\n3\n3\n3\n"),
+    4: (" \n4         4\n\n4         4\n"),
+    5: (" \n5         5\n5\n5         5\n"),
+    6: (" \n6         6\n6         6\n6         6\n"),
 }
 
 class MainWindow(QMainWindow):
