@@ -76,7 +76,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.numb_of_players = 5
+        self.numb_of_players = 1
+        self.max_players = 5
         self.players_points = []
 
         self.setWindowTitle("Pig Game")
@@ -98,7 +99,7 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.select_label)
 
         self.select_button_box = QHBoxLayout()
-        for x in range(self.numb_of_players):
+        for x in range(self.max_players):
             self.numb_button = QPushButton(f"{x + 1}")
             self.numb_button.setFixedWidth(80)  
             self.numb_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;")
@@ -137,7 +138,15 @@ class MainWindow(QMainWindow):
         self.initUI()
                         
     def initUI(self):
+        for x in range(self.select_button_box.count()):
+            item = self.select_button_box.itemAt(x).widget()
+            if isinstance(item, QPushButton):
+                item.clicked.connect(lambda checked, x=x: self.set_players_numb(x+1))  
+
         self.dice_button.clicked.connect(self.roll)
+
+    def set_players_numb(self, numb):
+        self.numb_of_players = numb
 
     def roll(self):
         restult = random.randint(1, 6)
