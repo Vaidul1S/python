@@ -74,12 +74,14 @@ dice_art = {
 
 max_players = 5
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
         self.numb_of_players = 1
         self.players_points = []
+        self.player_id = 0
 
         self.setWindowTitle("Pig Game")
         self.setGeometry(700, 300, 1000, 800)
@@ -156,11 +158,18 @@ class MainWindow(QMainWindow):
         
     def roll(self):
         restult = random.randint(1, 6)
-        self.dice_button.setText(f"{dice_art[restult]}")
+        self.dice_button.setText(f"{dice_art[restult]}")        
+        item = self.points_box.itemAt(self.player_id).widget()
         if restult > 1:
-            self.players_points[0] += restult
+            self.players_points[self.player_id] += restult
+            item.setText(f"Player {self.player_id + 1} points:\n {self.players_points[self.player_id]}")
         else:
-            self.players_points[0] = 0
+            self.players_points[self.player_id] = 0
+            item.setText(f"Player {self.player_id + 1} points:\n {self.players_points[self.player_id]}")
+            self.player_id += 1
+            if self.player_id > self.numb_of_players - 1:
+                self.player_id = 0
+        
         
             
 
