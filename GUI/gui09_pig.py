@@ -73,14 +73,13 @@ dice_art = {
 }
 
 max_players = 5
-players_points = []
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
         self.numb_of_players = 1
+        self.players_points = []
 
         self.setWindowTitle("Pig Game")
         self.setGeometry(700, 300, 1000, 800)
@@ -147,7 +146,8 @@ class MainWindow(QMainWindow):
                 item = self.points_box.itemAt(0).widget()
                 self.points_box.removeWidget(item)              
         for x in range(self.numb_of_players):
-            self.points = QLabel(f"Player {x + 1} points:", self)
+            self.players_points.append(0)
+            self.points = QLabel(f"Player {x + 1} points:\n {self.players_points[x]}", self)
             self.points.setFont(QFont("times", 12))
             self.points.setFixedWidth(120)
             self.points.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
@@ -157,6 +157,12 @@ class MainWindow(QMainWindow):
     def roll(self):
         restult = random.randint(1, 6)
         self.dice_button.setText(f"{dice_art[restult]}")
+        if restult > 1:
+            self.players_points[0] += restult
+        else:
+            self.players_points[0] = 0
+        
+            
 
 
 def main():
