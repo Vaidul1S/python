@@ -103,7 +103,10 @@ class MainWindow(QMainWindow):
         for x in range(max_players):
             self.numb_button = QPushButton(f"{x + 1}")
             self.numb_button.setFixedWidth(80)  
-            self.numb_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;")
+            self.numb_button.setStyleSheet(f"background-color: {button_color};" 
+                                           f"color: {font_color};" 
+                                           "border-radius: 10px;" 
+                                           "padding: 5px;")
             self.select_button_box.addWidget(self.numb_button)
         self.main_layout.addLayout(self.select_button_box)
 
@@ -122,6 +125,15 @@ class MainWindow(QMainWindow):
                                        "font-weight: bold;" 
                                        "margin: 0px 410px")
         self.main_layout.addWidget(self.dice_button)
+
+        self.pass_button = QPushButton("Pass the turn", self)
+        self.pass_button.setFont(QFont("times", 12))
+        self.pass_button.setStyleSheet(f"background-color: {button_color};"
+                                       f"color: {font_color};"
+                                       "border-radius: 10px;" 
+                                       "padding: 10px;" 
+                                       "margin: 20px 380px")
+        self.main_layout.addWidget(self.pass_button)
 
         self.points_box = QHBoxLayout()        
         self.main_layout.addLayout(self.points_box)
@@ -162,7 +174,6 @@ class MainWindow(QMainWindow):
             self.points.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
             self.points_box.addWidget(self.points)
         
-        
     def roll(self):
         if self.points_box.count() < 1:
             self.result_label.setText("Select number of players first, please")
@@ -182,7 +193,11 @@ class MainWindow(QMainWindow):
                 self.player_id += 1
                 if self.player_id > self.numb_of_players - 1:
                     self.player_id = 0
-        
+
+    def pass_turn(self):
+        self.player_id += 1
+        if self.player_id > self.numb_of_players - 1:
+            self.player_id = 0
         
         
             
