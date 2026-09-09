@@ -95,14 +95,14 @@ class MainWindow(QMainWindow):
 
         self.title_label = QLabel("Welcome to Pig Game", self)
         self.title_label.setAlignment(Qt.AlignCenter)
-        self.title_label.setFont(QFont(f"{text_font}", 14))
-        self.title_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
+        self.title_label.setFont(QFont(f"{text_font}", 32))
+        self.title_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.title_label)
 
         self.select_label = QLabel("Select number of players", self)
         self.select_label.setAlignment(Qt.AlignCenter)
-        self.select_label.setFont(QFont(f"{text_font}", 12))
-        self.select_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
+        self.select_label.setFont(QFont(f"{text_font}", 24))
+        self.select_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.select_label)
 
         self.select_button_box = QHBoxLayout()
@@ -120,31 +120,32 @@ class MainWindow(QMainWindow):
 
         self.dice_label = QLabel("Roll your dice", self)
         self.dice_label.setAlignment(Qt.AlignCenter)
-        self.dice_label.setFont(QFont(f"{text_font}", 12))
-        self.dice_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
+        self.dice_label.setFont(QFont(f"{text_font}", 20))
+        self.dice_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.dice_label)
 
         self.turn_label = QLabel("", self)
         self.turn_label.setAlignment(Qt.AlignCenter)
-        self.turn_label.setFont(QFont(f"{text_font}", 12))
-        self.turn_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
+        self.turn_label.setFont(QFont(f"{text_font}", 16))
+        self.turn_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.turn_label)
 
         self.dice_button = QPushButton(f"{dice_art[0]}")
-        self.dice_button.setFont(QFont(f"{text_font}", 16))
+        self.dice_button.setFont(QFont(f"{text_font}", 18))
         self.dice_button.setStyleSheet(f"background-color: {button_color};" 
                                        f"color: {font_color};" 
                                        "border-radius: 10px;" 
-                                       "padding: 5px;" 
+                                       "padding: 5px;"                                        
                                        "font-weight: bold;" 
                                        "margin: 0px 410px")
         self.main_layout.addWidget(self.dice_button)
 
         self.pass_button = QPushButton("Pass the turn", self)
-        self.pass_button.setFont(QFont(f"{text_font}", 14))
+        self.pass_button.setFont(QFont(f"{text_font}", 16))
         self.pass_button.setStyleSheet(f"background-color: {button_color};"
                                        f"color: {font_color};"
                                        "border-radius: 10px;" 
+                                       "letter-spacing: 3px;"
                                        "padding: 8px;" 
                                        "margin: 20px 380px")
         self.main_layout.addWidget(self.pass_button)
@@ -155,7 +156,7 @@ class MainWindow(QMainWindow):
         self.result_label = QLabel(" ",self)
         self.result_label.setAlignment(Qt.AlignCenter)
         self.result_label.setFont(QFont(f"{text_font}", 18))
-        self.result_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
+        self.result_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.result_label)
         
 
@@ -183,10 +184,10 @@ class MainWindow(QMainWindow):
                 self.points_box.removeWidget(item)              
         for x in range(self.numb_of_players):
             self.players_points.append(0)
-            self.points = QLabel(f"Player {x + 1} points:\n {self.players_points[x]}", self)
+            self.points = QLabel(f"Player {x + 1} points: {self.players_points[x]}", self)
             self.points.setFont(QFont(f"{text_font}", 12))
-            self.points.setFixedWidth(120)
-            self.points.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
+            self.points.setFixedWidth(170)
+            self.points.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 3px")
             self.points_box.addWidget(self.points)
         self.turn_label.setText(f"Player {self.player_id + 1} turn to roll")
         
@@ -200,12 +201,12 @@ class MainWindow(QMainWindow):
             item = self.points_box.itemAt(self.player_id).widget()
             if restult > 1:
                 self.players_points[self.player_id] += restult
-                item.setText(f"Player {self.player_id + 1} points:\n {self.players_points[self.player_id]}")
+                item.setText(f"Player {self.player_id + 1} points: {self.players_points[self.player_id]}")
                 if self.players_points[self.player_id] >= 50:
                     self.result_label.setText(f"Player {self.player_id + 1} WON!")
             else:
                 self.players_points[self.player_id] = 0
-                item.setText(f"Player {self.player_id + 1} points:\n {self.players_points[self.player_id]}")
+                item.setText(f"Player {self.player_id + 1} points: {self.players_points[self.player_id]}")
                 self.player_id += 1
                 if self.player_id > self.numb_of_players - 1:
                     self.player_id = 0
