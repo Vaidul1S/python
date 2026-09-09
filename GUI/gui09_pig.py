@@ -116,6 +116,12 @@ class MainWindow(QMainWindow):
         self.dice_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
         self.main_layout.addWidget(self.dice_label)
 
+        self.turn_label = QLabel("", self)
+        self.turn_label.setAlignment(Qt.AlignCenter)
+        self.turn_label.setFont(QFont("times", 12))
+        self.turn_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
+        self.main_layout.addWidget(self.turn_label)
+
         self.dice_button = QPushButton(f"{dice_art[0]}")
         self.dice_button.setFont(QFont("cosmic", 16))
         self.dice_button.setStyleSheet(f"background-color: {button_color};" 
@@ -127,11 +133,11 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.dice_button)
 
         self.pass_button = QPushButton("Pass the turn", self)
-        self.pass_button.setFont(QFont("times", 12))
         self.pass_button.setStyleSheet(f"background-color: {button_color};"
                                        f"color: {font_color};"
                                        "border-radius: 10px;" 
-                                       "padding: 10px;" 
+                                       "padding: 8px;" 
+                                       "justify-content: center;"
                                        "margin: 20px 380px")
         self.main_layout.addWidget(self.pass_button)
 
@@ -158,6 +164,7 @@ class MainWindow(QMainWindow):
                 item.clicked.connect(lambda checked, x=x: self.set_players_numb(x+1))  
 
         self.dice_button.clicked.connect(self.roll)
+        self.pass_button.clicked.connect(self.pass_turn)
 
     def set_players_numb(self, numb):
         self.numb_of_players = numb
@@ -173,6 +180,7 @@ class MainWindow(QMainWindow):
             self.points.setFixedWidth(120)
             self.points.setStyleSheet(f"color: {font_color};" "font-weight: bold;")
             self.points_box.addWidget(self.points)
+        self.turn_label.setText(f"Player {self.player_id + 1} turn to roll")
         
     def roll(self):
         if self.points_box.count() < 1:
@@ -193,11 +201,16 @@ class MainWindow(QMainWindow):
                 self.player_id += 1
                 if self.player_id > self.numb_of_players - 1:
                     self.player_id = 0
+                self.turn_label.setText(f"Player {self.player_id + 1} turn to roll")
+                
 
     def pass_turn(self):
         self.player_id += 1
         if self.player_id > self.numb_of_players - 1:
             self.player_id = 0
+        self.dice_button.setText(f"{dice_art[0]}")
+        self.turn_label.setText(f"Player {self.player_id + 1} turn to roll")
+        
         
         
             
