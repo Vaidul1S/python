@@ -114,9 +114,13 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.dice_label)
 
         self.dice_button = QPushButton(f"{dice_art[0]}")
-        self.dice_button.setFixedWidth(180)      
         self.dice_button.setFont(QFont("cosmic", 16))
-        self.dice_button.setStyleSheet(f"background-color: {button_color};" f"color: {font_color};" "border-radius: 10px;" "padding: 5px;" "font-weight: bold;")
+        self.dice_button.setStyleSheet(f"background-color: {button_color};" 
+                                       f"color: {font_color};" 
+                                       "border-radius: 10px;" 
+                                       "padding: 5px;" 
+                                       "font-weight: bold;" 
+                                       "margin: 0px 410px")
         self.main_layout.addWidget(self.dice_button)
 
         self.points_box = QHBoxLayout()        
@@ -145,6 +149,7 @@ class MainWindow(QMainWindow):
 
     def set_players_numb(self, numb):
         self.numb_of_players = numb
+        self.result_label.setText(" ")
         if self.points_box.count() > 0:
             for x in range(self.points_box.count()):
                 item = self.points_box.itemAt(0).widget()
@@ -159,20 +164,25 @@ class MainWindow(QMainWindow):
         
         
     def roll(self):
-        restult = random.randint(1, 6)
-        self.dice_button.setText(f"{dice_art[restult]}")        
-        item = self.points_box.itemAt(self.player_id).widget()
-        if restult > 1:
-            self.players_points[self.player_id] += restult
-            item.setText(f"Player {self.player_id + 1} points:\n {self.players_points[self.player_id]}")
-            if self.players_points[self.player_id] >= 50:
-                self.result_label.setText(f"Player {self.player_id + 1} WON!")
+        if self.points_box.count() < 1:
+            self.result_label.setText("Select number of players first, please")
         else:
-            self.players_points[self.player_id] = 0
-            item.setText(f"Player {self.player_id + 1} points:\n {self.players_points[self.player_id]}")
-            self.player_id += 1
-            if self.player_id > self.numb_of_players - 1:
-                self.player_id = 0
+            self.result_label.setText(" ")
+            restult = random.randint(1, 6)
+            self.dice_button.setText(f"{dice_art[restult]}")        
+            item = self.points_box.itemAt(self.player_id).widget()
+            if restult > 1:
+                self.players_points[self.player_id] += restult
+                item.setText(f"Player {self.player_id + 1} points:\n {self.players_points[self.player_id]}")
+                if self.players_points[self.player_id] >= 50:
+                    self.result_label.setText(f"Player {self.player_id + 1} WON!")
+            else:
+                self.players_points[self.player_id] = 0
+                item.setText(f"Player {self.player_id + 1} points:\n {self.players_points[self.player_id]}")
+                self.player_id += 1
+                if self.player_id > self.numb_of_players - 1:
+                    self.player_id = 0
+        
         
         
             
