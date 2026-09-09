@@ -110,10 +110,11 @@ class MainWindow(QMainWindow):
             self.numb_button = QPushButton(f"{x + 1}")
             self.numb_button.setFixedWidth(80)  
             self.numb_button.setFont(QFont(f"{text_font}", 14))
+            self.numb_button.setCursor(Qt.PointingHandCursor)
             self.numb_button.setStyleSheet(f"background-color: {button_color};" 
                                            f"color: {font_color};" 
                                            "border-radius: 10px;" 
-                                           "line-height: 0;"
+                                           "font-weight: bold;"                                           
                                            "padding: 5px;")
             self.select_button_box.addWidget(self.numb_button)
         self.main_layout.addLayout(self.select_button_box)
@@ -132,6 +133,7 @@ class MainWindow(QMainWindow):
 
         self.dice_button = QPushButton(f"{dice_art[0]}")
         self.dice_button.setFont(QFont(f"{text_font}", 18))
+        self.dice_button.setCursor(Qt.PointingHandCursor)
         self.dice_button.setStyleSheet(f"background-color: {button_color};" 
                                        f"color: {font_color};" 
                                        "border-radius: 10px;" 
@@ -142,10 +144,12 @@ class MainWindow(QMainWindow):
 
         self.pass_button = QPushButton("Pass the turn", self)
         self.pass_button.setFont(QFont(f"{text_font}", 16))
+        self.pass_button.setCursor(Qt.PointingHandCursor)
         self.pass_button.setStyleSheet(f"background-color: {button_color};"
                                        f"color: {font_color};"
                                        "border-radius: 10px;" 
                                        "letter-spacing: 3px;"
+                                       "font-weight: bold;"
                                        "padding: 8px;" 
                                        "margin: 20px 380px")
         self.main_layout.addWidget(self.pass_button)
