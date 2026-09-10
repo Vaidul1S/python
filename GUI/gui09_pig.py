@@ -131,16 +131,21 @@ class MainWindow(QMainWindow):
         self.turn_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.turn_label)
 
+        self.dice_box = QHBoxLayout()
         self.dice_button = QPushButton()
-        self.dice_button.setFont(QFont(f"{text_font}", 18))
+        self.dice_button.setFixedWidth(200)
         self.dice_button.setIcon(QIcon("python/modules/dice00.png"))
         self.dice_button.setIconSize(QSize(200,200))
         self.dice_button.setCursor(Qt.PointingHandCursor)
         self.dice_button.setStyleSheet("background-color: none;" 
                                        "border-radius: 10px;")
-        self.main_layout.addWidget(self.dice_button)
+        self.dice_box.addWidget(self.dice_button)
+        self.main_layout.addLayout(self.dice_box)
 
+        self.pass_box = QHBoxLayout()
+        self.pass_box.setContentsMargins(0,20,0,0)
         self.pass_button = QPushButton("Pass the turn", self)
+        self.pass_button.setFixedWidth(200)
         self.pass_button.setFont(QFont(f"{text_font}", 16))
         self.pass_button.setCursor(Qt.PointingHandCursor)
         self.pass_button.setStyleSheet(f"background-color: {button_color};"
@@ -148,9 +153,10 @@ class MainWindow(QMainWindow):
                                        "border-radius: 10px;" 
                                        "letter-spacing: 3px;"
                                        "font-weight: bold;"
-                                       "padding: 8px;" 
-                                       "margin: 20px 380px")
-        self.main_layout.addWidget(self.pass_button)
+                                       "padding: 12px;" 
+                                       )
+        self.pass_box.addWidget(self.pass_button)
+        self.main_layout.addLayout(self.pass_box)
 
         self.points_box = QHBoxLayout()        
         self.main_layout.addLayout(self.points_box)
