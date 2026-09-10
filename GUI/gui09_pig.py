@@ -59,8 +59,9 @@ from PyQt5.QtCore import Qt, QSize
 # max_score = max(players_scores)
 # winner_i = players_scores.index(max_score)
 # print("Player number", winner_i + 1, "is the winner with a score of:", max_score)
-font_color = "blue"
-button_color = "green"
+font_color = "#12100e"
+button_color = "#6b654b"
+background_color = "#30321c"
 text_font = "z003"
 
 dice_art = {
@@ -90,8 +91,10 @@ class MainWindow(QMainWindow):
         self.player_id = 0
 
         self.setWindowTitle("Pig Game")
-        self.setGeometry(700, 300, 1000, 800)
+        self.setGeometry(700, 300, 1000, 800)        
         self.main_layout = QVBoxLayout()
+        self.main_layout.setObjectName("main_layout")
+        self.setStyleSheet(f"background-color: {background_color};")
 
         self.title_label = QLabel("Welcome to Pig Game", self)
         self.title_label.setAlignment(Qt.AlignCenter)
