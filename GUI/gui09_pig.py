@@ -80,10 +80,10 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        db = QFontDatabase()
-        families = db.families() 
-        for f in families:
-            print(f)
+        # db = QFontDatabase()
+        # families = db.families() 
+        # for f in families:
+        #     print(f)
 
         self.numb_of_players = 1
         self.players_points = []
@@ -136,12 +136,8 @@ class MainWindow(QMainWindow):
         self.dice_button.setIcon(QIcon("python/modules/dice00.png"))
         self.dice_button.setIconSize(QSize(200,200))
         self.dice_button.setCursor(Qt.PointingHandCursor)
-        self.dice_button.setStyleSheet(f"background-color: {button_color};" 
-                                       f"color: {font_color};" 
-                                       "border-radius: 10px;" 
-                                       "padding: 15px;"                                        
-                                       "font-weight: bold;" 
-                                       "margin: 0px 410px")
+        self.dice_button.setStyleSheet("background-color: none;" 
+                                       "border-radius: 10px;")
         self.main_layout.addWidget(self.dice_button)
 
         self.pass_button = QPushButton("Pass the turn", self)
@@ -203,7 +199,7 @@ class MainWindow(QMainWindow):
         else:
             self.result_label.setText(" ")
             restult = random.randint(1, 6)
-            self.dice_button.setText(f"{dice_art[restult]}")        
+            self.dice_button.setIcon(QIcon(f"python/modules/dice0{restult}.png"))        
             item = self.points_box.itemAt(self.player_id).widget()
             if restult > 1:
                 self.players_points[self.player_id] += restult
@@ -224,7 +220,7 @@ class MainWindow(QMainWindow):
         self.player_id += 1
         if self.player_id > self.numb_of_players - 1:
             self.player_id = 0
-        self.dice_button.setText(f"{dice_art[0]}")
+        self.dice_button.setIcon(QIcon("python/modules/dice00.png"))
         self.turn_label.setText(f"Player {self.player_id + 1} turn to roll")
         
         
