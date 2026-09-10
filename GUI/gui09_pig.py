@@ -166,7 +166,7 @@ class MainWindow(QMainWindow):
 
         self.result_label = QLabel(" ",self)
         self.result_label.setAlignment(Qt.AlignCenter)
-        self.result_label.setFont(QFont(f"{text_font}", 18))
+        self.result_label.setFont(QFont(f"{text_font}", 24))
         self.result_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.result_label)
         
@@ -196,9 +196,9 @@ class MainWindow(QMainWindow):
         for x in range(self.numb_of_players):
             self.players_points.append(0)
             self.points = QLabel(f"Player {x + 1} points: {self.players_points[x]}", self)
-            self.points.setFont(QFont(f"{text_font}", 12))
+            self.points.setFont(QFont(f"{text_font}", 14))
             self.points.setFixedWidth(170)
-            self.points.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 3px")
+            self.points.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 2px")
             self.points_box.addWidget(self.points)
         self.turn_label.setText(f"Player {self.player_id + 1} turn to roll")
         
