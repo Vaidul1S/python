@@ -2,7 +2,7 @@ import random
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QPushButton
 from PyQt5.QtGui import QIcon, QFont, QPixmap, QFontDatabase
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSize
 
 # Pig is a simple dice game first described in print by John Scarne in 1945. 
 # Players take turns to roll a single dice as many times as they wish, adding all roll results to a running total, 
@@ -131,13 +131,15 @@ class MainWindow(QMainWindow):
         self.turn_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.turn_label)
 
-        self.dice_button = QPushButton(f"{dice_art[0]}")
+        self.dice_button = QPushButton()
         self.dice_button.setFont(QFont(f"{text_font}", 18))
+        self.dice_button.setIcon(QIcon("python/modules/dice00.png"))
+        self.dice_button.setIconSize(QSize(200,200))
         self.dice_button.setCursor(Qt.PointingHandCursor)
         self.dice_button.setStyleSheet(f"background-color: {button_color};" 
                                        f"color: {font_color};" 
                                        "border-radius: 10px;" 
-                                       "padding: 5px;"                                        
+                                       "padding: 15px;"                                        
                                        "font-weight: bold;" 
                                        "margin: 0px 410px")
         self.main_layout.addWidget(self.dice_button)
@@ -208,6 +210,7 @@ class MainWindow(QMainWindow):
                 item.setText(f"Player {self.player_id + 1} points: {self.players_points[self.player_id]}")
                 if self.players_points[self.player_id] >= 50:
                     self.result_label.setText(f"Player {self.player_id + 1} WON!")
+                    self.setDisabled(True)
             else:
                 self.players_points[self.player_id] = 0
                 item.setText(f"Player {self.player_id + 1} points: {self.players_points[self.player_id]}")
