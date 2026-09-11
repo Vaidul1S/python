@@ -13,7 +13,7 @@ button_color = "#6b654b"
 background_color = "#30321c"
 text_font = "z003"
 
-max_players = 6
+max_players = 5
 win_condition = 50
 
 class MainWindow(QMainWindow):
@@ -157,7 +157,6 @@ class MainWindow(QMainWindow):
                 if self.player_id > self.numb_of_players - 1:
                     self.player_id = 0
                 self.turn_label.setText(f"Player {self.player_id + 1} turn to roll")
-                
 
     def pass_turn(self):
         self.player_id += 1
@@ -166,10 +165,6 @@ class MainWindow(QMainWindow):
         self.dice_button.setIcon(QIcon("python/modules/dice00.png"))
         self.turn_label.setText(f"Player {self.player_id + 1} turn to roll")
         
-        
-        
-            
-
 
 def main():
     app = QApplication(sys.argv)                                         
