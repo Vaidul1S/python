@@ -64,16 +64,6 @@ button_color = "#6b654b"
 background_color = "#30321c"
 text_font = "z003"
 
-dice_art = {
-    0: ("\n\n\n\n"),
-    1: ("\n\n1\n\n"),
-    2: (" \n2\n\n2\n"),
-    3: ("\n3\n3\n3\n"),
-    4: (" \n4         4\n\n4         4\n"),
-    5: (" \n5         5\n5\n5         5\n"),
-    6: (" \n6         6\n6         6\n6         6\n"),
-}
-
 max_players = 6
 win_condition = 50
 
