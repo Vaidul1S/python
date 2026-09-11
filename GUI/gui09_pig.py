@@ -74,7 +74,7 @@ dice_art = {
     6: (" \n6         6\n6         6\n6         6\n"),
 }
 
-max_players = 5
+max_players = 6
 win_condition = 50
 
 class MainWindow(QMainWindow):
