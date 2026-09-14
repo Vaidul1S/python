@@ -62,7 +62,7 @@ class MainWindow(QMainWindow):
         self.dice_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.dice_label)
 
-        self.turn_label = QLabel("", self)
+        self.turn_label = QLabel("Good luck", self)
         self.turn_label.setAlignment(Qt.AlignCenter)
         self.turn_label.setFont(QFont(f"{text_font}", 16))
         self.turn_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
