@@ -94,16 +94,14 @@ class MainWindow(QMainWindow):
                                        )
         self.pass_box.addWidget(self.pass_button)
         self.main_layout.addLayout(self.pass_box)
-
-        self.points_box = QHBoxLayout()        
-        self.main_layout.addLayout(self.points_box)
-
-        self.result_label = QLabel("Points of players",self)
-        self.result_label.setAlignment(Qt.AlignCenter)
-        self.result_label.setFont(QFont(f"{text_font}", 18))
-        self.result_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
-        self.main_layout.addWidget(self.result_label)
         
+        self.points_box = QHBoxLayout()        
+        self.result_label = QLabel("???????????",self)
+        self.result_label.setAlignment(Qt.AlignCenter)
+        self.result_label.setFont(QFont(f"T{text_font}", 18))
+        self.result_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
+        self.points_box.addWidget(self.result_label)
+        self.main_layout.addLayout(self.points_box)
 
         widget = QWidget()
         widget.setLayout(self.main_layout)
