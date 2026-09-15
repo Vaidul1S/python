@@ -96,7 +96,7 @@ class MainWindow(QMainWindow):
         self.main_layout.addLayout(self.pass_box)
         
         self.points_box = QHBoxLayout()        
-        self.result_label = QLabel("???????????",self)
+        self.result_label = QLabel("🖤🖤🖤🖤🖤🖤🖤",self)
         self.result_label.setAlignment(Qt.AlignCenter)
         self.result_label.setFont(QFont(f"T{text_font}", 18))
         self.result_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
