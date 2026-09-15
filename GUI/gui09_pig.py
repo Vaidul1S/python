@@ -64,7 +64,7 @@ class MainWindow(QMainWindow):
 
         self.turn_label = QLabel("Good luck", self)
         self.turn_label.setAlignment(Qt.AlignCenter)
-        self.turn_label.setFont(QFont(f"{text_font}", 16))
+        self.turn_label.setFont(QFont(f"{text_font}", 18))
         self.turn_label.setStyleSheet(f"color: {font_color};" "font-weight: bold;" "letter-spacing: 4px")
         self.main_layout.addWidget(self.turn_label)
 
@@ -146,7 +146,8 @@ class MainWindow(QMainWindow):
                 self.players_points[self.player_id] += restult
                 item.setText(f"Player {self.player_id + 1} points: {self.players_points[self.player_id]}")
                 if self.players_points[self.player_id] >= 50:
-                    self.result_label.setText(f"Player {self.player_id + 1} WON!")
+                    self.turn_label.setText(f"Player {self.player_id + 1} WON!")
+                    self.turn_label.setStyleSheet(f"color: red;" "font-weight: bold;" "letter-spacing: 4px")
                     self.setDisabled(True)
             else:
                 self.players_points[self.player_id] = 0
