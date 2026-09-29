@@ -82,7 +82,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.code = generate_code()
-        self.tries = 10
+        self.tries = 8
         self.guess = []
         self.colors = []
         for x in range(CODE_LENGTH):
