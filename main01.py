@@ -13,7 +13,7 @@ food = "pizza"
 age = 40
 quantity = 5
 
-# floats
+# floats (doubles)
 price = 5.99
 distance = 7.8
 
@@ -22,7 +22,7 @@ is_sleeping = False
 is_day = True
 
 print(first_name)
-print(f"Hello {first_name}!")                           # f stands for format, reikalingas kai norim irasyti kintamuosius {}
+print(f"Hello {first_name}!")                           # f stands for format, reikalingas kai norim irasyti kintamuosius i {}
 print(f"{first_name} likes {food} very much.")
 print(f"{first_name} is {age} years old.")
 print(f"{first_name} ate {quantity} {food}s.")
