@@ -34,7 +34,7 @@ print(cars)
 
 # Tuple () - ordered and unchangeable. Dublicates. Faster
 
-brands = ("dior", "ysl", "coco", "celine", "lv")
+brands = ("dior", "ysl", "coco", "celine", "louis vuitton")
 
 print(brands)
 print(brands.index("dior"))
