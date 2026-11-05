@@ -22,9 +22,12 @@ z = 5
 t = 16
 
 result = round(x)                   # apvalinimas
-result = abs(y)                     # modulis (teigiamas)
-result = pow(x, z)                  # laipsniu 3.14^5
+print(result)
 
+result = abs(y)                     # modulis (teigiamas), absolute
+print(result)
+
+result = pow(x, z)                  # laipsniu 3.14^5
 print(result)
 
 print(math.pi)
