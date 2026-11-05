@@ -45,7 +45,6 @@ for x in range(10):
         print(x, end=" ")                                       # end="bet kas" printis i viena eilute ir i tarpus des "bet kas"
     print()
 
-
 rows = int(input("Enter number of rows: "))
 cols = int(input("Enter number of columns: "))
 symb = input("Enter a symbol to use: ")

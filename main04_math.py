@@ -54,8 +54,8 @@ print(f"The area of the circle is {round(area, 2)} cm2.")
 
 # HIPOPOTAMUS!!!
 
-a = float(input("Enter side A: "))
-b = float(input("Enter side B: "))
+a = float(input("Enter side A of the triangle: "))
+b = float(input("Enter side B of the triangle: "))
 c = math.sqrt(pow(a, 2) + pow(b, 2))
 
 print(f"Hypotenuse of the triangle is {c} cm.")
