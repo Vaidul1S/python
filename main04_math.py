@@ -3,13 +3,17 @@ import math
 
 friends = 0
 
-friends = friends + 5               # 5
-friends -= 2                        # 3
-friends *= 4                        # 12
-friends /= 2                        # 6
-friends = friends ** 2              # **+ 36
+friends = friends + 5               
+print(f"Friends: {friends}")
+friends -= 2                       
+print(f"Friends: {friends}")
+friends *= 4                       
+print(f"Friends: {friends}")
+friends /= 2                       
+print(f"Friends: {friends}")
+friends = friends ** 2              # kvadratas
+print(f"Friends: {friends}")
 friends = friends % 5               # modulus, remainder 1
-
 print(f"Friends: {friends}")
 
 x = 3.14
